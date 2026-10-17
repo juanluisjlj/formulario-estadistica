@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Actividad Individual de Estadística (90 Datos · Escala 0 a 10) — 26 Preguntas y Grupos 10°1 a 10°4</title>
+<title>Actividad Individual de Estadística (90 Datos · Escala 0 a 10) — Décimos 10°1 a 10°4</title>
 <style>
   :root {
     --navy: #1e3a5f;
@@ -262,6 +262,8 @@
   .btn-success:hover { background: #15803d; color: #fff; }
   .btn-navy { background: var(--navy); color: #fff; border-color: var(--navy); }
   .btn-navy:hover { background: var(--navy-dark); color: #fff; }
+  .btn-danger { background: var(--red); color: #fff; border-color: var(--red); }
+  .btn-danger:hover { background: #b91c1c; color: #fff; }
   .btn-lg { padding: 11px 18px; font-size: 0.93rem; }
 
   .keypad-box {
@@ -447,6 +449,41 @@
   }
   .chart-box h4 { font-size: 0.86rem; text-align: center; margin-bottom: 8px; color: #f1f5f9; min-height: 2.4em; display:flex; align-items:center; justify-content:center; }
 
+  /* Password Lock Screen for Teacher Zone */
+  .lock-screen-card {
+    max-width: 520px;
+    margin: 36px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+    border: 2px solid var(--navy);
+    padding: 32px 28px;
+    text-align: center;
+  }
+  .lock-icon-circle {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: var(--blue-soft);
+    color: var(--navy);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px auto;
+  }
+  .lock-error-msg {
+    display: none;
+    background: var(--red-soft);
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
   .poster-box {
     max-width: 680px;
     margin: 0 auto;
@@ -463,6 +500,13 @@
     border: 2px solid var(--slate-200);
     border-radius: 12px;
     margin: 12px 0;
+  }
+  .official-qr-img {
+    width: 300px;
+    height: 300px;
+    max-width: 100%;
+    image-rendering: pixelated;
+    display: block;
   }
   .toast-msg {
     position: fixed;
@@ -491,15 +535,15 @@
     <div class="brand-row">
       <div class="brand-title">
         <h1>📊 Actividad Individual de Estadística (90 Datos · Escala 0 a 10) — Décimos 10°1 a 10°4</h1>
-        <p>26 Preguntas Cuantitativas Únicas por Grupo · Contexto, Interpretaciones y Títulos de Gráficos 100% Dinámicos</p>
+        <p>26 Preguntas Cuantitativas Únicas por Grupo · Captura en Matriz 10×9 · Tabla de Conteo · Exportación a Excel</p>
       </div>
       <div class="badge-pill" id="headerProgressBadge">90 / 90 Datos Listos</div>
     </div>
     <nav class="nav-tabs">
-      <button class="nav-tab active" onclick="switchTab('student')">📱 1. Formulario Individual (Escala 0–10 y Conteo)</button>
+      <button class="nav-tab active" onclick="switchTab('student')">📱 1. Formulario Estudiante (Escala 0–10 y Conteo)</button>
       <button class="nav-tab" onclick="switchTab('roster')">📋 2. Listado Oficial (10°1 a 10°4 y 26 Preguntas)</button>
-      <button class="nav-tab" onclick="switchTab('teacher')">👨‍🏫 3. Modo Docente (Calificador Dinámico + Gráficos)</button>
-      <button class="nav-tab" onclick="switchTab('qrposter')">🖨️ 4. Código QR para el Salón</button>
+      <button class="nav-tab" id="navTabTeacher" onclick="switchTab('teacher')">🔒 3. Zona del Docente (Con Contraseña)</button>
+      <button class="nav-tab" onclick="switchTab('qrposter')">🖨️ 4. Código QR Oficial del Formulario</button>
     </nav>
   </div>
 </header>
@@ -511,12 +555,12 @@
 
     <div class="card">
       <div class="card-header">
-        <div class="card-title"><span class="step-badge">Paso 1</span> Selecciona tu Grupo y Nombre (o haz clic en el N° de Pregunta 1 a 26)</div>
+        <div class="card-title"><span class="step-badge">Paso 1</span> Selecciona tu Grupo y Nombre (o el N° de Pregunta 1 a 26)</div>
       </div>
 
       <!-- Botonera rápida de las 26 preguntas -->
       <div class="q-strip-box">
-        <div class="q-strip-title">🔢 Selector Rápido de Pregunta (Haz clic en cualquier número del 1 al 26 para ver su Contexto, Interpretaciones y Títulos de Gráficos):</div>
+        <div class="q-strip-title">🔢 Selector Rápido de Pregunta (Haz clic en el número del 1 al 26 para ver tu pregunta y contexto asignado):</div>
         <div class="q-strip-grid" id="studentQStrip"></div>
       </div>
 
@@ -557,7 +601,7 @@
       </div>
 
       <div class="context-preview">
-        <strong>Contexto individual dinámico (En Excel: Celda L3 = <span id="ctxExcelCellNum">5</span>):</strong>
+        <strong>Contexto individual dinámico (Pregunta #<span id="ctxExcelCellNum">5</span>):</strong>
         <p id="contextTextDisplay"></p>
       </div>
     </div>
@@ -616,7 +660,7 @@
         </div>
       </div>
       <p style="font-size:0.88rem; color:var(--slate-600); margin-bottom:10px;">
-        Registra cuántos encuestados respondieron cada valor desde <strong>0 hasta 10</strong> (11 filas). Verifica que tu conteo coincida con tu matriz de 90 datos antes de pasar la tabla de frecuencias a tu cuaderno.
+        Registra cuántos encuestados respondieron cada valor desde <strong>0 hasta 10</strong> (11 filas). Verifica que tu conteo coincida con tu matriz de 90 datos antes de construir la tabla de frecuencias en tu cuaderno.
       </p>
       <div id="tallyVerificationBanner" style="display:none; padding:10px 14px; border-radius:8px; margin-bottom:12px; font-weight:700;"></div>
       <div style="overflow-x:auto;">
@@ -644,10 +688,10 @@
     <!-- Paso 4: Exportar al Excel del Profesor -->
     <div class="card" style="border: 2px solid var(--blue);">
       <div class="card-header">
-        <div class="card-title"><span class="step-badge" style="background:var(--blue);">Paso 4</span> Entregar / Exportar a la Plantilla de Excel del Profesor</div>
+        <div class="card-title"><span class="step-badge" style="background:var(--blue);">Paso 4</span> Entregar / Exportar tus 90 Datos al Profesor</div>
       </div>
       <div class="btn-group" style="margin-bottom:14px;">
-        <button class="btn btn-primary btn-lg" onclick="copyMatrixForExcel()">📋 1. Copiar Matriz 10×9 (Pegar directo en celda P2 de Excel)</button>
+        <button class="btn btn-primary btn-lg" onclick="copyMatrixForExcel()">📋 1. Copiar Matriz 10×9 (Para pegar en Excel)</button>
         <button class="btn btn-success btn-lg" onclick="downloadExcelCSV()">📥 2. Descargar Archivo .CSV Individual</button>
         <button class="btn btn-navy btn-lg" onclick="copyCompactCode()">💬 3. Copiar Código de Entrega (WhatsApp / Classroom)</button>
         <button class="btn btn-lg" onclick="toggleStudentQRModal()">📱 4. Mostrar mi QR de Entrega en Pantalla</button>
@@ -691,120 +735,141 @@
     </div>
   </section>
 
-  <!-- ==================== TAB 3: MODO DOCENTE (CALIFICADOR DINÁMICO + GRÁFICOS) ==================== -->
+  <!-- ==================== TAB 3: ZONA DEL DOCENTE (PROTEGIDA CON CONTRASEÑA) ==================== -->
   <section id="tab-teacher" class="tab-panel">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">👨‍🏫 Calificador Dinámico (Escala 0 a 10): Contexto, Interpretaciones y Gráficos Automáticos</div>
-        <div class="btn-group">
-          <button class="btn btn-primary" onclick="copyMatrixForExcel()">📋 Copiar Matriz 10×9 (Pegar en Origen!P2)</button>
-          <button class="btn btn-success" onclick="downloadExcelCSV()">📥 Descargar CSV</button>
-        </div>
-      </div>
 
-      <!-- Botonera rápida de las 26 preguntas en Modo Docente -->
-      <div class="q-strip-box">
-        <div class="q-strip-title">🔢 Haz clic en el N° de Pregunta (1 al 26) para actualizar al instante el Contexto, todas las Interpretaciones y los Títulos de los 4 Gráficos:</div>
-        <div class="q-strip-grid" id="teacherQStrip"></div>
+    <!-- Pantalla de Bloqueo por Contraseña -->
+    <div id="teacherLockScreen" class="lock-screen-card">
+      <div class="lock-icon-circle">🔒</div>
+      <h2 style="color:var(--navy-dark); font-size:1.35rem; margin-bottom:6px;">Zona Exclusiva del Docente</h2>
+      <p style="font-size:0.9rem; color:var(--slate-600); margin-bottom:18px;">
+        Esta sección contiene el solucionario automático (tabla de frecuencias, medidas de tendencia central, medidas de dispersión, interpretaciones y gráficos). Ingresa la contraseña del profesor para continuar:
+      </p>
+      <div id="teacherLockError" class="lock-error-msg">❌ Contraseña incorrecta. Esta zona es de uso exclusivo del docente.</div>
+      <div style="max-width:340px; margin:0 auto 14px auto; text-align:left;">
+        <label for="teacherPassInput" style="font-size:0.82rem; font-weight:700; color:var(--slate-600); display:block; margin-bottom:5px;">Contraseña del Docente:</label>
+        <input type="password" id="teacherPassInput" class="form-control" placeholder="Ingresa tu contraseña..." onkeydown="if(event.key==='Enter') unlockTeacherZone()">
       </div>
-
-      <div class="form-grid" style="align-items:end;">
-        <div class="form-group" style="grid-column: span 2;">
-          <label for="teacherImportInput">O pega aquí el Código de Entrega del estudiante (`EST90|...`) o sus 90 números (de 0 a 10):</label>
-          <input type="text" id="teacherImportInput" class="form-control" placeholder="Pega aquí el código EST90|... enviado por el estudiante">
-        </div>
-        <div class="form-group">
-          <button class="btn btn-navy" style="width:100%; justify-content:center; padding:10px;" onclick="importStudentDataIntoApp()">⚡ Cargar Datos del Estudiante</button>
-        </div>
-      </div>
-
-      <div class="context-preview" style="margin-top:8px;">
-        <strong>Contexto Activo — Pregunta #<span id="teacherActiveQNum">5</span> (En la hoja 'Origen' de Excel pon L3 = <span id="teacherExcelQNumHint">5</span> y pega en P2):</strong>
-        <p id="teacherContextDisplay"></p>
-      </div>
+      <button class="btn btn-navy btn-lg" onclick="unlockTeacherZone()" style="width:100%; max-width:340px; justify-content:center;">🔓 Desbloquear Zona del Docente</button>
     </div>
 
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title" id="teacherGradingTitle">📐 Tabla de Frecuencias (Xi de 0 a 10 · N = 90)</div>
-        <div style="font-size:0.84rem; font-weight:700;">
-          <span style="background:#92D050; padding:3px 8px; border-radius:4px; margin-right:8px;">Fila Verde = Mediana</span>
-          <span style="background:#E91515; color:#fff; padding:3px 8px; border-radius:4px;">Fila Roja = Moda</span>
+    <!-- Contenido Desbloqueado del Docente -->
+    <div id="teacherUnlockedContent" style="display:none;">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">👨‍🏫 Calificador Dinámico del Docente (Escala 0 a 10): Solucionario y Gráficos Automáticos</div>
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="copyMatrixForExcel()">📋 Copiar Matriz 10×9 (Pegar en Origen!P2)</button>
+            <button class="btn btn-success" onclick="downloadExcelCSV()">📥 Descargar CSV</button>
+            <button class="btn btn-danger" onclick="lockTeacherZone()">🔒 Bloquear Zona Docente</button>
+          </div>
+        </div>
+
+        <!-- Botonera rápida de las 26 preguntas en Modo Docente -->
+        <div class="q-strip-box">
+          <div class="q-strip-title">🔢 Haz clic en el N° de Pregunta (1 al 26) para actualizar al instante el Contexto, todas las Interpretaciones y los Títulos de los 4 Gráficos:</div>
+          <div class="q-strip-grid" id="teacherQStrip"></div>
+        </div>
+
+        <div class="form-grid" style="align-items:end;">
+          <div class="form-group" style="grid-column: span 2;">
+            <label for="teacherImportInput">Pega aquí el Código de Entrega del estudiante (`EST90|...`) o sus 90 números (de 0 a 10):</label>
+            <input type="text" id="teacherImportInput" class="form-control" placeholder="Pega aquí el código EST90|... enviado por el estudiante">
+          </div>
+          <div class="form-group">
+            <button class="btn btn-navy" style="width:100%; justify-content:center; padding:10px;" onclick="importStudentDataIntoApp()">⚡ Cargar Datos del Estudiante</button>
+          </div>
+        </div>
+
+        <div class="context-preview" style="margin-top:8px;">
+          <strong>Contexto Activo — Pregunta #<span id="teacherActiveQNum">5</span> (En la hoja 'Origen' de Excel pon L3 = <span id="teacherExcelQNumHint">5</span> y pega en P2):</strong>
+          <p id="teacherContextDisplay"></p>
         </div>
       </div>
-      <div style="overflow-x:auto;">
-        <table class="freq-table">
-          <thead>
-            <tr>
-              <th>X<sub>i</sub></th>
-              <th>f<sub>i</sub></th>
-              <th>F<sub>i</sub></th>
-              <th>h<sub>i</sub></th>
-              <th>h<sub>i</sub>%</th>
-              <th>X<sub>i</sub> · f<sub>i</sub></th>
-              <th>|X<sub>i</sub> − x̄|</th>
-              <th>|X<sub>i</sub> − x̄| · f<sub>i</sub></th>
-              <th>(X<sub>i</sub> − x̄)<sup>2</sup></th>
-              <th>(X<sub>i</sub> − x̄)<sup>2</sup> · f<sub>i</sub></th>
-              <th>Grados (h<sub>i</sub>% × 3.6)</th>
-            </tr>
-          </thead>
-          <tbody id="teacherFreqBody"></tbody>
-          <tfoot id="teacherFreqFoot"></tfoot>
-        </table>
-      </div>
 
-      <div class="stats-cards-grid" id="teacherStatsCards"></div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title" id="teacherGradingTitle">📐 Tabla de Frecuencias (Xi de 0 a 10 · N = 90)</div>
+          <div style="font-size:0.84rem; font-weight:700;">
+            <span style="background:#92D050; padding:3px 8px; border-radius:4px; margin-right:8px;">Fila Verde = Mediana</span>
+            <span style="background:#E91515; color:#fff; padding:3px 8px; border-radius:4px;">Fila Roja = Moda</span>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="freq-table">
+            <thead>
+              <tr>
+                <th>X<sub>i</sub></th>
+                <th>f<sub>i</sub></th>
+                <th>F<sub>i</sub></th>
+                <th>h<sub>i</sub></th>
+                <th>h<sub>i</sub>%</th>
+                <th>X<sub>i</sub> · f<sub>i</sub></th>
+                <th>|X<sub>i</sub> − x̄|</th>
+                <th>|X<sub>i</sub> − x̄| · f<sub>i</sub></th>
+                <th>(X<sub>i</sub> − x̄)<sup>2</sup></th>
+                <th>(X<sub>i</sub> − x̄)<sup>2</sup> · f<sub>i</sub></th>
+                <th>Grados (h<sub>i</sub>% × 3.6)</th>
+              </tr>
+            </thead>
+            <tbody id="teacherFreqBody"></tbody>
+            <tfoot id="teacherFreqFoot"></tfoot>
+          </table>
+        </div>
 
-      <div class="charts-grid">
-        <div class="chart-box">
-          <h4 id="chartTitle1">1. Diagrama de Barras</h4>
-          <svg id="svgChartBars" viewBox="0 0 440 235" width="100%" height="225"></svg>
-        </div>
-        <div class="chart-box">
-          <h4 id="chartTitle4">2. Diagrama Circular Porcentual</h4>
-          <svg id="svgChartPie" viewBox="0 0 440 235" width="100%" height="225"></svg>
-        </div>
-        <div class="chart-box">
-          <h4 id="chartTitle2">3. Polígono de Frecuencias</h4>
-          <svg id="svgChartPoly" viewBox="0 0 440 235" width="100%" height="225"></svg>
-        </div>
-        <div class="chart-box">
-          <h4 id="chartTitle3">4. Ojiva de Frecuencia Acumulada</h4>
-          <svg id="svgChartOgive" viewBox="0 0 440 235" width="100%" height="225"></svg>
+        <div class="stats-cards-grid" id="teacherStatsCards"></div>
+
+        <div class="charts-grid">
+          <div class="chart-box">
+            <h4 id="chartTitle1">1. Diagrama de Barras</h4>
+            <svg id="svgChartBars" viewBox="0 0 440 235" width="100%" height="225"></svg>
+          </div>
+          <div class="chart-box">
+            <h4 id="chartTitle4">2. Diagrama Circular Porcentual</h4>
+            <svg id="svgChartPie" viewBox="0 0 440 235" width="100%" height="225"></svg>
+          </div>
+          <div class="chart-box">
+            <h4 id="chartTitle2">3. Polígono de Frecuencias</h4>
+            <svg id="svgChartPoly" viewBox="0 0 440 235" width="100%" height="225"></svg>
+          </div>
+          <div class="chart-box">
+            <h4 id="chartTitle3">4. Ojiva de Frecuencia Acumulada</h4>
+            <svg id="svgChartOgive" viewBox="0 0 440 235" width="100%" height="225"></svg>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ==================== TAB 4: CARTEL QR PARA PROYECTAR / IMPRIMIR ==================== -->
+  <!-- ==================== TAB 4: CARTEL QR OFICIAL PARA PROYECTAR / IMPRIMIR ==================== -->
   <section id="tab-qrposter" class="tab-panel">
     <div class="card no-print">
       <div class="card-header">
-        <div class="card-title">🔗 Configurar Enlace del Código QR para los Grupos 10°1, 10°2, 10°3 y 10°4</div>
+        <div class="card-title">🖨️ Cartel con tu Código QR Oficial Listo para Proyectar o Imprimir</div>
         <button class="btn btn-primary" onclick="window.print()">🖨️ Imprimir / Guardar Cartel QR en PDF</button>
       </div>
-      <div class="form-grid">
-        <div class="form-group" style="grid-column: span 2;">
-          <label for="qrUrlInput">URL donde compartas este formulario con los estudiantes (Google Drive, Classroom, Web):</label>
-          <input type="text" id="qrUrlInput" class="form-control" value="https://encuesta-estadistica-90-datos.edu.co/decimos" oninput="renderClassroomQR()">
-        </div>
-      </div>
+      <p style="font-size:0.88rem; color:var(--slate-600);">
+        Este cartel incluye integrado el <strong>Código QR oficial</strong> que adjuntaste (<code>https://juanluisjlj.github.io/formulario-estadistica/</code>) para que los estudiantes de <strong>10°1, 10°2, 10°3 y 10°4</strong> entren directamente desde su celular.
+      </p>
     </div>
 
     <div class="poster-box">
       <div style="background:var(--navy); color:#fff; padding:12px 18px; border-radius:10px; margin-bottom:14px;">
-        <h2 style="font-size:1.4rem;">📱 ACTIVIDAD INDIVIDUAL DE ESTADÍSTICA (90 DATOS · ESCALA 0 A 10)</h2>
-        <p style="font-size:0.92rem; opacity:0.92;">Grupos 10°1 · 10°2 · 10°3 · 10°4 — Escanea el QR para ver tu pregunta asignada y llenar tu matriz 10×9</p>
+        <h2 style="font-size:1.38rem;">📱 ACTIVIDAD INDIVIDUAL DE ESTADÍSTICA (90 DATOS · ESCALA 0 A 10)</h2>
+        <p style="font-size:0.92rem; opacity:0.92;">Grupos 10°1 · 10°2 · 10°3 · 10°4 — Escanea el Código QR para ver tu pregunta asignada y llenar tu matriz 10×9</p>
       </div>
 
-      <div id="classroomQRSvg" class="qr-svg-container"></div>
-      <p id="posterUrlDisplay" style="font-family:monospace; font-size:0.88rem; color:var(--slate-600); margin-bottom:14px; word-break:break-all;"></p>
+      <div class="qr-svg-container">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAJYCAIAAAAxBA+LAAALHElEQVR42u3dQVLjWBBFUdShoWEB7H9tLMDBnJrVpKkg5CC/3888ZwGNpS/7tmryjq+vrxcAmOo/twAAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQSANc7qP3Ach7v8676+vtJOLfAjsd2D50HlKafmjRCA0YQQACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEgE2dgZ/p4+PjdrvNOYO3t7eBT97A/dIGc8pWZyvc7/c5F/v5+fn+/i6EP7vdbq+vr74ewAR+7p7OP40CIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAsLOzwTUEbqRVL88Ffv6rp5A2zrfgkgdeQuAEo587P3feCAFACAFACAFACAEQQgAQQgAQQgAQQgAQQgAQQgAQQgAQQgAQQgAQQgAQQgBo43QL+L8HNs92X55bcMlpk40PaLAiCd4IAUAIAUAIAUAIARBCABBCABBCABBCABBCABBCABBCABBCABBCABBCABBCAGjDHiHfeGDmLW1Jrnos0Eeq+O8vuEUmDPFGCABCCABCCABCCIAQAoAQAoAQAoAQAoAQAoAQAoAQAoAQAoAQAoAQAoAQAoAQAkAHHYZ5LW3+aMFqbuDqbPUlV1/Cgge7+sFocIv83HkjBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBIBsR/WoR9raTg/VaziBA0DVt8glJDx4gbfIL96Ov3hXnW4xflIf+++7hO1uUeb/FPJ0/mkUACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEgE0d1rb45rHYf5wvcAkvUNoud+Cp+YX0RggAQggAQggAQggAQggAQggAQggAQggAQggAQggAQggAQggAQggAQggAQggAsc7qP7Bg2a76Iz3weXYf2wvcYGuwVNfgFAZKm1T0VHgjBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBIC/yvcIGyzbBf6JtI20Bg9Gg5m3BdufCx6M6lOrvoS0W5T54KV9Pb0RAjCaEAIghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghACwqSNtQnaB3cdIXyJXZKvvUoNt4bRb1ODUBl5yg1NYsCDtjRAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAIQQAIQQAIQQAIQQAIQSAIY7AZTt+/5jrZ94GXvLAu5p2i4z5Tbhkb4QAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQA8C9n9R9YsJ511YIBsMCNsbSDrt4kCzyCBkt1Dex+VxcMZzb4RfVGCABCCABCCABCCABCCABCCABCCABCCABCCABCCIAQAoAQAoAQAoAQAoAQAsAQZ4NrGLg8N/AUGozzpd2il/2X6hZcctqDZx7VGyEACCEACCEACCEACCEACCEACCEACCEACCEACCEACCEACCEACCEACCEACCEA/HU0WMJL21TL/EjTTq3BKQc+FQ1WJNM+UuB3eeAleyMEYDQhBEAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAWBTHYZ5E2/r5vulhn+d2han4JIn/Nx5IwQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQSAfzkDP9OCJblLFqxnpV3ygktoMOa3+yX3ePDSTq36wQsc2vRGCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCADPcgycnlowSJa2eRY4O5d2yQ1WJwMvIXBsL+3BHvhz5I0QAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAH7LWf0HHhgYa7CGFbhJlnbJux/By8jZtoFPXYMVyQarkNV3yRshAKMJIQBCCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCACbOgM/U4OV2qsGDvkGjn+mnXKD71raf3/BKRjy9UYIAEIIAEIIAEIIAEIIAEIIAEIIAEIIAEIIAEIIAEIIAEIIAEIIAEIIAEIIAMuU7xEGbrANnIUbeAkLNtJ2H/NjyIOKN0IAEEIAEEIAEEIAEEIAEEIAEEIAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAujos2215bHm3KG1WLfCSGzyoDU554IPa4KmovkveCAEYTQgBEEIAEEIAEEIAEEIAEEIAEEIAEEIAEEIAEEIAEEIAEEIAEEIAEEIA2Fn5HmHa+tdLi3G+q5ewYDkvbZyvwWRj9Sn3ePCmnVrgBOOCB9UeIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQB866z+A4HrWQukzao1GAwLfCrSxvYWfNeqT6HBOF8DA1cnvRECMJoQAiCEACCEACCEACCEACCEACCEACCEACCEACCEACCEACCEACCEACCEACCEALCp8mHewInXwEswFvrrFjxFaaccuHc68BLStotn/qJ6IwQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQQAIQRACAFACAFACAFACAFACAFgiKPBABg/H7O9wwJWJ51yy+9y9SXbIwSALEIIgBACgBACgBACgBACgBACgBACgBACgBACgBACgBACgBACgBACgBACwM7O6j9gg63C1XWuBZtqVw964Mxbgwcp7a4+8PmrP9LuX4TMU/NGCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCABCCADfOt2CCRZspNkX/PVbtOASzIU+/ZQbfKSrT9EDT131JSSG8H6/v76+qhQAC/inUQCEEACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEACEEAB21mGPsMHyXNrnWTAYVn1qgbNwTs3PyxaXcPWpaPAUeSMEYDQhBEAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAUAIAWBTp1swwYIlzOrxzwa36KrAbeHqj3T1FBZsEad9ERp8lwMfbG+EAIwmhAAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQDszB7hCAsGwKqX5Kpn2x64RWkThoGnHKj6EhqsSFbfosAVSW+EAIwmhAAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQAIIQDsrMMeYeAAGE8/tQVPRfWfWDD+57vz9FO7egQNHuzAp84bIQCjCSEAQggAQggAQggAQggAQggAQggAQggAQggAQggAQggAQggAQggA20ucYfr8/HQwAKxxNNhUG+jqqVVvpDV4MB645OpLaDAWOPDBG7hSGXjKV/mnUQBGE0IAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAAhBAANnU0GP8EAG+EACCEACCEACCEACCEACCEACCEACCEACCEACCEACCEACCEAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAAghAKT7A/81PgU+DXf3AAAAAElFTkSuQmCC" alt="Código QR Oficial del Formulario de Estadística" class="official-qr-img">
+      </div>
+      <p style="font-family:monospace; font-size:0.9rem; font-weight:700; color:var(--navy-dark); margin-bottom:14px; word-break:break-all;">
+        https://juanluisjlj.github.io/formulario-estadistica/
+      </p>
 
       <div style="text-align:left; background:var(--slate-50); border:1.5px solid var(--slate-300); border-radius:10px; padding:16px;">
         <h3 style="font-size:0.98rem; color:var(--navy-dark); margin-bottom:8px;">📋 Pasos para cada Estudiante:</h3>
         <ol style="padding-left:20px; font-size:0.9rem; color:var(--slate-800);">
-          <li><strong>Consulta tu pregunta única:</strong> Selecciona tu grupo (<strong>10°1, 10°2, 10°3 o 10°4</strong>) y tu nombre en la lista para ver cuál de las <strong>26 preguntas cuantitativas</strong> te fue asignada.</li>
+          <li><strong>Consulta tu pregunta única:</strong> Escanea el código QR, selecciona tu grupo (<strong>10°1, 10°2, 10°3 o 10°4</strong>) y tu nombre en la lista para ver cuál de las <strong>26 preguntas cuantitativas</strong> te fue asignada.</li>
           <li><strong>Encuesta a 90 personas (Escala 0 a 10):</strong> Recolecta las 90 respuestas (números enteros entre <strong>0 y 10</strong>) y regístralas en la cuadrícula de <strong>10×9</strong>.</li>
           <li><strong>Verifica tu Tabla de Conteo (0 a 10):</strong> Completa el conteo $f_i$ para los valores de 0 a 10 hasta verificar que coincide con tus 90 datos.</li>
           <li><strong>Desarrolla en tu cuaderno y entrega:</strong> Elabora la tabla de frecuencias, medidas de tendencia central, medidas de dispersión con interpretaciones y gráficos en tu cuaderno, y exporta tu matriz de 90 datos para el profesor.</li>
@@ -822,6 +887,48 @@ const APP_DATA = {"questions": [{"num": 1, "topic": "uso dominical de TikTok o I
 const QUESTIONS_26 = APP_DATA.questions;
 const GROUPS_ROSTER = APP_DATA.groups;
 
+// Teacher authentication state (locked by default so students cannot enter!)
+let isTeacherUnlocked = false;
+const ALLOWED_HASHES = new Set(["e97c76df3a890338", "e2974ce8a748e000"]);
+
+function computePassHash(str) {
+  let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+  for (let i = 0; i < str.length; i++) {
+    const c = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ c, 2654435761) >>> 0;
+    h2 = Math.imul(h2 ^ c, 1597334677) >>> 0;
+  }
+  h1 = (Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909)) >>> 0;
+  h2 = (Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909)) >>> 0;
+  return h2.toString(16).padStart(8, '0') + h1.toString(16).padStart(8, '0');
+}
+
+function unlockTeacherZone() {
+  const raw = (document.getElementById('teacherPassInput').value || '').trim();
+  const h = computePassHash(raw);
+  if (ALLOWED_HASHES.has(h) || ALLOWED_HASHES.has(computePassHash(raw.toLowerCase()))) {
+    isTeacherUnlocked = true;
+    document.getElementById('teacherPassInput').value = '';
+    document.getElementById('teacherLockError').style.display = 'none';
+    document.getElementById('teacherLockScreen').style.display = 'none';
+    document.getElementById('teacherUnlockedContent').style.display = 'block';
+    document.getElementById('navTabTeacher').textContent = '🔓 3. Zona del Docente (Activa)';
+    renderTeacherCalculations();
+    showToast('🔓 Zona del Docente desbloqueada correctamente.');
+  } else {
+    document.getElementById('teacherLockError').style.display = 'block';
+  }
+}
+
+function lockTeacherZone() {
+  isTeacherUnlocked = false;
+  document.getElementById('teacherPassInput').value = '';
+  document.getElementById('teacherUnlockedContent').style.display = 'none';
+  document.getElementById('teacherLockScreen').style.display = 'block';
+  document.getElementById('navTabTeacher').textContent = '🔒 3. Zona del Docente (Con Contraseña)';
+  showToast('🔒 Zona del Docente bloqueada.');
+}
+
 const EXCEL_COLORS = {
   0:  { bg: '#00E5FF', fg: '#000', name: 'Turquesa' },
   1:  { bg: '#00B0F0', fg: '#000', name: 'Azul claro' },
@@ -836,7 +943,6 @@ const EXCEL_COLORS = {
   10: { bg: '#008000', fg: '#fff', name: 'Verde oscuro' }
 };
 
-// Sample 90 data points on scale 0..10
 let data90 = [
   8, 4, 6, 0, 2, 5, 10, 8, 5,
   6, 6, 5, 7, 9, 6, 2, 3, 4,
@@ -871,8 +977,15 @@ function switchTab(tabId) {
   const mapIdx = { student: 0, roster: 1, teacher: 2, qrposter: 3 };
   document.querySelectorAll('.nav-tab')[mapIdx[tabId]].classList.add('active');
   if (tabId === 'roster') renderRosterView();
-  if (tabId === 'teacher') renderTeacherCalculations();
-  if (tabId === 'qrposter') renderClassroomQR();
+  if (tabId === 'teacher') {
+    if (isTeacherUnlocked) {
+      renderTeacherCalculations();
+    } else {
+      document.getElementById('teacherLockScreen').style.display = 'block';
+      document.getElementById('teacherUnlockedContent').style.display = 'none';
+      setTimeout(() => document.getElementById('teacherPassInput').focus(), 80);
+    }
+  }
 }
 
 function buildQuestionStrips() {
@@ -903,8 +1016,8 @@ function selectQuestionNumber(qNum) {
     document.getElementById('manualQuestionSelect').value = String(qNum);
   }
   updateAssignedBanner();
-  renderTeacherCalculations();
-  showToast(`🔢 Pregunta #${qNum} seleccionada: Contexto, Interpretaciones y Gráficos actualizados.`);
+  if (isTeacherUnlocked) renderTeacherCalculations();
+  showToast(`🔢 Pregunta #${qNum} seleccionada.`);
 }
 
 function initStudentSelectors() {
@@ -914,7 +1027,6 @@ function initStudentSelectors() {
     `<option value="${q.num}">Pregunta #${q.num}: ${q.topic} (0 a 10 ${q.unit})</option>`
   ).join('');
   onGroupSelectChange();
-  // Select Question #5 initially to demonstrate dynamic Question #5 right away
   selectQuestionNumber(5);
 }
 
@@ -959,7 +1071,7 @@ function onStudentSelectChange() {
   const selVal = document.getElementById('stuNameSelect').value;
   document.getElementById('manualStudentWrap').style.display = (selVal === 'manual') ? 'grid' : 'none';
   updateAssignedBanner();
-  renderTeacherCalculations();
+  if (isTeacherUnlocked) renderTeacherCalculations();
 }
 
 function updateAssignedBanner() {
@@ -995,13 +1107,13 @@ function renderRosterView() {
       <th style="width:210px;">Tema de la Variable</th>
       <th style="width:115px;">Escala (0 a 10)</th>
       <th>Pregunta Cuantitativa para los 90 Encuestados</th>
-      <th>Contexto Dinámico para Excel</th>
+      <th>Contexto Dinámico</th>
     </tr></thead><tbody>`;
     QUESTIONS_26.forEach(q => {
       const hay = `${q.num} ${q.topic} ${q.unit} ${q.question} ${q.context}`.toLowerCase();
       if (query && !hay.includes(query)) return;
       html += `<tr>
-        <td><button class="btn" style="background:var(--peach);font-weight:800;" onclick="selectQuestionNumber(${q.num});switchTab('teacher');">#${q.num}</button></td>
+        <td><button class="btn" style="background:var(--peach);font-weight:800;" onclick="selectQuestionNumber(${q.num});switchTab('student');">#${q.num}</button></td>
         <td style="text-align:left;font-weight:700;">${q.topic}</td>
         <td>0 a 10 ${q.unit}</td>
         <td style="text-align:left;">${q.question}</td>
@@ -1170,10 +1282,10 @@ function toggleGridColors() {
 }
 
 function fillRandom90() {
-  for (let i = 0; i < 90; i++) data90[i] = Math.floor(Math.random() * 11); // 0..10
+  for (let i = 0; i < 90; i++) data90[i] = Math.floor(Math.random() * 11);
   autoFillStudentTally();
   renderMatrixGrid();
-  renderTeacherCalculations();
+  if (isTeacherUnlocked) renderTeacherCalculations();
   showToast('🎲 Se generaron 90 datos aleatorios entre 0 y 10.');
 }
 
@@ -1360,8 +1472,9 @@ function downloadExcelCSV() {
   showToast('📥 Archivo CSV individual descargado.');
 }
 
-/* ==================== MODO DOCENTE (ESCALA 0 A 10 + INTERPRETACIONES Y TÍTULOS DINÁMICOS) ==================== */
+/* ==================== MODO DOCENTE (PROTEGIDO) ==================== */
 function importStudentDataIntoApp() {
+  if (!isTeacherUnlocked) return;
   const raw = document.getElementById('teacherImportInput').value.trim();
   if (!raw) {
     showToast('⚠️ Pega primero el código EST90|... o los 90 números.');
@@ -1411,6 +1524,7 @@ function importStudentDataIntoApp() {
 }
 
 function renderTeacherCalculations() {
+  if (!isTeacherUnlocked) return;
   const info = getSelectedStudentInfo();
   document.getElementById('teacherGradingTitle').textContent =
     `📐 Tabla de Frecuencias Resuelta (Xi de 0 a 10) — Pregunta #${info.q_num}: ${info.q_topic}`;
@@ -1576,7 +1690,6 @@ function renderTeacherCalculations() {
     </div>
   `;
 
-  // Update the 4 Dynamic Chart Titles
   document.getElementById('chartTitle1').textContent = `Distribución de encuestados según ${info.q_topic} (${info.q_unit}).`;
   document.getElementById('chartTitle4').textContent = `Proporción porcentual de encuestados según ${info.q_topic} (0 a 10).`;
   document.getElementById('chartTitle2').textContent = `Tendencia del número de encuestados frente a ${info.q_topic}.`;
@@ -1589,7 +1702,6 @@ function drawTeacherCharts(fi, FiArr, unitText) {
   const maxFi = Math.max(...fi, 10);
   const xLabel = `Xi (${unitText.toUpperCase()})`;
 
-  // 1. Bar chart (11 bars: 0..10)
   let barsSvg = '<line x1="38" y1="190" x2="425" y2="190" stroke="#94a3b8" stroke-width="1.5"/>';
   barsSvg += '<line x1="38" y1="18" x2="38" y2="190" stroke="#94a3b8" stroke-width="1.5"/>';
   for (let xi = 0; xi <= 10; xi++) {
@@ -1603,7 +1715,6 @@ function drawTeacherCharts(fi, FiArr, unitText) {
   barsSvg += `<text x="230" y="226" fill="#94a3b8" font-size="9.5" font-weight="bold" text-anchor="middle">${xLabel}</text>`;
   document.getElementById('svgChartBars').innerHTML = barsSvg;
 
-  // 2. Pie chart (11 slices: 0..10)
   let pieSvg = '';
   let startAngle = -Math.PI / 2;
   const cx = 130, cy = 115, r = 80;
@@ -1628,7 +1739,6 @@ function drawTeacherCharts(fi, FiArr, unitText) {
   }
   document.getElementById('svgChartPie').innerHTML = pieSvg;
 
-  // 3. Polygon of frequencies (0..10)
   let polySvg = '<line x1="38" y1="190" x2="425" y2="190" stroke="#94a3b8" stroke-width="1.5"/><line x1="38" y1="18" x2="38" y2="190" stroke="#94a3b8" stroke-width="1.5"/>';
   let pts = [];
   for (let xi = 0; xi <= 10; xi++) pts.push(`${55 + xi * 34},${190 - (fi[xi] / maxFi) * 150}`);
@@ -1640,7 +1750,6 @@ function drawTeacherCharts(fi, FiArr, unitText) {
   polySvg += `<text x="230" y="226" fill="#94a3b8" font-size="9.5" font-weight="bold" text-anchor="middle">${xLabel}</text>`;
   document.getElementById('svgChartPoly').innerHTML = polySvg;
 
-  // 4. Ogive (0..10)
   let ogiveSvg = '<line x1="38" y1="190" x2="425" y2="190" stroke="#94a3b8" stroke-width="1.5"/><line x1="38" y1="18" x2="38" y2="190" stroke="#94a3b8" stroke-width="1.5"/>';
   let ptsOgive = [];
   for (let xi = 0; xi <= 10; xi++) ptsOgive.push(`${55 + xi * 34},${190 - (FiArr[xi] / 90) * 150}`);
@@ -1653,7 +1762,7 @@ function drawTeacherCharts(fi, FiArr, unitText) {
   document.getElementById('svgChartOgive').innerHTML = ogiveSvg;
 }
 
-/* ==================== GENERADOR QR ISO/IEC 18004 ==================== */
+/* ==================== GENERADOR QR PARA ENTREGA DEL ESTUDIANTE ==================== */
 const QRGen = (function() {
   const CAPACITIES_L = [0, 17, 32, 53, 78, 106, 134, 154, 192, 230, 271];
   const EC_CODEWORDS_L = [0, 7, 10, 15, 20, 26, 18, 20, 24, 30, 18];
@@ -1812,19 +1921,11 @@ function renderSVGQRCode(text, containerId, scale = 5) {
     </svg>`;
 }
 
-function renderClassroomQR() {
-  const url = document.getElementById('qrUrlInput').value.trim() || 'https://encuesta-estadistica-90-datos.edu.co/decimos';
-  document.getElementById('posterUrlDisplay').textContent = url;
-  renderSVGQRCode(url, 'classroomQRSvg', 6);
-}
-
 window.addEventListener('DOMContentLoaded', () => {
   initStudentSelectors();
   autoFillStudentTally();
   renderMatrixGrid();
   renderRosterView();
-  renderTeacherCalculations();
-  renderClassroomQR();
 });
 </script>
 </body>
