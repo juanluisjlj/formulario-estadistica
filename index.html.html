@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividad Individual de Estadística (90 Datos · Escala 0 a 10) — 26 Preguntas y Grupos 10°1 a 10°4</title>
+<style>
+  :root {
+    --navy: #1e3a5f;
+    --navy-dark: #122640;
+    --blue: #2563eb;
+    --blue-soft: #dbeafe;
+    --peach: #fce4d6;
+    --green: #16a34a;
+    --green-soft: #dcfce7;
+    --red: #dc2626;
+    --red-soft: #fee2e2;
+    --amber: #d97706;
+    --amber-soft: #fef3c7;
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-300: #cbd5e1;
+    --slate-600: #475569;
+    --slate-800: #1e293b;
+    --radius: 12px;
+    --shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    background: var(--slate-100);
+    color: var(--slate-800);
+    line-height: 1.5;
+    padding-bottom: 48px;
+  }
+  .top-header {
+    background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+    color: #fff;
+    padding: 18px 24px 0 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner { max-width: 1280px; margin: 0 auto; }
+  .brand-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 12px;
+  }
+  .brand-title h1 { font-size: 1.28rem; font-weight: 700; }
+  .brand-title p { font-size: 0.85rem; color: #cbd5e1; margin-top: 2px; }
+  .badge-pill {
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.84rem;
+    font-weight: 600;
+  }
+  .nav-tabs { display: flex; gap: 6px; overflow-x: auto; }
+  .nav-tab {
+    background: rgba(255,255,255,0.08);
+    color: #e2e8f0;
+    border: none;
+    padding: 10px 16px;
+    font-size: 0.89rem;
+    font-weight: 600;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .nav-tab:hover { background: rgba(255,255,255,0.16); color: #fff; }
+  .nav-tab.active {
+    background: var(--slate-100);
+    color: var(--navy-dark);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+  }
+
+  .container { max-width: 1280px; margin: 20px auto; padding: 0 16px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--slate-200);
+    padding: 20px;
+    margin-bottom: 18px;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--slate-100);
+  }
+  .card-title {
+    font-size: 1.06rem;
+    font-weight: 700;
+    color: var(--navy-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .step-badge {
+    background: var(--navy);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--slate-600);
+    margin-bottom: 5px;
+  }
+  .form-control {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1.5px solid var(--slate-300);
+    border-radius: 8px;
+    font-size: 0.92rem;
+    color: var(--slate-800);
+    background: #fff;
+  }
+  .form-control:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+  }
+
+  /* Quick Question Number Selector Strip (1..26) */
+  .q-strip-box {
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+  }
+  .q-strip-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--slate-600);
+    margin-bottom: 6px;
+  }
+  .q-strip-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .q-num-btn {
+    min-width: 34px;
+    height: 30px;
+    border: 1.5px solid var(--slate-300);
+    border-radius: 6px;
+    background: #fff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--slate-800);
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .q-num-btn:hover { border-color: var(--blue); background: var(--blue-soft); }
+  .q-num-btn.active-q {
+    background: var(--blue);
+    color: #fff;
+    border-color: var(--blue);
+    box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+  }
+
+  .assigned-banner {
+    background: linear-gradient(90deg, #eff6ff, #dbeafe);
+    border: 1.5px solid #93c5fd;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .assigned-banner .q-tag {
+    display: inline-block;
+    background: var(--blue);
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.82rem;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 6px;
+  }
+  .assigned-banner h3 {
+    font-size: 1.04rem;
+    color: var(--navy-dark);
+    margin-bottom: 4px;
+  }
+
+  .context-preview {
+    background: var(--peach);
+    border: 1.5px solid #e6b89c;
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .context-preview strong {
+    display: block;
+    font-size: 0.86rem;
+    color: #7c2d12;
+    margin-bottom: 3px;
+  }
+  .context-preview p { font-size: 0.93rem; color: #1e293b; }
+
+  .progress-bar-wrap {
+    background: var(--slate-200);
+    height: 11px;
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 8px 0 14px 0;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    width: 0%;
+    transition: width 0.2s ease;
+  }
+  .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn {
+    border: 1px solid var(--slate-300);
+    background: #fff;
+    color: var(--slate-800);
+    padding: 8px 13px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s;
+  }
+  .btn:hover { background: var(--slate-100); border-color: var(--slate-600); }
+  .btn.active-filter { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .btn-primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .btn-primary:hover { background: #1d4ed8; color: #fff; }
+  .btn-success { background: var(--green); color: #fff; border-color: var(--green); }
+  .btn-success:hover { background: #15803d; color: #fff; }
+  .btn-navy { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .btn-navy:hover { background: var(--navy-dark); color: #fff; }
+  .btn-lg { padding: 11px 18px; font-size: 0.93rem; }
+
+  .keypad-box {
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 14px;
+  }
+  .keypad-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--slate-600);
+    margin-bottom: 8px;
+  }
+  .keypad-grid { display: grid; grid-template-columns: repeat(11, 1fr); gap: 6px; }
+  @media (max-width: 680px) { .keypad-grid { grid-template-columns: repeat(6, 1fr); } }
+  .key-btn {
+    border: 2px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 9px 4px;
+    font-size: 1.06rem;
+    font-weight: 800;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .matrix-wrapper { overflow-x: auto; margin-bottom: 10px; }
+  .data-matrix {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 820px;
+  }
+  .data-matrix th {
+    background: var(--navy);
+    color: #fff;
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 6px;
+    border: 1px solid var(--navy-dark);
+    text-align: center;
+  }
+  .data-matrix td {
+    border: 1.5px solid #334155;
+    padding: 0;
+    position: relative;
+    height: 42px;
+    min-width: 56px;
+    background: #fff;
+  }
+  .cell-num-tag {
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    font-size: 0.62rem;
+    color: rgba(0,0,0,0.45);
+    font-weight: 600;
+    pointer-events: none;
+  }
+  .matrix-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #000;
+    padding-top: 6px;
+  }
+  .matrix-input:focus {
+    outline: 3px solid var(--blue);
+    outline-offset: -3px;
+    background: rgba(255,255,255,0.4);
+  }
+  .td-active { box-shadow: inset 0 0 0 3px var(--blue); }
+
+  /* 11 Exact Conditional Formatting Colors for 0..10 */
+  .val-0  { background-color: #00E5FF !important; color: #000 !important; }
+  .val-1  { background-color: #00B0F0 !important; color: #000 !important; }
+  .val-2  { background-color: #FFFF00 !important; color: #000 !important; }
+  .val-3  { background-color: #00FF00 !important; color: #000 !important; }
+  .val-4  { background-color: #FF0000 !important; color: #fff !important; }
+  .val-5  { background-color: #FF33CC !important; color: #000 !important; }
+  .val-6  { background-color: #FF6600 !important; color: #000 !important; }
+  .val-7  { background-color: #996600 !important; color: #fff !important; }
+  .val-8  { background-color: #A6A6A6 !important; color: #000 !important; }
+  .val-9  { background-color: #9900FF !important; color: #fff !important; }
+  .val-10 { background-color: #008000 !important; color: #fff !important; }
+  .val-4 .matrix-input, .val-7 .matrix-input, .val-9 .matrix-input, .val-10 .matrix-input { color: #fff !important; }
+  .val-4 .cell-num-tag, .val-7 .cell-num-tag, .val-9 .cell-num-tag, .val-10 .cell-num-tag { color: rgba(255,255,255,0.7) !important; }
+
+  .tally-table, .freq-table, .roster-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.87rem;
+  }
+  .tally-table th, .tally-table td, .freq-table th, .freq-table td, .roster-table th, .roster-table td {
+    border: 1px solid var(--slate-300);
+    padding: 6px 8px;
+    text-align: center;
+  }
+  .tally-table th, .freq-table th, .roster-table th {
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+  }
+  .tally-marks {
+    font-family: monospace;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: var(--navy-dark);
+    font-weight: 700;
+    text-align: left !important;
+    padding-left: 14px !important;
+  }
+  .tally-group-5 { text-decoration: line-through; margin-right: 8px; display: inline-block; }
+  .tally-input {
+    width: 68px;
+    padding: 5px;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border: 1.5px solid var(--slate-300);
+    border-radius: 6px;
+  }
+
+  .row-median { background-color: #92D050 !important; font-weight: 700; }
+  .row-mode   { background-color: #E91515 !important; color: #fff !important; font-weight: 700; }
+  .row-total  { background-color: var(--slate-200); font-weight: 800; }
+
+  .stats-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .stat-card {
+    border: 1.5px solid #334155;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .stat-card-head {
+    padding: 7px 10px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.92rem;
+    border-bottom: 1.5px solid #334155;
+  }
+  .stat-card-val {
+    font-size: 1.35rem;
+    font-weight: 800;
+    text-align: center;
+    padding: 9px;
+    border-bottom: 1.5px solid #334155;
+    background: #f8fafc;
+  }
+  .stat-card-interp-title {
+    background: var(--peach);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 4px;
+    border-bottom: 1px solid #334155;
+  }
+  .stat-card-body { padding: 9px 11px; font-size: 0.83rem; text-align: center; }
+
+  .charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .chart-box {
+    background: #3b3b3b;
+    color: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: var(--shadow);
+  }
+  .chart-box h4 { font-size: 0.86rem; text-align: center; margin-bottom: 8px; color: #f1f5f9; min-height: 2.4em; display:flex; align-items:center; justify-content:center; }
+
+  .poster-box {
+    max-width: 680px;
+    margin: 0 auto;
+    border: 3px solid var(--navy);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    background: #fff;
+  }
+  .qr-svg-container {
+    display: inline-block;
+    padding: 14px;
+    background: #fff;
+    border: 2px solid var(--slate-200);
+    border-radius: 12px;
+    margin: 12px 0;
+  }
+  .toast-msg {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--navy-dark);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    display: none;
+    z-index: 999;
+  }
+  @media print {
+    .top-header, .no-print { display: none !important; }
+    body { background: #fff; padding: 0; }
+    .card { box-shadow: none; border: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="header-inner">
+    <div class="brand-row">
+      <div class="brand-title">
+        <h1>📊 Actividad Individual de Estadística (90 Datos · Escala 0 a 10) — Décimos 10°1 a 10°4</h1>
+        <p>26 Preguntas Cuantitativas Únicas por Grupo · Contexto, Interpretaciones y Títulos de Gráficos 100% Dinámicos</p>
+      </div>
+      <div class="badge-pill" id="headerProgressBadge">90 / 90 Datos Listos</div>
+    </div>
+    <nav class="nav-tabs">
+      <button class="nav-tab active" onclick="switchTab('student')">📱 1. Formulario Individual (Escala 0–10 y Conteo)</button>
+      <button class="nav-tab" onclick="switchTab('roster')">📋 2. Listado Oficial (10°1 a 10°4 y 26 Preguntas)</button>
+      <button class="nav-tab" onclick="switchTab('teacher')">👨‍🏫 3. Modo Docente (Calificador Dinámico + Gráficos)</button>
+      <button class="nav-tab" onclick="switchTab('qrposter')">🖨️ 4. Código QR para el Salón</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ==================== TAB 1: FORMULARIO INDIVIDUAL ESTUDIANTE ==================== -->
+  <section id="tab-student" class="tab-panel active">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="step-badge">Paso 1</span> Selecciona tu Grupo y Nombre (o haz clic en el N° de Pregunta 1 a 26)</div>
+      </div>
+
+      <!-- Botonera rápida de las 26 preguntas -->
+      <div class="q-strip-box">
+        <div class="q-strip-title">🔢 Selector Rápido de Pregunta (Haz clic en cualquier número del 1 al 26 para ver su Contexto, Interpretaciones y Títulos de Gráficos):</div>
+        <div class="q-strip-grid" id="studentQStrip"></div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="stuGroupSelect">1. Selecciona tu Grupo (Décimo):</label>
+          <select id="stuGroupSelect" class="form-control" onchange="onGroupSelectChange()">
+            <option value="10°1">Grupo 10°1 (26 estudiantes)</option>
+            <option value="10°2">Grupo 10°2 (26 estudiantes)</option>
+            <option value="10°3">Grupo 10°3 (22 estudiantes)</option>
+            <option value="10°4">Grupo 10°4 (24 estudiantes)</option>
+          </select>
+        </div>
+        <div class="form-group" style="grid-column: span 2;">
+          <label for="stuNameSelect">2. Selecciona tu Nombre Completo de la Planilla Oficial:</label>
+          <select id="stuNameSelect" class="form-control" onchange="onStudentSelectChange()"></select>
+        </div>
+      </div>
+
+      <div id="manualStudentWrap" style="display:none; margin-bottom:12px;" class="form-grid">
+        <div class="form-group">
+          <label for="manualNameInput">Nombre Completo del Estudiante:</label>
+          <input type="text" id="manualNameInput" class="form-control" placeholder="APELLIDOS, NOMBRES" oninput="updateAssignedBanner()">
+        </div>
+        <div class="form-group">
+          <label for="manualQuestionSelect">Selecciona el N° de Pregunta (1 a 26):</label>
+          <select id="manualQuestionSelect" class="form-control" onchange="updateAssignedBanner()"></select>
+        </div>
+      </div>
+
+      <div class="assigned-banner">
+        <span class="q-tag" id="assignedQBadge">Pregunta #5 Asignada</span>
+        <span style="font-size:0.84rem; font-weight:700; color:var(--slate-600); margin-left:8px;" id="assignedStudentMeta"></span>
+        <h3 id="assignedQuestionTitle"></h3>
+        <p style="font-size:0.86rem; color:var(--slate-600);">
+          Debes encuestar a exactamente <strong>90 personas</strong> con esta pregunta (respuestas numéricas enteras entre <strong>0 y 10</strong>).
+        </p>
+      </div>
+
+      <div class="context-preview">
+        <strong>Contexto individual dinámico (En Excel: Celda L3 = <span id="ctxExcelCellNum">5</span>):</strong>
+        <p id="contextTextDisplay"></p>
+      </div>
+    </div>
+
+    <!-- Paso 2: Matriz de 90 datos (10x9 o 9x10) -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="step-badge">Paso 2</span> Diligencia tus 90 Datos en la Tabla (Escala de 0 a 10)</div>
+        <div class="btn-group">
+          <button class="btn" id="btnToggleDim" onclick="toggleGridDimensions()">📐 Vista: 10 filas × 9 columnas (Excel P2:X11)</button>
+          <button class="btn" id="btnToggleColors" onclick="toggleGridColors()">🎨 Colores Excel (0 a 10): Activados</button>
+          <button class="btn" onclick="fillRandom90()">🎲 Ejemplo Aleatorio (0 a 10)</button>
+          <button class="btn" onclick="clearAll90()" style="color:var(--red);">🗑️ Vaciar 90 casillas</button>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.9rem; font-weight:600;">
+        <span id="progressText">Progreso de llenado: 90 de 90 datos válidos (escala 0 a 10)</span>
+        <span id="activeCellIndicator" style="color:var(--blue);">Casilla activa: Dato #1 (Fila 1, Col 1)</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressBarFill" style="width:100%;"></div>
+      </div>
+
+      <div class="keypad-box">
+        <div class="keypad-label">
+          ⚡ Teclado Rápido Escala 0 a 10 (Toca un número del 0 al 10 para llenar la casilla activa y avanzar automáticamente):
+        </div>
+        <div class="keypad-grid">
+          <button type="button" class="key-btn val-0" onclick="keypadPress(0)">0</button>
+          <button type="button" class="key-btn val-1" onclick="keypadPress(1)">1</button>
+          <button type="button" class="key-btn val-2" onclick="keypadPress(2)">2</button>
+          <button type="button" class="key-btn val-3" onclick="keypadPress(3)">3</button>
+          <button type="button" class="key-btn val-4" onclick="keypadPress(4)">4</button>
+          <button type="button" class="key-btn val-5" onclick="keypadPress(5)">5</button>
+          <button type="button" class="key-btn val-6" onclick="keypadPress(6)">6</button>
+          <button type="button" class="key-btn val-7" onclick="keypadPress(7)">7</button>
+          <button type="button" class="key-btn val-8" onclick="keypadPress(8)">8</button>
+          <button type="button" class="key-btn val-9" onclick="keypadPress(9)">9</button>
+          <button type="button" class="key-btn val-10" onclick="keypadPress(10)">10</button>
+        </div>
+      </div>
+
+      <div class="matrix-wrapper">
+        <table class="data-matrix" id="studentMatrixTable"></table>
+      </div>
+    </div>
+
+    <!-- Paso 3: Tabla de Conteo (0 a 10) -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="step-badge">Paso 3</span> Tabla de Conteo Individual (X<sub>i</sub> de 0 a 10 y Conteo f<sub>i</sub>)</div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="verifyStudentTally()">✅ Verificar mi Conteo contra mis 90 Datos</button>
+          <button class="btn" onclick="autoFillStudentTally()">🔄 Sincronizar Conteo con la Matriz</button>
+        </div>
+      </div>
+      <p style="font-size:0.88rem; color:var(--slate-600); margin-bottom:10px;">
+        Registra cuántos encuestados respondieron cada valor desde <strong>0 hasta 10</strong> (11 filas). Verifica que tu conteo coincida con tu matriz de 90 datos antes de pasar la tabla de frecuencias a tu cuaderno.
+      </p>
+      <div id="tallyVerificationBanner" style="display:none; padding:10px 14px; border-radius:8px; margin-bottom:12px; font-weight:700;"></div>
+      <div style="overflow-x:auto;">
+        <table class="tally-table">
+          <thead>
+            <tr>
+              <th style="width:85px;">Valor (X<sub>i</sub>)</th>
+              <th style="width:115px;">Color en Matriz</th>
+              <th>Marcas de Conteo (De 5 en 5)</th>
+              <th style="width:140px;">Ajuste Rápido</th>
+              <th style="width:120px;">Frecuencia (f<sub>i</sub>)</th>
+            </tr>
+          </thead>
+          <tbody id="studentTallyBody"></tbody>
+          <tfoot>
+            <tr class="row-total">
+              <td colspan="4" style="text-align:right;">TOTAL CONTADO (N):</td>
+              <td id="studentTallySumCell" style="font-size:1.1rem;">90 / 90</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- Paso 4: Exportar al Excel del Profesor -->
+    <div class="card" style="border: 2px solid var(--blue);">
+      <div class="card-header">
+        <div class="card-title"><span class="step-badge" style="background:var(--blue);">Paso 4</span> Entregar / Exportar a la Plantilla de Excel del Profesor</div>
+      </div>
+      <div class="btn-group" style="margin-bottom:14px;">
+        <button class="btn btn-primary btn-lg" onclick="copyMatrixForExcel()">📋 1. Copiar Matriz 10×9 (Pegar directo en celda P2 de Excel)</button>
+        <button class="btn btn-success btn-lg" onclick="downloadExcelCSV()">📥 2. Descargar Archivo .CSV Individual</button>
+        <button class="btn btn-navy btn-lg" onclick="copyCompactCode()">💬 3. Copiar Código de Entrega (WhatsApp / Classroom)</button>
+        <button class="btn btn-lg" onclick="toggleStudentQRModal()">📱 4. Mostrar mi QR de Entrega en Pantalla</button>
+      </div>
+
+      <div id="studentDeliveryQRBox" style="display:none; background:var(--slate-50); border:1px solid var(--slate-300); border-radius:10px; padding:16px; text-align:center;">
+        <h4 style="color:var(--navy-dark); margin-bottom:6px;">📱 Código QR y Cadena Individual de Entrega</h4>
+        <div id="studentDeliveryQRSvg" class="qr-svg-container"></div>
+        <div style="max-width:640px; margin:0 auto;">
+          <input type="text" id="studentCompactCodeInput" class="form-control" readonly onclick="this.select()" style="font-family:monospace; font-size:0.84rem; text-align:center;">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================== TAB 2: LISTADO OFICIAL DE ASIGNACIÓN (10°1 A 10°4) ==================== -->
+  <section id="tab-roster" class="tab-panel">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📋 Asignación Individual de las 26 Preguntas (Escala 0 a 10) — Grupos 10°1, 10°2, 10°3 y 10°4</div>
+        <div class="btn-group">
+          <button class="btn active-filter" id="flt-10°1" onclick="filterRosterTable('10°1')">Grupo 10°1 (26)</button>
+          <button class="btn" id="flt-10°2" onclick="filterRosterTable('10°2')">Grupo 10°2 (26)</button>
+          <button class="btn" id="flt-10°3" onclick="filterRosterTable('10°3')">Grupo 10°3 (22)</button>
+          <button class="btn" id="flt-10°4" onclick="filterRosterTable('10°4')">Grupo 10°4 (24)</button>
+          <button class="btn" id="flt-ALL" onclick="filterRosterTable('ALL')">Ver Todos (98)</button>
+          <button class="btn" id="flt-BANK" onclick="filterRosterTable('BANK')">📚 Ver las 26 Preguntas (0 a 10)</button>
+        </div>
+      </div>
+
+      <div class="form-grid" style="margin-bottom:12px;">
+        <div class="form-group" style="grid-column: span 2;">
+          <input type="text" id="rosterSearchInput" class="form-control" placeholder="🔍 Buscar estudiante por apellido, nombre, matrícula o tema de pregunta..." oninput="renderRosterView()">
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="roster-table" id="officialRosterTable"></table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 3: MODO DOCENTE (CALIFICADOR DINÁMICO + GRÁFICOS) ==================== -->
+  <section id="tab-teacher" class="tab-panel">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">👨‍🏫 Calificador Dinámico (Escala 0 a 10): Contexto, Interpretaciones y Gráficos Automáticos</div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="copyMatrixForExcel()">📋 Copiar Matriz 10×9 (Pegar en Origen!P2)</button>
+          <button class="btn btn-success" onclick="downloadExcelCSV()">📥 Descargar CSV</button>
+        </div>
+      </div>
+
+      <!-- Botonera rápida de las 26 preguntas en Modo Docente -->
+      <div class="q-strip-box">
+        <div class="q-strip-title">🔢 Haz clic en el N° de Pregunta (1 al 26) para actualizar al instante el Contexto, todas las Interpretaciones y los Títulos de los 4 Gráficos:</div>
+        <div class="q-strip-grid" id="teacherQStrip"></div>
+      </div>
+
+      <div class="form-grid" style="align-items:end;">
+        <div class="form-group" style="grid-column: span 2;">
+          <label for="teacherImportInput">O pega aquí el Código de Entrega del estudiante (`EST90|...`) o sus 90 números (de 0 a 10):</label>
+          <input type="text" id="teacherImportInput" class="form-control" placeholder="Pega aquí el código EST90|... enviado por el estudiante">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-navy" style="width:100%; justify-content:center; padding:10px;" onclick="importStudentDataIntoApp()">⚡ Cargar Datos del Estudiante</button>
+        </div>
+      </div>
+
+      <div class="context-preview" style="margin-top:8px;">
+        <strong>Contexto Activo — Pregunta #<span id="teacherActiveQNum">5</span> (En la hoja 'Origen' de Excel pon L3 = <span id="teacherExcelQNumHint">5</span> y pega en P2):</strong>
+        <p id="teacherContextDisplay"></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title" id="teacherGradingTitle">📐 Tabla de Frecuencias (Xi de 0 a 10 · N = 90)</div>
+        <div style="font-size:0.84rem; font-weight:700;">
+          <span style="background:#92D050; padding:3px 8px; border-radius:4px; margin-right:8px;">Fila Verde = Mediana</span>
+          <span style="background:#E91515; color:#fff; padding:3px 8px; border-radius:4px;">Fila Roja = Moda</span>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="freq-table">
+          <thead>
+            <tr>
+              <th>X<sub>i</sub></th>
+              <th>f<sub>i</sub></th>
+              <th>F<sub>i</sub></th>
+              <th>h<sub>i</sub></th>
+              <th>h<sub>i</sub>%</th>
+              <th>X<sub>i</sub> · f<sub>i</sub></th>
+              <th>|X<sub>i</sub> − x̄|</th>
+              <th>|X<sub>i</sub> − x̄| · f<sub>i</sub></th>
+              <th>(X<sub>i</sub> − x̄)<sup>2</sup></th>
+              <th>(X<sub>i</sub> − x̄)<sup>2</sup> · f<sub>i</sub></th>
+              <th>Grados (h<sub>i</sub>% × 3.6)</th>
+            </tr>
+          </thead>
+          <tbody id="teacherFreqBody"></tbody>
+          <tfoot id="teacherFreqFoot"></tfoot>
+        </table>
+      </div>
+
+      <div class="stats-cards-grid" id="teacherStatsCards"></div>
+
+      <div class="charts-grid">
+        <div class="chart-box">
+          <h4 id="chartTitle1">1. Diagrama de Barras</h4>
+          <svg id="svgChartBars" viewBox="0 0 440 235" width="100%" height="225"></svg>
+        </div>
+        <div class="chart-box">
+          <h4 id="chartTitle4">2. Diagrama Circular Porcentual</h4>
+          <svg id="svgChartPie" viewBox="0 0 440 235" width="100%" height="225"></svg>
+        </div>
+        <div class="chart-box">
+          <h4 id="chartTitle2">3. Polígono de Frecuencias</h4>
+          <svg id="svgChartPoly" viewBox="0 0 440 235" width="100%" height="225"></svg>
+        </div>
+        <div class="chart-box">
+          <h4 id="chartTitle3">4. Ojiva de Frecuencia Acumulada</h4>
+          <svg id="svgChartOgive" viewBox="0 0 440 235" width="100%" height="225"></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 4: CARTEL QR PARA PROYECTAR / IMPRIMIR ==================== -->
+  <section id="tab-qrposter" class="tab-panel">
+    <div class="card no-print">
+      <div class="card-header">
+        <div class="card-title">🔗 Configurar Enlace del Código QR para los Grupos 10°1, 10°2, 10°3 y 10°4</div>
+        <button class="btn btn-primary" onclick="window.print()">🖨️ Imprimir / Guardar Cartel QR en PDF</button>
+      </div>
+      <div class="form-grid">
+        <div class="form-group" style="grid-column: span 2;">
+          <label for="qrUrlInput">URL donde compartas este formulario con los estudiantes (Google Drive, Classroom, Web):</label>
+          <input type="text" id="qrUrlInput" class="form-control" value="https://encuesta-estadistica-90-datos.edu.co/decimos" oninput="renderClassroomQR()">
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-box">
+      <div style="background:var(--navy); color:#fff; padding:12px 18px; border-radius:10px; margin-bottom:14px;">
+        <h2 style="font-size:1.4rem;">📱 ACTIVIDAD INDIVIDUAL DE ESTADÍSTICA (90 DATOS · ESCALA 0 A 10)</h2>
+        <p style="font-size:0.92rem; opacity:0.92;">Grupos 10°1 · 10°2 · 10°3 · 10°4 — Escanea el QR para ver tu pregunta asignada y llenar tu matriz 10×9</p>
+      </div>
+
+      <div id="classroomQRSvg" class="qr-svg-container"></div>
+      <p id="posterUrlDisplay" style="font-family:monospace; font-size:0.88rem; color:var(--slate-600); margin-bottom:14px; word-break:break-all;"></p>
+
+      <div style="text-align:left; background:var(--slate-50); border:1.5px solid var(--slate-300); border-radius:10px; padding:16px;">
+        <h3 style="font-size:0.98rem; color:var(--navy-dark); margin-bottom:8px;">📋 Pasos para cada Estudiante:</h3>
+        <ol style="padding-left:20px; font-size:0.9rem; color:var(--slate-800);">
+          <li><strong>Consulta tu pregunta única:</strong> Selecciona tu grupo (<strong>10°1, 10°2, 10°3 o 10°4</strong>) y tu nombre en la lista para ver cuál de las <strong>26 preguntas cuantitativas</strong> te fue asignada.</li>
+          <li><strong>Encuesta a 90 personas (Escala 0 a 10):</strong> Recolecta las 90 respuestas (números enteros entre <strong>0 y 10</strong>) y regístralas en la cuadrícula de <strong>10×9</strong>.</li>
+          <li><strong>Verifica tu Tabla de Conteo (0 a 10):</strong> Completa el conteo $f_i$ para los valores de 0 a 10 hasta verificar que coincide con tus 90 datos.</li>
+          <li><strong>Desarrolla en tu cuaderno y entrega:</strong> Elabora la tabla de frecuencias, medidas de tendencia central, medidas de dispersión con interpretaciones y gráficos en tu cuaderno, y exporta tu matriz de 90 datos para el profesor.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast-msg" id="toastMsg">¡Listo!</div>
+
+<script>
+const APP_DATA = {"questions": [{"num": 1, "topic": "uso dominical de TikTok o Instagram", "unit": "horas", "question": "¿Cuántas horas seguidas pasaste viendo TikTok o Instagram este último domingo? (de 0 a 10 horas)", "context": "El comité de convivencia realizó una encuesta anónima a 90 estudiantes para analizar el uso de pantallas. Se les preguntó: \"¿Cuántas horas seguidas pasaste viendo TikTok o Instagram este último domingo?\". Las respuestas oscilaron entre 0 y 10 horas.", "mean_verb": "vieron TikTok o Instagram", "time_comp": "este último domingo", "median_verb": "pasó"}, {"num": 2, "topic": "consumo diario de agua pura", "unit": "vasos", "question": "¿Cuántos vasos de agua pura tomas en un día típico de clases? (de 0 a 10 vasos)", "context": "El área de bienestar estudiantil realizó una encuesta a 90 personas para conocer sus hábitos de hidratación. Se les preguntó: \"¿Cuántos vasos de agua pura tomas en un día típico de clases?\". Las respuestas oscilaron entre 0 y 10 vasos.", "mean_verb": "tomaron agua pura", "time_comp": "en un día típico de clases", "median_verb": "tomó"}, {"num": 3, "topic": "horas de sueño entre semana", "unit": "horas", "question": "¿Cuántas horas completas dormiste anoche antes de asistir al colegio? (de 0 a 10 horas)", "context": "El departamento de orientación encuestó a 90 estudiantes sobre la higiene del sueño. Se les preguntó: \"¿Cuántas horas completas dormiste anoche antes de asistir al colegio?\". Las respuestas oscilaron entre 0 y 10 horas.", "mean_verb": "durmieron en total", "time_comp": "la noche anterior a clases", "median_verb": "durmió"}, {"num": 4, "topic": "estudio autónomo semanal en casa", "unit": "horas", "question": "¿Cuántas horas a la semana dedicas a repasar o hacer tareas en casa fuera del horario escolar? (de 0 a 10 horas)", "context": "El consejo académico realizó una encuesta a 90 estudiantes sobre autonomía escolar. Se les preguntó: \"¿Cuántas horas a la semana dedicas a repasar o hacer tareas en casa fuera del horario escolar?\". Las respuestas oscilaron entre 0 y 10 horas.", "mean_verb": "estudiaron o hicieron tareas", "time_comp": "en casa por semana", "median_verb": "dedicó"}, {"num": 5, "topic": "práctica semanal de deporte o ejercicio", "unit": "horas", "question": "¿Cuántas horas de ejercicio físico o deporte practicaste durante los últimos 7 días? (de 0 a 10 horas)", "context": "El departamento de educación física encuestó a 90 estudiantes sobre vida activa. Se les preguntó: \"¿Cuántas horas de ejercicio físico o deporte practicaste durante los últimos 7 días?\". Las respuestas oscilaron entre 0 y 10 horas.", "mean_verb": "practicaron ejercicio físico", "time_comp": "durante los últimos 7 días", "median_verb": "practicó"}, {"num": 6, "topic": "lectura recreativa en el último semestre", "unit": "textos", "question": "¿Cuántos libros, cómics o relatos completos has leído por gusto en el último semestre? (de 0 a 10 textos)", "context": "El proyecto de biblioteca escolar realizó una encuesta a 90 estudiantes sobre hábitos lectores. Se les preguntó: \"¿Cuántos libros, cómics o relatos completos leíste por gusto en el último semestre?\". Las respuestas oscilaron entre 0 y 10 textos.", "mean_verb": "leyeron por gusto", "time_comp": "en el último semestre", "median_verb": "leyó"}, {"num": 7, "topic": "tiempo en videojuegos el fin de semana", "unit": "horas", "question": "¿Cuántas horas jugaste videojuegos (en celular, consola o PC) durante el último fin de semana? (de 0 a 10 horas)", "context": "El comité juvenil encuestó a 90 estudiantes sobre ocio digital. Se les preguntó: \"¿Cuántas horas jugaste videojuegos durante el último fin de semana?\". Las respuestas oscilaron entre 0 y 10 horas.", "mean_verb": "jugaron videojuegos", "time_comp": "el último fin de semana", "median_verb": "jugó"}, {"num": 8, "topic": "tiempo de recorrido casa-colegio", "unit": "bloques de 5 min", "question": "¿Cuántos bloques de 5 minutos tarda tu recorrido habitual desde tu casa hasta el colegio? (de 0 a 10 bloques)", "context": "El comité de movilidad escolar realizó una encuesta a 90 estudiantes sobre tiempos de desplazamiento. Se les preguntó: \"¿Cuántos bloques de 5 minutos (de 0 a 10) tarda tu recorrido habitual hasta el colegio?\". Las respuestas oscilaron entre 0 y 10 bloques.", "mean_verb": "tardaron en su recorrido", "time_comp": "desde casa hasta el colegio", "median_verb": "tardó"}, {"num": 9, "topic": "consumo de frutas en 5 días", "unit": "porciones", "question": "¿Cuántas porciones de fruta consumiste en total durante los últimos 5 días? (de 0 a 10 porciones)", "context": "El comité de alimentación saludable encuestó a 90 estudiantes sobre nutrición. Se les preguntó: \"¿Cuántas porciones de fruta consumiste en total durante los últimos 5 días?\". Las respuestas oscilaron entre 0 y 10 porciones.", "mean_verb": "consumieron fruta", "time_comp": "durante los últimos 5 días", "median_verb": "consumió"}, {"num": 10, "topic": "nivel de estrés en semana de exámenes", "unit": "puntos", "question": "En una escala de 0 a 10, ¿qué nivel de cansancio o estrés sentiste durante la última semana de exámenes?", "context": "El equipo de psicología escolar encuestó a 90 estudiantes sobre bienestar emocional. Se les preguntó: \"En una escala de 0 a 10, ¿qué nivel de cansancio o estrés sentiste en la semana de exámenes?\". Las respuestas oscilaron entre 0 y 10 puntos.", "mean_verb": "reportaron un estrés", "time_comp": "en semana de exámenes de", "median_verb": "registró"}, {"num": 11, "topic": "escucha diaria de música en apps", "unit": "horas", "question": "¿Cuántas horas al día escuchas música (en Spotify, YouTube u otra app) mientras haces otras actividades? (de 0 a 10 horas)", "context": "El club cultural realizó una encuesta a 90 estudiantes sobre consumo musical. Se les preguntó: \"¿Cuántas horas al día escuchas música en plataformas digitales?\". Las respuestas oscilaron entre 0 y 10 horas.", "mean_verb": "escucharon música", "time_comp": "al día en aplicaciones", "median_verb": "escuchó"}, {"num": 12, "topic": "uso diario de WhatsApp y mensajería", "unit": "horas", "question": "¿Cuántas horas al día utilizas WhatsApp para chatear, ver estados o enviar notas de voz? (de 0 a 10 horas)", "context": "El comité de comunicación escolar encuestó a 90 estudiantes sobre mensajería instantánea. Se les preguntó: \"¿Cuántas horas al día utilizas WhatsApp para chatear o enviar notas de voz?\". Las respuestas oscilaron entre 0 y 10 horas.", "mean_verb": "usaron WhatsApp", "time_comp": "al día para mensajería", "median_verb": "utilizó"}, {"num": 13, "topic": "episodios de series vistos en la semana", "unit": "capítulos", "question": "¿Cuántos capítulos de series o películas completas viste en plataformas o TV durante la última semana? (de 0 a 10 capítulos)", "context": "El semillero de medios audiovisuales encuestó a 90 estudiantes sobre entretenimiento en casa. Se les preguntó: \"¿Cuántos capítulos de series o películas viste durante la última semana?\". Las respuestas oscilaron entre 0 y 10 capítulos.", "mean_verb": "vieron series o películas", "time_comp": "durante la última semana", "median_verb": "vio"}, {"num": 14, "topic": "consumo mensual de comidas rápidas", "unit": "veces", "question": "¿Cuántas veces en el último mes comiste comidas rápidas fuera de casa (hamburguesa, pizza, salchipapa, etc.)? (de 0 a 10 veces)", "context": "El área de ciencias naturales realizó una encuesta a 90 personas sobre hábitos alimenticios. Se les preguntó: \"¿Cuántas veces en el último mes comiste comidas rápidas?\". Las respuestas oscilaron entre 0 y 10 veces.", "mean_verb": "comieron comida rápida", "time_comp": "durante el último mes", "median_verb": "comió"}, {"num": 15, "topic": "colaboración semanal en oficios del hogar", "unit": "horas", "question": "¿Cuántas horas a la semana colaboras con los oficios o responsabilidades domésticas en tu casa? (de 0 a 10 horas)", "context": "El proyecto de ética y valores encuestó a 90 estudiantes sobre corresponsabilidad familiar. Se les preguntó: \"¿Cuántas horas a la semana colaboras con los oficios de tu casa?\". Las respuestas oscilaron entre 0 y 10 horas.", "mean_verb": "colaboraron en el hogar", "time_comp": "a la semana en oficios", "median_verb": "colaboró"}, {"num": 16, "topic": "tiempo matutino para alistarse", "unit": "bloques de 5 min", "question": "¿Cuántos bloques de 5 minutos tardas en alistarte por la mañana desde que te despiertas hasta salir de casa? (de 0 a 10 bloques)", "context": "El comité de puntualidad escolar encuestó a 90 estudiantes sobre su rutina matutina. Se les preguntó: \"¿Cuántos bloques de 5 minutos (de 0 a 10) tardas en alistarte por la mañana?\". Las respuestas oscilaron entre 0 y 10 bloques.", "mean_verb": "tardaron alistándose", "time_comp": "en la rutina de la mañana", "median_verb": "tardó"}, {"num": 17, "topic": "días de compra en la tienda escolar", "unit": "días", "question": "De los últimos 10 días de clase, ¿en cuántos días compraste algún producto en la tienda o cafetería escolar? (de 0 a 10 días)", "context": "El comité financiero estudiantil realizó una encuesta a 90 alumnos sobre uso de la cafetería. Se les preguntó: \"De los últimos 10 días de clase, ¿en cuántos compraste en la tienda escolar?\". Las respuestas oscilaron entre 0 y 10 días.", "mean_verb": "compraron en cafetería", "time_comp": "de los últimos 10 días de clase", "median_verb": "compró"}, {"num": 18, "topic": "uso del celular en la cama antes de dormir", "unit": "bloques de 10 min", "question": "¿Cuántos bloques de 10 minutos pasas mirando el celular en la cama justo antes de dormirte? (de 0 a 10 bloques)", "context": "El departamento de bienestar estudiantil encuestó a 90 jóvenes sobre descanso nocturno. Se les preguntó: \"¿Cuántos bloques de 10 minutos (de 0 a 10) miras el celular en la cama antes de dormir?\". Las respuestas oscilaron entre 0 y 10 bloques.", "mean_verb": "miraron el celular en cama", "time_comp": "justo antes de dormir", "median_verb": "pasó"}, {"num": 19, "topic": "consumo semanal de bebidas azucaradas", "unit": "bebidas", "question": "¿Cuántos vasos o botellas de gaseosa, jugo procesado o té frío tomaste durante la última semana? (de 0 a 10 bebidas)", "context": "El proyecto de salud escolar realizó una encuesta a 90 estudiantes sobre consumo de azúcar. Se les preguntó: \"¿Cuántas bebidas azucaradas tomaste durante la última semana?\". Las respuestas oscilaron entre 0 y 10 bebidas.", "mean_verb": "tomaron bebidas dulces", "time_comp": "durante la última semana", "median_verb": "tomó"}, {"num": 20, "topic": "consultas académicas semanales con IA", "unit": "consultas", "question": "¿Cuántas veces en la última semana usaste herramientas de Inteligencia Artificial para estudiar o resolver dudas? (de 0 a 10 veces)", "context": "El área de tecnología e informática encuestó a 90 estudiantes sobre herramientas digitales. Se les preguntó: \"¿Cuántas veces en la última semana usaste IA para apoyar tus tareas o estudio?\". Las respuestas oscilaron entre 0 y 10 consultas.", "mean_verb": "consultaron herramientas IA", "time_comp": "durante la última semana", "median_verb": "realizó"}, {"num": 21, "topic": "salidas recreativas mensuales con amigos", "unit": "salidas", "question": "¿Cuántas veces en el último mes saliste a conversar, hacer deporte o pasear con tus amigos fuera del colegio? (de 0 a 10 salidas)", "context": "El comité de convivencia juvenil encuestó a 90 estudiantes sobre socialización presencial. Se les preguntó: \"¿Cuántas veces en el último mes saliste a compartir con amigos fuera del colegio?\". Las respuestas oscilaron entre 0 y 10 salidas.", "mean_verb": "salieron con sus amigos", "time_comp": "durante el último mes", "median_verb": "salió"}, {"num": 22, "topic": "tiempo compartido en familia el fin de semana", "unit": "horas", "question": "¿Cuántas horas compartiste conversando, almorzando o haciendo actividades con tu familia este último fin de semana? (de 0 a 10 horas)", "context": "La escuela de padres realizó una encuesta a 90 estudiantes sobre integración familiar. Se les preguntó: \"¿Cuántas horas compartiste en actividades con tu familia este último fin de semana?\". Las respuestas oscilaron entre 0 y 10 horas.", "mean_verb": "compartieron en familia", "time_comp": "este último fin de semana", "median_verb": "compartió"}, {"num": 23, "topic": "videos educativos o tutoriales en la semana", "unit": "videos", "question": "¿Cuántos videos explicativos o tutoriales viste en YouTube o TikTok en la última semana para repasar temas del colegio? (de 0 a 10 videos)", "context": "El consejo estudiantil encuestó a 90 alumnos sobre aprendizaje digital. Se les preguntó: \"¿Cuántos videos educativos o tutoriales viste en la última semana para estudiar?\". Las respuestas oscilaron entre 0 y 10 videos.", "mean_verb": "vieron videos educativos", "time_comp": "en la última semana", "median_verb": "vio"}, {"num": 24, "topic": "recargas de batería del celular en 5 días", "unit": "cargas", "question": "¿Cuántas veces completas recargas la batería de tu teléfono celular en un periodo de 5 días? (de 0 a 10 cargas)", "context": "El club de ciencias realizó una encuesta a 90 personas sobre consumo energético móvil. Se les preguntó: \"¿Cuántas veces recargas la batería de tu celular en un periodo de 5 días?\". Las respuestas oscilaron entre 0 y 10 cargas.", "mean_verb": "recargaron su celular", "time_comp": "en un periodo de 5 días", "median_verb": "recargó"}, {"num": 25, "topic": "participaciones voluntarias en clase por semana", "unit": "participaciones", "question": "¿Cuántas veces levantaste la mano o participaste voluntariamente en todas tus clases durante la última semana? (de 0 a 10 veces)", "context": "La coordinación académica encuestó a 90 estudiantes sobre participación activa. Se les preguntó: \"¿Cuántas veces participaste voluntariamente en clase durante la última semana?\". Las respuestas oscilaron entre 0 y 10 participaciones.", "mean_verb": "participaron en clase", "time_comp": "durante la última semana", "median_verb": "participó"}, {"num": 26, "topic": "autoevaluación de organización y hábitos de estudio", "unit": "puntos", "question": "En una escala de 0 a 10, ¿qué calificación le das a tu nivel de orden, apuntes y cumplimiento escolar en este periodo?", "context": "La dirección de grupo realizó una encuesta a 90 estudiantes sobre hábitos escolares. Se les preguntó: \"En una escala de 0 a 10, ¿cómo calificas tu organización y cumplimiento en este periodo?\". Las respuestas oscilaron entre 0 y 10 puntos.", "mean_verb": "calificaron su orden", "time_comp": "en el periodo académico con", "median_verb": "obtuvo"}], "groups": {"10°1": [{"pos": 1, "ord": 2, "matricula": "250050", "nombre": "ATEHORTUA MESA, JUAN CAMILO", "grupo": "10°1", "q_num": 1, "q_topic": "uso dominical de TikTok o Instagram", "q_unit": "horas", "q_question": "¿Cuántas horas seguidas pasaste viendo TikTok o Instagram este último domingo? (de 0 a 10 horas)", "q_context": "El comité de convivencia realizó una encuesta anónima a 90 estudiantes para analizar el uso de pantallas. Se les preguntó: \"¿Cuántas horas seguidas pasaste viendo TikTok o Instagram este último domingo?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "vieron TikTok o Instagram", "q_time_comp": "este último domingo", "q_median_verb": "pasó"}, {"pos": 2, "ord": 3, "matricula": "240102", "nombre": "CARTAGENA ALVAREZ, STALIN", "grupo": "10°1", "q_num": 2, "q_topic": "consumo diario de agua pura", "q_unit": "vasos", "q_question": "¿Cuántos vasos de agua pura tomas en un día típico de clases? (de 0 a 10 vasos)", "q_context": "El área de bienestar estudiantil realizó una encuesta a 90 personas para conocer sus hábitos de hidratación. Se les preguntó: \"¿Cuántos vasos de agua pura tomas en un día típico de clases?\". Las respuestas oscilaron entre 0 y 10 vasos.", "q_mean_verb": "tomaron agua pura", "q_time_comp": "en un día típico de clases", "q_median_verb": "tomó"}, {"pos": 3, "ord": 4, "matricula": "151257", "nombre": "DURANGO CAÑAVERAL, VALENTINA", "grupo": "10°1", "q_num": 3, "q_topic": "horas de sueño entre semana", "q_unit": "horas", "q_question": "¿Cuántas horas completas dormiste anoche antes de asistir al colegio? (de 0 a 10 horas)", "q_context": "El departamento de orientación encuestó a 90 estudiantes sobre la higiene del sueño. Se les preguntó: \"¿Cuántas horas completas dormiste anoche antes de asistir al colegio?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "durmieron en total", "q_time_comp": "la noche anterior a clases", "q_median_verb": "durmió"}, {"pos": 4, "ord": 5, "matricula": "151278", "nombre": "DURANGO PRISCO, JUAN SEBASTIAN", "grupo": "10°1", "q_num": 4, "q_topic": "estudio autónomo semanal en casa", "q_unit": "horas", "q_question": "¿Cuántas horas a la semana dedicas a repasar o hacer tareas en casa fuera del horario escolar? (de 0 a 10 horas)", "q_context": "El consejo académico realizó una encuesta a 90 estudiantes sobre autonomía escolar. Se les preguntó: \"¿Cuántas horas a la semana dedicas a repasar o hacer tareas en casa fuera del horario escolar?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "estudiaron o hicieron tareas", "q_time_comp": "en casa por semana", "q_median_verb": "dedicó"}, {"pos": 5, "ord": 6, "matricula": "181157", "nombre": "FERNANDEZ ARTEAGA, JERONIMO", "grupo": "10°1", "q_num": 5, "q_topic": "práctica semanal de deporte o ejercicio", "q_unit": "horas", "q_question": "¿Cuántas horas de ejercicio físico o deporte practicaste durante los últimos 7 días? (de 0 a 10 horas)", "q_context": "El departamento de educación física encuestó a 90 estudiantes sobre vida activa. Se les preguntó: \"¿Cuántas horas de ejercicio físico o deporte practicaste durante los últimos 7 días?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "practicaron ejercicio físico", "q_time_comp": "durante los últimos 7 días", "q_median_verb": "practicó"}, {"pos": 6, "ord": 7, "matricula": "220039", "nombre": "FIERRO MEJIA, JUAN JOSE", "grupo": "10°1", "q_num": 6, "q_topic": "lectura recreativa en el último semestre", "q_unit": "textos", "q_question": "¿Cuántos libros, cómics o relatos completos has leído por gusto en el último semestre? (de 0 a 10 textos)", "q_context": "El proyecto de biblioteca escolar realizó una encuesta a 90 estudiantes sobre hábitos lectores. Se les preguntó: \"¿Cuántos libros, cómics o relatos completos leíste por gusto en el último semestre?\". Las respuestas oscilaron entre 0 y 10 textos.", "q_mean_verb": "leyeron por gusto", "q_time_comp": "en el último semestre", "q_median_verb": "leyó"}, {"pos": 7, "ord": 8, "matricula": "220092", "nombre": "FLOREZ HERRERA, JUAN SEBASTIAN", "grupo": "10°1", "q_num": 7, "q_topic": "tiempo en videojuegos el fin de semana", "q_unit": "horas", "q_question": "¿Cuántas horas jugaste videojuegos (en celular, consola o PC) durante el último fin de semana? (de 0 a 10 horas)", "q_context": "El comité juvenil encuestó a 90 estudiantes sobre ocio digital. Se les preguntó: \"¿Cuántas horas jugaste videojuegos durante el último fin de semana?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "jugaron videojuegos", "q_time_comp": "el último fin de semana", "q_median_verb": "jugó"}, {"pos": 8, "ord": 9, "matricula": "161150", "nombre": "GOMEZ BUILES, JUAN MANUEL", "grupo": "10°1", "q_num": 8, "q_topic": "tiempo de recorrido casa-colegio", "q_unit": "bloques de 5 min", "q_question": "¿Cuántos bloques de 5 minutos tarda tu recorrido habitual desde tu casa hasta el colegio? (de 0 a 10 bloques)", "q_context": "El comité de movilidad escolar realizó una encuesta a 90 estudiantes sobre tiempos de desplazamiento. Se les preguntó: \"¿Cuántos bloques de 5 minutos (de 0 a 10) tarda tu recorrido habitual hasta el colegio?\". Las respuestas oscilaron entre 0 y 10 bloques.", "q_mean_verb": "tardaron en su recorrido", "q_time_comp": "desde casa hasta el colegio", "q_median_verb": "tardó"}, {"pos": 9, "ord": 10, "matricula": "151023", "nombre": "GOMEZ LOPEZ, ALEJANDRO", "grupo": "10°1", "q_num": 9, "q_topic": "consumo de frutas en 5 días", "q_unit": "porciones", "q_question": "¿Cuántas porciones de fruta consumiste en total durante los últimos 5 días? (de 0 a 10 porciones)", "q_context": "El comité de alimentación saludable encuestó a 90 estudiantes sobre nutrición. Se les preguntó: \"¿Cuántas porciones de fruta consumiste en total durante los últimos 5 días?\". Las respuestas oscilaron entre 0 y 10 porciones.", "q_mean_verb": "consumieron fruta", "q_time_comp": "durante los últimos 5 días", "q_median_verb": "consumió"}, {"pos": 10, "ord": 11, "matricula": "260160", "nombre": "HERNANDEZ ANAYA, KEIDIS JUDIT", "grupo": "10°1", "q_num": 10, "q_topic": "nivel de estrés en semana de exámenes", "q_unit": "puntos", "q_question": "En una escala de 0 a 10, ¿qué nivel de cansancio o estrés sentiste durante la última semana de exámenes?", "q_context": "El equipo de psicología escolar encuestó a 90 estudiantes sobre bienestar emocional. Se les preguntó: \"En una escala de 0 a 10, ¿qué nivel de cansancio o estrés sentiste en la semana de exámenes?\". Las respuestas oscilaron entre 0 y 10 puntos.", "q_mean_verb": "reportaron un estrés", "q_time_comp": "en semana de exámenes de", "q_median_verb": "registró"}, {"pos": 11, "ord": 12, "matricula": "161030", "nombre": "HIGUITA HENAO, JERONIMO", "grupo": "10°1", "q_num": 11, "q_topic": "escucha diaria de música en apps", "q_unit": "horas", "q_question": "¿Cuántas horas al día escuchas música (en Spotify, YouTube u otra app) mientras haces otras actividades? (de 0 a 10 horas)", "q_context": "El club cultural realizó una encuesta a 90 estudiantes sobre consumo musical. Se les preguntó: \"¿Cuántas horas al día escuchas música en plataformas digitales?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "escucharon música", "q_time_comp": "al día en aplicaciones", "q_median_verb": "escuchó"}, {"pos": 12, "ord": 13, "matricula": "240158", "nombre": "LLANO GRACIANO, EMMANUEL", "grupo": "10°1", "q_num": 12, "q_topic": "uso diario de WhatsApp y mensajería", "q_unit": "horas", "q_question": "¿Cuántas horas al día utilizas WhatsApp para chatear, ver estados o enviar notas de voz? (de 0 a 10 horas)", "q_context": "El comité de comunicación escolar encuestó a 90 estudiantes sobre mensajería instantánea. Se les preguntó: \"¿Cuántas horas al día utilizas WhatsApp para chatear o enviar notas de voz?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "usaron WhatsApp", "q_time_comp": "al día para mensajería", "q_median_verb": "utilizó"}, {"pos": 13, "ord": 14, "matricula": "220050", "nombre": "LONDOÑO VILLA, JUAN SEBASTIAN", "grupo": "10°1", "q_num": 13, "q_topic": "episodios de series vistos en la semana", "q_unit": "capítulos", "q_question": "¿Cuántos capítulos de series o películas completas viste en plataformas o TV durante la última semana? (de 0 a 10 capítulos)", "q_context": "El semillero de medios audiovisuales encuestó a 90 estudiantes sobre entretenimiento en casa. Se les preguntó: \"¿Cuántos capítulos de series o películas viste durante la última semana?\". Las respuestas oscilaron entre 0 y 10 capítulos.", "q_mean_verb": "vieron series o películas", "q_time_comp": "durante la última semana", "q_median_verb": "vio"}, {"pos": 14, "ord": 15, "matricula": "151088", "nombre": "LOPEZ OROZCO, FRANK JOHAN", "grupo": "10°1", "q_num": 14, "q_topic": "consumo mensual de comidas rápidas", "q_unit": "veces", "q_question": "¿Cuántas veces en el último mes comiste comidas rápidas fuera de casa (hamburguesa, pizza, salchipapa, etc.)? (de 0 a 10 veces)", "q_context": "El área de ciencias naturales realizó una encuesta a 90 personas sobre hábitos alimenticios. Se les preguntó: \"¿Cuántas veces en el último mes comiste comidas rápidas?\". Las respuestas oscilaron entre 0 y 10 veces.", "q_mean_verb": "comieron comida rápida", "q_time_comp": "durante el último mes", "q_median_verb": "comió"}, {"pos": 15, "ord": 16, "matricula": "161021", "nombre": "LOPEZ SILVA, ALEJANDRO", "grupo": "10°1", "q_num": 15, "q_topic": "colaboración semanal en oficios del hogar", "q_unit": "horas", "q_question": "¿Cuántas horas a la semana colaboras con los oficios o responsabilidades domésticas en tu casa? (de 0 a 10 horas)", "q_context": "El proyecto de ética y valores encuestó a 90 estudiantes sobre corresponsabilidad familiar. Se les preguntó: \"¿Cuántas horas a la semana colaboras con los oficios de tu casa?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "colaboraron en el hogar", "q_time_comp": "a la semana en oficios", "q_median_verb": "colaboró"}, {"pos": 16, "ord": 17, "matricula": "230192", "nombre": "MEJIA ROMAN, ESTEBAN MORONI", "grupo": "10°1", "q_num": 16, "q_topic": "tiempo matutino para alistarse", "q_unit": "bloques de 5 min", "q_question": "¿Cuántos bloques de 5 minutos tardas en alistarte por la mañana desde que te despiertas hasta salir de casa? (de 0 a 10 bloques)", "q_context": "El comité de puntualidad escolar encuestó a 90 estudiantes sobre su rutina matutina. Se les preguntó: \"¿Cuántos bloques de 5 minutos (de 0 a 10) tardas en alistarte por la mañana?\". Las respuestas oscilaron entre 0 y 10 bloques.", "q_mean_verb": "tardaron alistándose", "q_time_comp": "en la rutina de la mañana", "q_median_verb": "tardó"}, {"pos": 17, "ord": 18, "matricula": "191372", "nombre": "MONSALVE DUARTE, BRIANS GILBERT", "grupo": "10°1", "q_num": 17, "q_topic": "días de compra en la tienda escolar", "q_unit": "días", "q_question": "De los últimos 10 días de clase, ¿en cuántos días compraste algún producto en la tienda o cafetería escolar? (de 0 a 10 días)", "q_context": "El comité financiero estudiantil realizó una encuesta a 90 alumnos sobre uso de la cafetería. Se les preguntó: \"De los últimos 10 días de clase, ¿en cuántos compraste en la tienda escolar?\". Las respuestas oscilaron entre 0 y 10 días.", "q_mean_verb": "compraron en cafetería", "q_time_comp": "de los últimos 10 días de clase", "q_median_verb": "compró"}, {"pos": 18, "ord": 19, "matricula": "201184", "nombre": "PEREZ LOPEZ, JAMES STICK", "grupo": "10°1", "q_num": 18, "q_topic": "uso del celular en la cama antes de dormir", "q_unit": "bloques de 10 min", "q_question": "¿Cuántos bloques de 10 minutos pasas mirando el celular en la cama justo antes de dormirte? (de 0 a 10 bloques)", "q_context": "El departamento de bienestar estudiantil encuestó a 90 jóvenes sobre descanso nocturno. Se les preguntó: \"¿Cuántos bloques de 10 minutos (de 0 a 10) miras el celular en la cama antes de dormir?\". Las respuestas oscilaron entre 0 y 10 bloques.", "q_mean_verb": "miraron el celular en cama", "q_time_comp": "justo antes de dormir", "q_median_verb": "pasó"}, {"pos": 19, "ord": 20, "matricula": "161027", "nombre": "POSADA SANCHEZ, ANDRES FELIPE", "grupo": "10°1", "q_num": 19, "q_topic": "consumo semanal de bebidas azucaradas", "q_unit": "bebidas", "q_question": "¿Cuántos vasos o botellas de gaseosa, jugo procesado o té frío tomaste durante la última semana? (de 0 a 10 bebidas)", "q_context": "El proyecto de salud escolar realizó una encuesta a 90 estudiantes sobre consumo de azúcar. Se les preguntó: \"¿Cuántas bebidas azucaradas tomaste durante la última semana?\". Las respuestas oscilaron entre 0 y 10 bebidas.", "q_mean_verb": "tomaron bebidas dulces", "q_time_comp": "durante la última semana", "q_median_verb": "tomó"}, {"pos": 20, "ord": 21, "matricula": "220065", "nombre": "QUIZA RAMIREZ, DILAN SANTIAGO", "grupo": "10°1", "q_num": 20, "q_topic": "consultas académicas semanales con IA", "q_unit": "consultas", "q_question": "¿Cuántas veces en la última semana usaste herramientas de Inteligencia Artificial para estudiar o resolver dudas? (de 0 a 10 veces)", "q_context": "El área de tecnología e informática encuestó a 90 estudiantes sobre herramientas digitales. Se les preguntó: \"¿Cuántas veces en la última semana usaste IA para apoyar tus tareas o estudio?\". Las respuestas oscilaron entre 0 y 10 consultas.", "q_mean_verb": "consultaron herramientas IA", "q_time_comp": "durante la última semana", "q_median_verb": "realizó"}, {"pos": 21, "ord": 22, "matricula": "161049", "nombre": "RODRIGUEZ LUNA, JUAN FERNANDO", "grupo": "10°1", "q_num": 21, "q_topic": "salidas recreativas mensuales con amigos", "q_unit": "salidas", "q_question": "¿Cuántas veces en el último mes saliste a conversar, hacer deporte o pasear con tus amigos fuera del colegio? (de 0 a 10 salidas)", "q_context": "El comité de convivencia juvenil encuestó a 90 estudiantes sobre socialización presencial. Se les preguntó: \"¿Cuántas veces en el último mes saliste a compartir con amigos fuera del colegio?\". Las respuestas oscilaron entre 0 y 10 salidas.", "q_mean_verb": "salieron con sus amigos", "q_time_comp": "durante el último mes", "q_median_verb": "salió"}, {"pos": 22, "ord": 23, "matricula": "161061", "nombre": "SANCHEZ ISAZA, JUAN DAVID", "grupo": "10°1", "q_num": 22, "q_topic": "tiempo compartido en familia el fin de semana", "q_unit": "horas", "q_question": "¿Cuántas horas compartiste conversando, almorzando o haciendo actividades con tu familia este último fin de semana? (de 0 a 10 horas)", "q_context": "La escuela de padres realizó una encuesta a 90 estudiantes sobre integración familiar. Se les preguntó: \"¿Cuántas horas compartiste en actividades con tu familia este último fin de semana?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "compartieron en familia", "q_time_comp": "este último fin de semana", "q_median_verb": "compartió"}, {"pos": 23, "ord": 24, "matricula": "201193", "nombre": "SILGADO VANEGAS, RAYBELIS ANAIS", "grupo": "10°1", "q_num": 23, "q_topic": "videos educativos o tutoriales en la semana", "q_unit": "videos", "q_question": "¿Cuántos videos explicativos o tutoriales viste en YouTube o TikTok en la última semana para repasar temas del colegio? (de 0 a 10 videos)", "q_context": "El consejo estudiantil encuestó a 90 alumnos sobre aprendizaje digital. Se les preguntó: \"¿Cuántos videos educativos o tutoriales viste en la última semana para estudiar?\". Las respuestas oscilaron entre 0 y 10 videos.", "q_mean_verb": "vieron videos educativos", "q_time_comp": "en la última semana", "q_median_verb": "vio"}, {"pos": 24, "ord": 25, "matricula": "250168", "nombre": "SUAREZ ISAZA, CHRISTOPHER XAVIER", "grupo": "10°1", "q_num": 24, "q_topic": "recargas de batería del celular en 5 días", "q_unit": "cargas", "q_question": "¿Cuántas veces completas recargas la batería de tu teléfono celular en un periodo de 5 días? (de 0 a 10 cargas)", "q_context": "El club de ciencias realizó una encuesta a 90 personas sobre consumo energético móvil. Se les preguntó: \"¿Cuántas veces recargas la batería de tu celular en un periodo de 5 días?\". Las respuestas oscilaron entre 0 y 10 cargas.", "q_mean_verb": "recargaron su celular", "q_time_comp": "en un periodo de 5 días", "q_median_verb": "recargó"}, {"pos": 25, "ord": 27, "matricula": "191291", "nombre": "VALIENTE CHAVEZ, ANTHONY JOSUE", "grupo": "10°1", "q_num": 25, "q_topic": "participaciones voluntarias en clase por semana", "q_unit": "participaciones", "q_question": "¿Cuántas veces levantaste la mano o participaste voluntariamente en todas tus clases durante la última semana? (de 0 a 10 veces)", "q_context": "La coordinación académica encuestó a 90 estudiantes sobre participación activa. Se les preguntó: \"¿Cuántas veces participaste voluntariamente en clase durante la última semana?\". Las respuestas oscilaron entre 0 y 10 participaciones.", "q_mean_verb": "participaron en clase", "q_time_comp": "durante la última semana", "q_median_verb": "participó"}, {"pos": 26, "ord": 31, "matricula": "151040", "nombre": "ZULETA LOPEZ, JOSE MIGUEL", "grupo": "10°1", "q_num": 26, "q_topic": "autoevaluación de organización y hábitos de estudio", "q_unit": "puntos", "q_question": "En una escala de 0 a 10, ¿qué calificación le das a tu nivel de orden, apuntes y cumplimiento escolar en este periodo?", "q_context": "La dirección de grupo realizó una encuesta a 90 estudiantes sobre hábitos escolares. Se les preguntó: \"En una escala de 0 a 10, ¿cómo calificas tu organización y cumplimiento en este periodo?\". Las respuestas oscilaron entre 0 y 10 puntos.", "q_mean_verb": "calificaron su orden", "q_time_comp": "en el periodo académico con", "q_median_verb": "obtuvo"}], "10°2": [{"pos": 1, "ord": 2, "matricula": "181174", "nombre": "ARANGO HOYOS, JHONATTAN", "grupo": "10°2", "q_num": 1, "q_topic": "uso dominical de TikTok o Instagram", "q_unit": "horas", "q_question": "¿Cuántas horas seguidas pasaste viendo TikTok o Instagram este último domingo? (de 0 a 10 horas)", "q_context": "El comité de convivencia realizó una encuesta anónima a 90 estudiantes para analizar el uso de pantallas. Se les preguntó: \"¿Cuántas horas seguidas pasaste viendo TikTok o Instagram este último domingo?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "vieron TikTok o Instagram", "q_time_comp": "este último domingo", "q_median_verb": "pasó"}, {"pos": 2, "ord": 3, "matricula": "250066", "nombre": "BORJA AVILES, JAVIER DE JESUS", "grupo": "10°2", "q_num": 2, "q_topic": "consumo diario de agua pura", "q_unit": "vasos", "q_question": "¿Cuántos vasos de agua pura tomas en un día típico de clases? (de 0 a 10 vasos)", "q_context": "El área de bienestar estudiantil realizó una encuesta a 90 personas para conocer sus hábitos de hidratación. Se les preguntó: \"¿Cuántos vasos de agua pura tomas en un día típico de clases?\". Las respuestas oscilaron entre 0 y 10 vasos.", "q_mean_verb": "tomaron agua pura", "q_time_comp": "en un día típico de clases", "q_median_verb": "tomó"}, {"pos": 3, "ord": 4, "matricula": "250065", "nombre": "BURITICA RIVILLAS, MATIAS", "grupo": "10°2", "q_num": 3, "q_topic": "horas de sueño entre semana", "q_unit": "horas", "q_question": "¿Cuántas horas completas dormiste anoche antes de asistir al colegio? (de 0 a 10 horas)", "q_context": "El departamento de orientación encuestó a 90 estudiantes sobre la higiene del sueño. Se les preguntó: \"¿Cuántas horas completas dormiste anoche antes de asistir al colegio?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "durmieron en total", "q_time_comp": "la noche anterior a clases", "q_median_verb": "durmió"}, {"pos": 4, "ord": 5, "matricula": "201216", "nombre": "DAVID AYALA, SIMON", "grupo": "10°2", "q_num": 4, "q_topic": "estudio autónomo semanal en casa", "q_unit": "horas", "q_question": "¿Cuántas horas a la semana dedicas a repasar o hacer tareas en casa fuera del horario escolar? (de 0 a 10 horas)", "q_context": "El consejo académico realizó una encuesta a 90 estudiantes sobre autonomía escolar. Se les preguntó: \"¿Cuántas horas a la semana dedicas a repasar o hacer tareas en casa fuera del horario escolar?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "estudiaron o hicieron tareas", "q_time_comp": "en casa por semana", "q_median_verb": "dedicó"}, {"pos": 5, "ord": 6, "matricula": "161056", "nombre": "DAVID HOLGUIN, JOSUE ALEJANDRO", "grupo": "10°2", "q_num": 5, "q_topic": "práctica semanal de deporte o ejercicio", "q_unit": "horas", "q_question": "¿Cuántas horas de ejercicio físico o deporte practicaste durante los últimos 7 días? (de 0 a 10 horas)", "q_context": "El departamento de educación física encuestó a 90 estudiantes sobre vida activa. Se les preguntó: \"¿Cuántas horas de ejercicio físico o deporte practicaste durante los últimos 7 días?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "practicaron ejercicio físico", "q_time_comp": "durante los últimos 7 días", "q_median_verb": "practicó"}, {"pos": 6, "ord": 8, "matricula": "181212", "nombre": "LOPEZ PARDO, CRISTOPHER ALEJANDRO", "grupo": "10°2", "q_num": 6, "q_topic": "lectura recreativa en el último semestre", "q_unit": "textos", "q_question": "¿Cuántos libros, cómics o relatos completos has leído por gusto en el último semestre? (de 0 a 10 textos)", "q_context": "El proyecto de biblioteca escolar realizó una encuesta a 90 estudiantes sobre hábitos lectores. Se les preguntó: \"¿Cuántos libros, cómics o relatos completos leíste por gusto en el último semestre?\". Las respuestas oscilaron entre 0 y 10 textos.", "q_mean_verb": "leyeron por gusto", "q_time_comp": "en el último semestre", "q_median_verb": "leyó"}, {"pos": 7, "ord": 9, "matricula": "230053", "nombre": "MORENO COLMENARES, DENNYS STEVEN", "grupo": "10°2", "q_num": 7, "q_topic": "tiempo en videojuegos el fin de semana", "q_unit": "horas", "q_question": "¿Cuántas horas jugaste videojuegos (en celular, consola o PC) durante el último fin de semana? (de 0 a 10 horas)", "q_context": "El comité juvenil encuestó a 90 estudiantes sobre ocio digital. Se les preguntó: \"¿Cuántas horas jugaste videojuegos durante el último fin de semana?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "jugaron videojuegos", "q_time_comp": "el último fin de semana", "q_median_verb": "jugó"}, {"pos": 8, "ord": 10, "matricula": "260020", "nombre": "MORENO GIRALDO, JUAN JOSE", "grupo": "10°2", "q_num": 8, "q_topic": "tiempo de recorrido casa-colegio", "q_unit": "bloques de 5 min", "q_question": "¿Cuántos bloques de 5 minutos tarda tu recorrido habitual desde tu casa hasta el colegio? (de 0 a 10 bloques)", "q_context": "El comité de movilidad escolar realizó una encuesta a 90 estudiantes sobre tiempos de desplazamiento. Se les preguntó: \"¿Cuántos bloques de 5 minutos (de 0 a 10) tarda tu recorrido habitual hasta el colegio?\". Las respuestas oscilaron entre 0 y 10 bloques.", "q_mean_verb": "tardaron en su recorrido", "q_time_comp": "desde casa hasta el colegio", "q_median_verb": "tardó"}, {"pos": 9, "ord": 11, "matricula": "260021", "nombre": "MORENO MENDEZ, VALERIA", "grupo": "10°2", "q_num": 9, "q_topic": "consumo de frutas en 5 días", "q_unit": "porciones", "q_question": "¿Cuántas porciones de fruta consumiste en total durante los últimos 5 días? (de 0 a 10 porciones)", "q_context": "El comité de alimentación saludable encuestó a 90 estudiantes sobre nutrición. Se les preguntó: \"¿Cuántas porciones de fruta consumiste en total durante los últimos 5 días?\". Las respuestas oscilaron entre 0 y 10 porciones.", "q_mean_verb": "consumieron fruta", "q_time_comp": "durante los últimos 5 días", "q_median_verb": "consumió"}, {"pos": 10, "ord": 12, "matricula": "260058", "nombre": "MOSQUERA RAMIREZ , EMILY PAOLA", "grupo": "10°2", "q_num": 10, "q_topic": "nivel de estrés en semana de exámenes", "q_unit": "puntos", "q_question": "En una escala de 0 a 10, ¿qué nivel de cansancio o estrés sentiste durante la última semana de exámenes?", "q_context": "El equipo de psicología escolar encuestó a 90 estudiantes sobre bienestar emocional. Se les preguntó: \"En una escala de 0 a 10, ¿qué nivel de cansancio o estrés sentiste en la semana de exámenes?\". Las respuestas oscilaron entre 0 y 10 puntos.", "q_mean_verb": "reportaron un estrés", "q_time_comp": "en semana de exámenes de", "q_median_verb": "registró"}, {"pos": 11, "ord": 13, "matricula": "151293", "nombre": "MURILLO ADARVES, JUAN DAVID", "grupo": "10°2", "q_num": 11, "q_topic": "escucha diaria de música en apps", "q_unit": "horas", "q_question": "¿Cuántas horas al día escuchas música (en Spotify, YouTube u otra app) mientras haces otras actividades? (de 0 a 10 horas)", "q_context": "El club cultural realizó una encuesta a 90 estudiantes sobre consumo musical. Se les preguntó: \"¿Cuántas horas al día escuchas música en plataformas digitales?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "escucharon música", "q_time_comp": "al día en aplicaciones", "q_median_verb": "escuchó"}, {"pos": 12, "ord": 14, "matricula": "151071", "nombre": "NARANJO CORDOBA, JUAN CARLOS", "grupo": "10°2", "q_num": 12, "q_topic": "uso diario de WhatsApp y mensajería", "q_unit": "horas", "q_question": "¿Cuántas horas al día utilizas WhatsApp para chatear, ver estados o enviar notas de voz? (de 0 a 10 horas)", "q_context": "El comité de comunicación escolar encuestó a 90 estudiantes sobre mensajería instantánea. Se les preguntó: \"¿Cuántas horas al día utilizas WhatsApp para chatear o enviar notas de voz?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "usaron WhatsApp", "q_time_comp": "al día para mensajería", "q_median_verb": "utilizó"}, {"pos": 13, "ord": 15, "matricula": "181110", "nombre": "NORIEGA ECHAVARRIA, DIEGO ANDRES", "grupo": "10°2", "q_num": 13, "q_topic": "episodios de series vistos en la semana", "q_unit": "capítulos", "q_question": "¿Cuántos capítulos de series o películas completas viste en plataformas o TV durante la última semana? (de 0 a 10 capítulos)", "q_context": "El semillero de medios audiovisuales encuestó a 90 estudiantes sobre entretenimiento en casa. Se les preguntó: \"¿Cuántos capítulos de series o películas viste durante la última semana?\". Las respuestas oscilaron entre 0 y 10 capítulos.", "q_mean_verb": "vieron series o películas", "q_time_comp": "durante la última semana", "q_median_verb": "vio"}, {"pos": 14, "ord": 18, "matricula": "250134", "nombre": "PALACIO MONSALVE, SUSANA", "grupo": "10°2", "q_num": 14, "q_topic": "consumo mensual de comidas rápidas", "q_unit": "veces", "q_question": "¿Cuántas veces en el último mes comiste comidas rápidas fuera de casa (hamburguesa, pizza, salchipapa, etc.)? (de 0 a 10 veces)", "q_context": "El área de ciencias naturales realizó una encuesta a 90 personas sobre hábitos alimenticios. Se les preguntó: \"¿Cuántas veces en el último mes comiste comidas rápidas?\". Las respuestas oscilaron entre 0 y 10 veces.", "q_mean_verb": "comieron comida rápida", "q_time_comp": "durante el último mes", "q_median_verb": "comió"}, {"pos": 15, "ord": 19, "matricula": "181258", "nombre": "PALACIOS PALACIOS, YESSENIA", "grupo": "10°2", "q_num": 15, "q_topic": "colaboración semanal en oficios del hogar", "q_unit": "horas", "q_question": "¿Cuántas horas a la semana colaboras con los oficios o responsabilidades domésticas en tu casa? (de 0 a 10 horas)", "q_context": "El proyecto de ética y valores encuestó a 90 estudiantes sobre corresponsabilidad familiar. Se les preguntó: \"¿Cuántas horas a la semana colaboras con los oficios de tu casa?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "colaboraron en el hogar", "q_time_comp": "a la semana en oficios", "q_median_verb": "colaboró"}, {"pos": 16, "ord": 20, "matricula": "260166", "nombre": "PALACIOS ZAPATA, DULCE MARIA", "grupo": "10°2", "q_num": 16, "q_topic": "tiempo matutino para alistarse", "q_unit": "bloques de 5 min", "q_question": "¿Cuántos bloques de 5 minutos tardas en alistarte por la mañana desde que te despiertas hasta salir de casa? (de 0 a 10 bloques)", "q_context": "El comité de puntualidad escolar encuestó a 90 estudiantes sobre su rutina matutina. Se les preguntó: \"¿Cuántos bloques de 5 minutos (de 0 a 10) tardas en alistarte por la mañana?\". Las respuestas oscilaron entre 0 y 10 bloques.", "q_mean_verb": "tardaron alistándose", "q_time_comp": "en la rutina de la mañana", "q_median_verb": "tardó"}, {"pos": 17, "ord": 21, "matricula": "260035", "nombre": "PEREZ GOMEZ , XIMENA SOFIA", "grupo": "10°2", "q_num": 17, "q_topic": "días de compra en la tienda escolar", "q_unit": "días", "q_question": "De los últimos 10 días de clase, ¿en cuántos días compraste algún producto en la tienda o cafetería escolar? (de 0 a 10 días)", "q_context": "El comité financiero estudiantil realizó una encuesta a 90 alumnos sobre uso de la cafetería. Se les preguntó: \"De los últimos 10 días de clase, ¿en cuántos compraste en la tienda escolar?\". Las respuestas oscilaron entre 0 y 10 días.", "q_mean_verb": "compraron en cafetería", "q_time_comp": "de los últimos 10 días de clase", "q_median_verb": "compró"}, {"pos": 18, "ord": 22, "matricula": "260022", "nombre": "PIEDRAHITA IDARRAGA, LUCIANA", "grupo": "10°2", "q_num": 18, "q_topic": "uso del celular en la cama antes de dormir", "q_unit": "bloques de 10 min", "q_question": "¿Cuántos bloques de 10 minutos pasas mirando el celular en la cama justo antes de dormirte? (de 0 a 10 bloques)", "q_context": "El departamento de bienestar estudiantil encuestó a 90 jóvenes sobre descanso nocturno. Se les preguntó: \"¿Cuántos bloques de 10 minutos (de 0 a 10) miras el celular en la cama antes de dormir?\". Las respuestas oscilaron entre 0 y 10 bloques.", "q_mean_verb": "miraron el celular en cama", "q_time_comp": "justo antes de dormir", "q_median_verb": "pasó"}, {"pos": 19, "ord": 24, "matricula": "260069", "nombre": "QUIROZ FLOREZ, MELANY", "grupo": "10°2", "q_num": 19, "q_topic": "consumo semanal de bebidas azucaradas", "q_unit": "bebidas", "q_question": "¿Cuántos vasos o botellas de gaseosa, jugo procesado o té frío tomaste durante la última semana? (de 0 a 10 bebidas)", "q_context": "El proyecto de salud escolar realizó una encuesta a 90 estudiantes sobre consumo de azúcar. Se les preguntó: \"¿Cuántas bebidas azucaradas tomaste durante la última semana?\". Las respuestas oscilaron entre 0 y 10 bebidas.", "q_mean_verb": "tomaron bebidas dulces", "q_time_comp": "durante la última semana", "q_median_verb": "tomó"}, {"pos": 20, "ord": 27, "matricula": "260032", "nombre": "RODRIGUEZ AGUAS, ANDREA YULIETH", "grupo": "10°2", "q_num": 20, "q_topic": "consultas académicas semanales con IA", "q_unit": "consultas", "q_question": "¿Cuántas veces en la última semana usaste herramientas de Inteligencia Artificial para estudiar o resolver dudas? (de 0 a 10 veces)", "q_context": "El área de tecnología e informática encuestó a 90 estudiantes sobre herramientas digitales. Se les preguntó: \"¿Cuántas veces en la última semana usaste IA para apoyar tus tareas o estudio?\". Las respuestas oscilaron entre 0 y 10 consultas.", "q_mean_verb": "consultaron herramientas IA", "q_time_comp": "durante la última semana", "q_median_verb": "realizó"}, {"pos": 21, "ord": 28, "matricula": "250075", "nombre": "SALAZAR ORTIZ, MARIA DE LOS ANGELES", "grupo": "10°2", "q_num": 21, "q_topic": "salidas recreativas mensuales con amigos", "q_unit": "salidas", "q_question": "¿Cuántas veces en el último mes saliste a conversar, hacer deporte o pasear con tus amigos fuera del colegio? (de 0 a 10 salidas)", "q_context": "El comité de convivencia juvenil encuestó a 90 estudiantes sobre socialización presencial. Se les preguntó: \"¿Cuántas veces en el último mes saliste a compartir con amigos fuera del colegio?\". Las respuestas oscilaron entre 0 y 10 salidas.", "q_mean_verb": "salieron con sus amigos", "q_time_comp": "durante el último mes", "q_median_verb": "salió"}, {"pos": 22, "ord": 29, "matricula": "161017", "nombre": "VALENCIA PEREA, SEBASTIAN", "grupo": "10°2", "q_num": 22, "q_topic": "tiempo compartido en familia el fin de semana", "q_unit": "horas", "q_question": "¿Cuántas horas compartiste conversando, almorzando o haciendo actividades con tu familia este último fin de semana? (de 0 a 10 horas)", "q_context": "La escuela de padres realizó una encuesta a 90 estudiantes sobre integración familiar. Se les preguntó: \"¿Cuántas horas compartiste en actividades con tu familia este último fin de semana?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "compartieron en familia", "q_time_comp": "este último fin de semana", "q_median_verb": "compartió"}, {"pos": 23, "ord": 31, "matricula": "141084", "nombre": "VEGA MEJIA, SEBASTIAN", "grupo": "10°2", "q_num": 23, "q_topic": "videos educativos o tutoriales en la semana", "q_unit": "videos", "q_question": "¿Cuántos videos explicativos o tutoriales viste en YouTube o TikTok en la última semana para repasar temas del colegio? (de 0 a 10 videos)", "q_context": "El consejo estudiantil encuestó a 90 alumnos sobre aprendizaje digital. Se les preguntó: \"¿Cuántos videos educativos o tutoriales viste en la última semana para estudiar?\". Las respuestas oscilaron entre 0 y 10 videos.", "q_mean_verb": "vieron videos educativos", "q_time_comp": "en la última semana", "q_median_verb": "vio"}, {"pos": 24, "ord": 32, "matricula": "220008", "nombre": "VELANDIA CONTRERAS, SHNEIDER JOSUE", "grupo": "10°2", "q_num": 24, "q_topic": "recargas de batería del celular en 5 días", "q_unit": "cargas", "q_question": "¿Cuántas veces completas recargas la batería de tu teléfono celular en un periodo de 5 días? (de 0 a 10 cargas)", "q_context": "El club de ciencias realizó una encuesta a 90 personas sobre consumo energético móvil. Se les preguntó: \"¿Cuántas veces recargas la batería de tu celular en un periodo de 5 días?\". Las respuestas oscilaron entre 0 y 10 cargas.", "q_mean_verb": "recargaron su celular", "q_time_comp": "en un periodo de 5 días", "q_median_verb": "recargó"}, {"pos": 25, "ord": 33, "matricula": "161065", "nombre": "VELASQUEZ RODRIGUEZ, WILLIAM DANIEL", "grupo": "10°2", "q_num": 25, "q_topic": "participaciones voluntarias en clase por semana", "q_unit": "participaciones", "q_question": "¿Cuántas veces levantaste la mano o participaste voluntariamente en todas tus clases durante la última semana? (de 0 a 10 veces)", "q_context": "La coordinación académica encuestó a 90 estudiantes sobre participación activa. Se les preguntó: \"¿Cuántas veces participaste voluntariamente en clase durante la última semana?\". Las respuestas oscilaron entre 0 y 10 participaciones.", "q_mean_verb": "participaron en clase", "q_time_comp": "durante la última semana", "q_median_verb": "participó"}, {"pos": 26, "ord": 34, "matricula": "161020", "nombre": "ZAPATA FLOREZ, JERONIMO DE JESUS", "grupo": "10°2", "q_num": 26, "q_topic": "autoevaluación de organización y hábitos de estudio", "q_unit": "puntos", "q_question": "En una escala de 0 a 10, ¿qué calificación le das a tu nivel de orden, apuntes y cumplimiento escolar en este periodo?", "q_context": "La dirección de grupo realizó una encuesta a 90 estudiantes sobre hábitos escolares. Se les preguntó: \"En una escala de 0 a 10, ¿cómo calificas tu organización y cumplimiento en este periodo?\". Las respuestas oscilaron entre 0 y 10 puntos.", "q_mean_verb": "calificaron su orden", "q_time_comp": "en el periodo académico con", "q_median_verb": "obtuvo"}], "10°3": [{"pos": 1, "ord": 1, "matricula": "250101", "nombre": "ALZATE GARCIA, ISABELA", "grupo": "10°3", "q_num": 1, "q_topic": "uso dominical de TikTok o Instagram", "q_unit": "horas", "q_question": "¿Cuántas horas seguidas pasaste viendo TikTok o Instagram este último domingo? (de 0 a 10 horas)", "q_context": "El comité de convivencia realizó una encuesta anónima a 90 estudiantes para analizar el uso de pantallas. Se les preguntó: \"¿Cuántas horas seguidas pasaste viendo TikTok o Instagram este último domingo?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "vieron TikTok o Instagram", "q_time_comp": "este último domingo", "q_median_verb": "pasó"}, {"pos": 2, "ord": 5, "matricula": "250158", "nombre": "BECERRA MORALES, ERICK STEPHEN", "grupo": "10°3", "q_num": 2, "q_topic": "consumo diario de agua pura", "q_unit": "vasos", "q_question": "¿Cuántos vasos de agua pura tomas en un día típico de clases? (de 0 a 10 vasos)", "q_context": "El área de bienestar estudiantil realizó una encuesta a 90 personas para conocer sus hábitos de hidratación. Se les preguntó: \"¿Cuántos vasos de agua pura tomas en un día típico de clases?\". Las respuestas oscilaron entre 0 y 10 vasos.", "q_mean_verb": "tomaron agua pura", "q_time_comp": "en un día típico de clases", "q_median_verb": "tomó"}, {"pos": 3, "ord": 6, "matricula": "250058", "nombre": "BEDOYA GALVIS, SOFIA", "grupo": "10°3", "q_num": 3, "q_topic": "horas de sueño entre semana", "q_unit": "horas", "q_question": "¿Cuántas horas completas dormiste anoche antes de asistir al colegio? (de 0 a 10 horas)", "q_context": "El departamento de orientación encuestó a 90 estudiantes sobre la higiene del sueño. Se les preguntó: \"¿Cuántas horas completas dormiste anoche antes de asistir al colegio?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "durmieron en total", "q_time_comp": "la noche anterior a clases", "q_median_verb": "durmió"}, {"pos": 4, "ord": 7, "matricula": "240149", "nombre": "BEDOYA ROJAS, KEVIN ANDRES", "grupo": "10°3", "q_num": 4, "q_topic": "estudio autónomo semanal en casa", "q_unit": "horas", "q_question": "¿Cuántas horas a la semana dedicas a repasar o hacer tareas en casa fuera del horario escolar? (de 0 a 10 horas)", "q_context": "El consejo académico realizó una encuesta a 90 estudiantes sobre autonomía escolar. Se les preguntó: \"¿Cuántas horas a la semana dedicas a repasar o hacer tareas en casa fuera del horario escolar?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "estudiaron o hicieron tareas", "q_time_comp": "en casa por semana", "q_median_verb": "dedicó"}, {"pos": 5, "ord": 8, "matricula": "220064", "nombre": "BEDOYA VELEZ, MELANY", "grupo": "10°3", "q_num": 5, "q_topic": "práctica semanal de deporte o ejercicio", "q_unit": "horas", "q_question": "¿Cuántas horas de ejercicio físico o deporte practicaste durante los últimos 7 días? (de 0 a 10 horas)", "q_context": "El departamento de educación física encuestó a 90 estudiantes sobre vida activa. Se les preguntó: \"¿Cuántas horas de ejercicio físico o deporte practicaste durante los últimos 7 días?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "practicaron ejercicio físico", "q_time_comp": "durante los últimos 7 días", "q_median_verb": "practicó"}, {"pos": 6, "ord": 9, "matricula": "201130", "nombre": "CANO RIOS, MELANNY", "grupo": "10°3", "q_num": 6, "q_topic": "lectura recreativa en el último semestre", "q_unit": "textos", "q_question": "¿Cuántos libros, cómics o relatos completos has leído por gusto en el último semestre? (de 0 a 10 textos)", "q_context": "El proyecto de biblioteca escolar realizó una encuesta a 90 estudiantes sobre hábitos lectores. Se les preguntó: \"¿Cuántos libros, cómics o relatos completos leíste por gusto en el último semestre?\". Las respuestas oscilaron entre 0 y 10 textos.", "q_mean_verb": "leyeron por gusto", "q_time_comp": "en el último semestre", "q_median_verb": "leyó"}, {"pos": 7, "ord": 10, "matricula": "201129", "nombre": "CANO RIOS, MELISSA", "grupo": "10°3", "q_num": 7, "q_topic": "tiempo en videojuegos el fin de semana", "q_unit": "horas", "q_question": "¿Cuántas horas jugaste videojuegos (en celular, consola o PC) durante el último fin de semana? (de 0 a 10 horas)", "q_context": "El comité juvenil encuestó a 90 estudiantes sobre ocio digital. Se les preguntó: \"¿Cuántas horas jugaste videojuegos durante el último fin de semana?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "jugaron videojuegos", "q_time_comp": "el último fin de semana", "q_median_verb": "jugó"}, {"pos": 8, "ord": 12, "matricula": "240002", "nombre": "HENAO OCAMPO, MANUELA", "grupo": "10°3", "q_num": 8, "q_topic": "tiempo de recorrido casa-colegio", "q_unit": "bloques de 5 min", "q_question": "¿Cuántos bloques de 5 minutos tarda tu recorrido habitual desde tu casa hasta el colegio? (de 0 a 10 bloques)", "q_context": "El comité de movilidad escolar realizó una encuesta a 90 estudiantes sobre tiempos de desplazamiento. Se les preguntó: \"¿Cuántos bloques de 5 minutos (de 0 a 10) tarda tu recorrido habitual hasta el colegio?\". Las respuestas oscilaron entre 0 y 10 bloques.", "q_mean_verb": "tardaron en su recorrido", "q_time_comp": "desde casa hasta el colegio", "q_median_verb": "tardó"}, {"pos": 9, "ord": 14, "matricula": "161010", "nombre": "JIMENEZ HERNANDEZ, VALENTINA", "grupo": "10°3", "q_num": 9, "q_topic": "consumo de frutas en 5 días", "q_unit": "porciones", "q_question": "¿Cuántas porciones de fruta consumiste en total durante los últimos 5 días? (de 0 a 10 porciones)", "q_context": "El comité de alimentación saludable encuestó a 90 estudiantes sobre nutrición. Se les preguntó: \"¿Cuántas porciones de fruta consumiste en total durante los últimos 5 días?\". Las respuestas oscilaron entre 0 y 10 porciones.", "q_mean_verb": "consumieron fruta", "q_time_comp": "durante los últimos 5 días", "q_median_verb": "consumió"}, {"pos": 10, "ord": 16, "matricula": "220023", "nombre": "LOPEZ AREIZA, SARA ALEJANDRA", "grupo": "10°3", "q_num": 10, "q_topic": "nivel de estrés en semana de exámenes", "q_unit": "puntos", "q_question": "En una escala de 0 a 10, ¿qué nivel de cansancio o estrés sentiste durante la última semana de exámenes?", "q_context": "El equipo de psicología escolar encuestó a 90 estudiantes sobre bienestar emocional. Se les preguntó: \"En una escala de 0 a 10, ¿qué nivel de cansancio o estrés sentiste en la semana de exámenes?\". Las respuestas oscilaron entre 0 y 10 puntos.", "q_mean_verb": "reportaron un estrés", "q_time_comp": "en semana de exámenes de", "q_median_verb": "registró"}, {"pos": 11, "ord": 17, "matricula": "250215", "nombre": "LOPEZ VALENCIA, TATIANA", "grupo": "10°3", "q_num": 11, "q_topic": "escucha diaria de música en apps", "q_unit": "horas", "q_question": "¿Cuántas horas al día escuchas música (en Spotify, YouTube u otra app) mientras haces otras actividades? (de 0 a 10 horas)", "q_context": "El club cultural realizó una encuesta a 90 estudiantes sobre consumo musical. Se les preguntó: \"¿Cuántas horas al día escuchas música en plataformas digitales?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "escucharon música", "q_time_comp": "al día en aplicaciones", "q_median_verb": "escuchó"}, {"pos": 12, "ord": 18, "matricula": "250145", "nombre": "MARQUEZ ORTEGA, LILI JOHANA", "grupo": "10°3", "q_num": 12, "q_topic": "uso diario de WhatsApp y mensajería", "q_unit": "horas", "q_question": "¿Cuántas horas al día utilizas WhatsApp para chatear, ver estados o enviar notas de voz? (de 0 a 10 horas)", "q_context": "El comité de comunicación escolar encuestó a 90 estudiantes sobre mensajería instantánea. Se les preguntó: \"¿Cuántas horas al día utilizas WhatsApp para chatear o enviar notas de voz?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "usaron WhatsApp", "q_time_comp": "al día para mensajería", "q_median_verb": "utilizó"}, {"pos": 13, "ord": 19, "matricula": "161029", "nombre": "MARTINEZ ALZATE, MIGUEL ANGEL", "grupo": "10°3", "q_num": 13, "q_topic": "episodios de series vistos en la semana", "q_unit": "capítulos", "q_question": "¿Cuántos capítulos de series o películas completas viste en plataformas o TV durante la última semana? (de 0 a 10 capítulos)", "q_context": "El semillero de medios audiovisuales encuestó a 90 estudiantes sobre entretenimiento en casa. Se les preguntó: \"¿Cuántos capítulos de series o películas viste durante la última semana?\". Las respuestas oscilaron entre 0 y 10 capítulos.", "q_mean_verb": "vieron series o películas", "q_time_comp": "durante la última semana", "q_median_verb": "vio"}, {"pos": 14, "ord": 20, "matricula": "161022", "nombre": "MORALES GAVIRIA, EMMANUEL", "grupo": "10°3", "q_num": 14, "q_topic": "consumo mensual de comidas rápidas", "q_unit": "veces", "q_question": "¿Cuántas veces en el último mes comiste comidas rápidas fuera de casa (hamburguesa, pizza, salchipapa, etc.)? (de 0 a 10 veces)", "q_context": "El área de ciencias naturales realizó una encuesta a 90 personas sobre hábitos alimenticios. Se les preguntó: \"¿Cuántas veces en el último mes comiste comidas rápidas?\". Las respuestas oscilaron entre 0 y 10 veces.", "q_mean_verb": "comieron comida rápida", "q_time_comp": "durante el último mes", "q_median_verb": "comió"}, {"pos": 15, "ord": 21, "matricula": "220051", "nombre": "MORALES QUEVEDO, ALEJANDRO", "grupo": "10°3", "q_num": 15, "q_topic": "colaboración semanal en oficios del hogar", "q_unit": "horas", "q_question": "¿Cuántas horas a la semana colaboras con los oficios o responsabilidades domésticas en tu casa? (de 0 a 10 horas)", "q_context": "El proyecto de ética y valores encuestó a 90 estudiantes sobre corresponsabilidad familiar. Se les preguntó: \"¿Cuántas horas a la semana colaboras con los oficios de tu casa?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "colaboraron en el hogar", "q_time_comp": "a la semana en oficios", "q_median_verb": "colaboró"}, {"pos": 16, "ord": 23, "matricula": "210066", "nombre": "RAMIREZ GIRALDO, SARA", "grupo": "10°3", "q_num": 16, "q_topic": "tiempo matutino para alistarse", "q_unit": "bloques de 5 min", "q_question": "¿Cuántos bloques de 5 minutos tardas en alistarte por la mañana desde que te despiertas hasta salir de casa? (de 0 a 10 bloques)", "q_context": "El comité de puntualidad escolar encuestó a 90 estudiantes sobre su rutina matutina. Se les preguntó: \"¿Cuántos bloques de 5 minutos (de 0 a 10) tardas en alistarte por la mañana?\". Las respuestas oscilaron entre 0 y 10 bloques.", "q_mean_verb": "tardaron alistándose", "q_time_comp": "en la rutina de la mañana", "q_median_verb": "tardó"}, {"pos": 17, "ord": 24, "matricula": "231136", "nombre": "RESTREPO ALVAREZ, ESTEFANIA", "grupo": "10°3", "q_num": 17, "q_topic": "días de compra en la tienda escolar", "q_unit": "días", "q_question": "De los últimos 10 días de clase, ¿en cuántos días compraste algún producto en la tienda o cafetería escolar? (de 0 a 10 días)", "q_context": "El comité financiero estudiantil realizó una encuesta a 90 alumnos sobre uso de la cafetería. Se les preguntó: \"De los últimos 10 días de clase, ¿en cuántos compraste en la tienda escolar?\". Las respuestas oscilaron entre 0 y 10 días.", "q_mean_verb": "compraron en cafetería", "q_time_comp": "de los últimos 10 días de clase", "q_median_verb": "compró"}, {"pos": 18, "ord": 25, "matricula": "151042", "nombre": "RESTREPO FRANCO, EMILIANO", "grupo": "10°3", "q_num": 18, "q_topic": "uso del celular en la cama antes de dormir", "q_unit": "bloques de 10 min", "q_question": "¿Cuántos bloques de 10 minutos pasas mirando el celular en la cama justo antes de dormirte? (de 0 a 10 bloques)", "q_context": "El departamento de bienestar estudiantil encuestó a 90 jóvenes sobre descanso nocturno. Se les preguntó: \"¿Cuántos bloques de 10 minutos (de 0 a 10) miras el celular en la cama antes de dormir?\". Las respuestas oscilaron entre 0 y 10 bloques.", "q_mean_verb": "miraron el celular en cama", "q_time_comp": "justo antes de dormir", "q_median_verb": "pasó"}, {"pos": 19, "ord": 26, "matricula": "201128", "nombre": "RIOS AYARZA, MAICOL ESTIVEN", "grupo": "10°3", "q_num": 19, "q_topic": "consumo semanal de bebidas azucaradas", "q_unit": "bebidas", "q_question": "¿Cuántos vasos o botellas de gaseosa, jugo procesado o té frío tomaste durante la última semana? (de 0 a 10 bebidas)", "q_context": "El proyecto de salud escolar realizó una encuesta a 90 estudiantes sobre consumo de azúcar. Se les preguntó: \"¿Cuántas bebidas azucaradas tomaste durante la última semana?\". Las respuestas oscilaron entre 0 y 10 bebidas.", "q_mean_verb": "tomaron bebidas dulces", "q_time_comp": "durante la última semana", "q_median_verb": "tomó"}, {"pos": 20, "ord": 27, "matricula": "250049", "nombre": "SANCHEZ RODRIGUEZ, MARIA VALENTINA", "grupo": "10°3", "q_num": 20, "q_topic": "consultas académicas semanales con IA", "q_unit": "consultas", "q_question": "¿Cuántas veces en la última semana usaste herramientas de Inteligencia Artificial para estudiar o resolver dudas? (de 0 a 10 veces)", "q_context": "El área de tecnología e informática encuestó a 90 estudiantes sobre herramientas digitales. Se les preguntó: \"¿Cuántas veces en la última semana usaste IA para apoyar tus tareas o estudio?\". Las respuestas oscilaron entre 0 y 10 consultas.", "q_mean_verb": "consultaron herramientas IA", "q_time_comp": "durante la última semana", "q_median_verb": "realizó"}, {"pos": 21, "ord": 28, "matricula": "181243", "nombre": "VALENCIA ECHAVARRIA, LUISA XIMENA", "grupo": "10°3", "q_num": 21, "q_topic": "salidas recreativas mensuales con amigos", "q_unit": "salidas", "q_question": "¿Cuántas veces en el último mes saliste a conversar, hacer deporte o pasear con tus amigos fuera del colegio? (de 0 a 10 salidas)", "q_context": "El comité de convivencia juvenil encuestó a 90 estudiantes sobre socialización presencial. Se les preguntó: \"¿Cuántas veces en el último mes saliste a compartir con amigos fuera del colegio?\". Las respuestas oscilaron entre 0 y 10 salidas.", "q_mean_verb": "salieron con sus amigos", "q_time_comp": "durante el último mes", "q_median_verb": "salió"}, {"pos": 22, "ord": 30, "matricula": "220040", "nombre": "ZAPATA OSPINA, SAMUEL", "grupo": "10°3", "q_num": 22, "q_topic": "tiempo compartido en familia el fin de semana", "q_unit": "horas", "q_question": "¿Cuántas horas compartiste conversando, almorzando o haciendo actividades con tu familia este último fin de semana? (de 0 a 10 horas)", "q_context": "La escuela de padres realizó una encuesta a 90 estudiantes sobre integración familiar. Se les preguntó: \"¿Cuántas horas compartiste en actividades con tu familia este último fin de semana?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "compartieron en familia", "q_time_comp": "este último fin de semana", "q_median_verb": "compartió"}], "10°4": [{"pos": 1, "ord": 1, "matricula": "250171", "nombre": "ALVAREZ BELLO, MAIRA CAMILA", "grupo": "10°4", "q_num": 1, "q_topic": "uso dominical de TikTok o Instagram", "q_unit": "horas", "q_question": "¿Cuántas horas seguidas pasaste viendo TikTok o Instagram este último domingo? (de 0 a 10 horas)", "q_context": "El comité de convivencia realizó una encuesta anónima a 90 estudiantes para analizar el uso de pantallas. Se les preguntó: \"¿Cuántas horas seguidas pasaste viendo TikTok o Instagram este último domingo?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "vieron TikTok o Instagram", "q_time_comp": "este último domingo", "q_median_verb": "pasó"}, {"pos": 2, "ord": 3, "matricula": "260134", "nombre": "BELLO JULIO, GABY ELENA", "grupo": "10°4", "q_num": 2, "q_topic": "consumo diario de agua pura", "q_unit": "vasos", "q_question": "¿Cuántos vasos de agua pura tomas en un día típico de clases? (de 0 a 10 vasos)", "q_context": "El área de bienestar estudiantil realizó una encuesta a 90 personas para conocer sus hábitos de hidratación. Se les preguntó: \"¿Cuántos vasos de agua pura tomas en un día típico de clases?\". Las respuestas oscilaron entre 0 y 10 vasos.", "q_mean_verb": "tomaron agua pura", "q_time_comp": "en un día típico de clases", "q_median_verb": "tomó"}, {"pos": 3, "ord": 5, "matricula": "250160", "nombre": "CALLE LOZANO, KEINER JAVIER", "grupo": "10°4", "q_num": 3, "q_topic": "horas de sueño entre semana", "q_unit": "horas", "q_question": "¿Cuántas horas completas dormiste anoche antes de asistir al colegio? (de 0 a 10 horas)", "q_context": "El departamento de orientación encuestó a 90 estudiantes sobre la higiene del sueño. Se les preguntó: \"¿Cuántas horas completas dormiste anoche antes de asistir al colegio?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "durmieron en total", "q_time_comp": "la noche anterior a clases", "q_median_verb": "durmió"}, {"pos": 4, "ord": 6, "matricula": "250048", "nombre": "CARO FLOREZ, LUZ KARINA", "grupo": "10°4", "q_num": 4, "q_topic": "estudio autónomo semanal en casa", "q_unit": "horas", "q_question": "¿Cuántas horas a la semana dedicas a repasar o hacer tareas en casa fuera del horario escolar? (de 0 a 10 horas)", "q_context": "El consejo académico realizó una encuesta a 90 estudiantes sobre autonomía escolar. Se les preguntó: \"¿Cuántas horas a la semana dedicas a repasar o hacer tareas en casa fuera del horario escolar?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "estudiaron o hicieron tareas", "q_time_comp": "en casa por semana", "q_median_verb": "dedicó"}, {"pos": 5, "ord": 7, "matricula": "250144", "nombre": "CHIQUILLO MONTERO, LUIS DAVID", "grupo": "10°4", "q_num": 5, "q_topic": "práctica semanal de deporte o ejercicio", "q_unit": "horas", "q_question": "¿Cuántas horas de ejercicio físico o deporte practicaste durante los últimos 7 días? (de 0 a 10 horas)", "q_context": "El departamento de educación física encuestó a 90 estudiantes sobre vida activa. Se les preguntó: \"¿Cuántas horas de ejercicio físico o deporte practicaste durante los últimos 7 días?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "practicaron ejercicio físico", "q_time_comp": "durante los últimos 7 días", "q_median_verb": "practicó"}, {"pos": 6, "ord": 8, "matricula": "151068", "nombre": "DIAZ HIGUITA, ANNY MARIANA", "grupo": "10°4", "q_num": 6, "q_topic": "lectura recreativa en el último semestre", "q_unit": "textos", "q_question": "¿Cuántos libros, cómics o relatos completos has leído por gusto en el último semestre? (de 0 a 10 textos)", "q_context": "El proyecto de biblioteca escolar realizó una encuesta a 90 estudiantes sobre hábitos lectores. Se les preguntó: \"¿Cuántos libros, cómics o relatos completos leíste por gusto en el último semestre?\". Las respuestas oscilaron entre 0 y 10 textos.", "q_mean_verb": "leyeron por gusto", "q_time_comp": "en el último semestre", "q_median_verb": "leyó"}, {"pos": 7, "ord": 9, "matricula": "161068", "nombre": "ECHAVARRIA JARAMILLO, ALEXANDER", "grupo": "10°4", "q_num": 7, "q_topic": "tiempo en videojuegos el fin de semana", "q_unit": "horas", "q_question": "¿Cuántas horas jugaste videojuegos (en celular, consola o PC) durante el último fin de semana? (de 0 a 10 horas)", "q_context": "El comité juvenil encuestó a 90 estudiantes sobre ocio digital. Se les preguntó: \"¿Cuántas horas jugaste videojuegos durante el último fin de semana?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "jugaron videojuegos", "q_time_comp": "el último fin de semana", "q_median_verb": "jugó"}, {"pos": 8, "ord": 10, "matricula": "260154", "nombre": "ESPITIA SAENZ, LIZ VANESSA", "grupo": "10°4", "q_num": 8, "q_topic": "tiempo de recorrido casa-colegio", "q_unit": "bloques de 5 min", "q_question": "¿Cuántos bloques de 5 minutos tarda tu recorrido habitual desde tu casa hasta el colegio? (de 0 a 10 bloques)", "q_context": "El comité de movilidad escolar realizó una encuesta a 90 estudiantes sobre tiempos de desplazamiento. Se les preguntó: \"¿Cuántos bloques de 5 minutos (de 0 a 10) tarda tu recorrido habitual hasta el colegio?\". Las respuestas oscilaron entre 0 y 10 bloques.", "q_mean_verb": "tardaron en su recorrido", "q_time_comp": "desde casa hasta el colegio", "q_median_verb": "tardó"}, {"pos": 9, "ord": 11, "matricula": "201249", "nombre": "GALEANO ALVAREZ, NIKOL", "grupo": "10°4", "q_num": 9, "q_topic": "consumo de frutas en 5 días", "q_unit": "porciones", "q_question": "¿Cuántas porciones de fruta consumiste en total durante los últimos 5 días? (de 0 a 10 porciones)", "q_context": "El comité de alimentación saludable encuestó a 90 estudiantes sobre nutrición. Se les preguntó: \"¿Cuántas porciones de fruta consumiste en total durante los últimos 5 días?\". Las respuestas oscilaron entre 0 y 10 porciones.", "q_mean_verb": "consumieron fruta", "q_time_comp": "durante los últimos 5 días", "q_median_verb": "consumió"}, {"pos": 10, "ord": 13, "matricula": "171206", "nombre": "GARCIA CASTAÑEDA, SAMUEL", "grupo": "10°4", "q_num": 10, "q_topic": "nivel de estrés en semana de exámenes", "q_unit": "puntos", "q_question": "En una escala de 0 a 10, ¿qué nivel de cansancio o estrés sentiste durante la última semana de exámenes?", "q_context": "El equipo de psicología escolar encuestó a 90 estudiantes sobre bienestar emocional. Se les preguntó: \"En una escala de 0 a 10, ¿qué nivel de cansancio o estrés sentiste en la semana de exámenes?\". Las respuestas oscilaron entre 0 y 10 puntos.", "q_mean_verb": "reportaron un estrés", "q_time_comp": "en semana de exámenes de", "q_median_verb": "registró"}, {"pos": 11, "ord": 14, "matricula": "230011", "nombre": "GIRALDO JIMENEZ, MATIAS", "grupo": "10°4", "q_num": 11, "q_topic": "escucha diaria de música en apps", "q_unit": "horas", "q_question": "¿Cuántas horas al día escuchas música (en Spotify, YouTube u otra app) mientras haces otras actividades? (de 0 a 10 horas)", "q_context": "El club cultural realizó una encuesta a 90 estudiantes sobre consumo musical. Se les preguntó: \"¿Cuántas horas al día escuchas música en plataformas digitales?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "escucharon música", "q_time_comp": "al día en aplicaciones", "q_median_verb": "escuchó"}, {"pos": 12, "ord": 15, "matricula": "161047", "nombre": "GOEZ MIRA, JERONIMO", "grupo": "10°4", "q_num": 12, "q_topic": "uso diario de WhatsApp y mensajería", "q_unit": "horas", "q_question": "¿Cuántas horas al día utilizas WhatsApp para chatear, ver estados o enviar notas de voz? (de 0 a 10 horas)", "q_context": "El comité de comunicación escolar encuestó a 90 estudiantes sobre mensajería instantánea. Se les preguntó: \"¿Cuántas horas al día utilizas WhatsApp para chatear o enviar notas de voz?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "usaron WhatsApp", "q_time_comp": "al día para mensajería", "q_median_verb": "utilizó"}, {"pos": 13, "ord": 16, "matricula": "240099", "nombre": "GOMEZ SARMIENTO, YARDELIS PAOLA", "grupo": "10°4", "q_num": 13, "q_topic": "episodios de series vistos en la semana", "q_unit": "capítulos", "q_question": "¿Cuántos capítulos de series o películas completas viste en plataformas o TV durante la última semana? (de 0 a 10 capítulos)", "q_context": "El semillero de medios audiovisuales encuestó a 90 estudiantes sobre entretenimiento en casa. Se les preguntó: \"¿Cuántos capítulos de series o películas viste durante la última semana?\". Las respuestas oscilaron entre 0 y 10 capítulos.", "q_mean_verb": "vieron series o películas", "q_time_comp": "durante la última semana", "q_median_verb": "vio"}, {"pos": 14, "ord": 18, "matricula": "250148", "nombre": "GUTIERREZ GOMEZ, ISABELLA", "grupo": "10°4", "q_num": 14, "q_topic": "consumo mensual de comidas rápidas", "q_unit": "veces", "q_question": "¿Cuántas veces en el último mes comiste comidas rápidas fuera de casa (hamburguesa, pizza, salchipapa, etc.)? (de 0 a 10 veces)", "q_context": "El área de ciencias naturales realizó una encuesta a 90 personas sobre hábitos alimenticios. Se les preguntó: \"¿Cuántas veces en el último mes comiste comidas rápidas?\". Las respuestas oscilaron entre 0 y 10 veces.", "q_mean_verb": "comieron comida rápida", "q_time_comp": "durante el último mes", "q_median_verb": "comió"}, {"pos": 15, "ord": 19, "matricula": "260142", "nombre": "LEMOS CRUZ, ORIANA LUCIA", "grupo": "10°4", "q_num": 15, "q_topic": "colaboración semanal en oficios del hogar", "q_unit": "horas", "q_question": "¿Cuántas horas a la semana colaboras con los oficios o responsabilidades domésticas en tu casa? (de 0 a 10 horas)", "q_context": "El proyecto de ética y valores encuestó a 90 estudiantes sobre corresponsabilidad familiar. Se les preguntó: \"¿Cuántas horas a la semana colaboras con los oficios de tu casa?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "colaboraron en el hogar", "q_time_comp": "a la semana en oficios", "q_median_verb": "colaboró"}, {"pos": 16, "ord": 20, "matricula": "220099", "nombre": "MANYOMA MONTENEGRO, MAYCOM", "grupo": "10°4", "q_num": 16, "q_topic": "tiempo matutino para alistarse", "q_unit": "bloques de 5 min", "q_question": "¿Cuántos bloques de 5 minutos tardas en alistarte por la mañana desde que te despiertas hasta salir de casa? (de 0 a 10 bloques)", "q_context": "El comité de puntualidad escolar encuestó a 90 estudiantes sobre su rutina matutina. Se les preguntó: \"¿Cuántos bloques de 5 minutos (de 0 a 10) tardas en alistarte por la mañana?\". Las respuestas oscilaron entre 0 y 10 bloques.", "q_mean_verb": "tardaron alistándose", "q_time_comp": "en la rutina de la mañana", "q_median_verb": "tardó"}, {"pos": 17, "ord": 21, "matricula": "211129", "nombre": "MARCANO HERNANDEZ, VICTOR AARON", "grupo": "10°4", "q_num": 17, "q_topic": "días de compra en la tienda escolar", "q_unit": "días", "q_question": "De los últimos 10 días de clase, ¿en cuántos días compraste algún producto en la tienda o cafetería escolar? (de 0 a 10 días)", "q_context": "El comité financiero estudiantil realizó una encuesta a 90 alumnos sobre uso de la cafetería. Se les preguntó: \"De los últimos 10 días de clase, ¿en cuántos compraste en la tienda escolar?\". Las respuestas oscilaron entre 0 y 10 días.", "q_mean_verb": "compraron en cafetería", "q_time_comp": "de los últimos 10 días de clase", "q_median_verb": "compró"}, {"pos": 18, "ord": 23, "matricula": "260007", "nombre": "MONSALVE ALVAREZ, MIGUEL ANGEL", "grupo": "10°4", "q_num": 18, "q_topic": "uso del celular en la cama antes de dormir", "q_unit": "bloques de 10 min", "q_question": "¿Cuántos bloques de 10 minutos pasas mirando el celular en la cama justo antes de dormirte? (de 0 a 10 bloques)", "q_context": "El departamento de bienestar estudiantil encuestó a 90 jóvenes sobre descanso nocturno. Se les preguntó: \"¿Cuántos bloques de 10 minutos (de 0 a 10) miras el celular en la cama antes de dormir?\". Las respuestas oscilaron entre 0 y 10 bloques.", "q_mean_verb": "miraron el celular en cama", "q_time_comp": "justo antes de dormir", "q_median_verb": "pasó"}, {"pos": 19, "ord": 24, "matricula": "260057", "nombre": "MONTOYA SANCHEZ, SALOME", "grupo": "10°4", "q_num": 19, "q_topic": "consumo semanal de bebidas azucaradas", "q_unit": "bebidas", "q_question": "¿Cuántos vasos o botellas de gaseosa, jugo procesado o té frío tomaste durante la última semana? (de 0 a 10 bebidas)", "q_context": "El proyecto de salud escolar realizó una encuesta a 90 estudiantes sobre consumo de azúcar. Se les preguntó: \"¿Cuántas bebidas azucaradas tomaste durante la última semana?\". Las respuestas oscilaron entre 0 y 10 bebidas.", "q_mean_verb": "tomaron bebidas dulces", "q_time_comp": "durante la última semana", "q_median_verb": "tomó"}, {"pos": 20, "ord": 27, "matricula": "260194", "nombre": "RODRIGUEZ TORRES, SARA", "grupo": "10°4", "q_num": 20, "q_topic": "consultas académicas semanales con IA", "q_unit": "consultas", "q_question": "¿Cuántas veces en la última semana usaste herramientas de Inteligencia Artificial para estudiar o resolver dudas? (de 0 a 10 veces)", "q_context": "El área de tecnología e informática encuestó a 90 estudiantes sobre herramientas digitales. Se les preguntó: \"¿Cuántas veces en la última semana usaste IA para apoyar tus tareas o estudio?\". Las respuestas oscilaron entre 0 y 10 consultas.", "q_mean_verb": "consultaron herramientas IA", "q_time_comp": "durante la última semana", "q_median_verb": "realizó"}, {"pos": 21, "ord": 28, "matricula": "260180", "nombre": "SALGADO MUÑOZ, STEFANIA", "grupo": "10°4", "q_num": 21, "q_topic": "salidas recreativas mensuales con amigos", "q_unit": "salidas", "q_question": "¿Cuántas veces en el último mes saliste a conversar, hacer deporte o pasear con tus amigos fuera del colegio? (de 0 a 10 salidas)", "q_context": "El comité de convivencia juvenil encuestó a 90 estudiantes sobre socialización presencial. Se les preguntó: \"¿Cuántas veces en el último mes saliste a compartir con amigos fuera del colegio?\". Las respuestas oscilaron entre 0 y 10 salidas.", "q_mean_verb": "salieron con sus amigos", "q_time_comp": "durante el último mes", "q_median_verb": "salió"}, {"pos": 22, "ord": 30, "matricula": "151094", "nombre": "SERPA TURRIAGO, SARAY ANDREA", "grupo": "10°4", "q_num": 22, "q_topic": "tiempo compartido en familia el fin de semana", "q_unit": "horas", "q_question": "¿Cuántas horas compartiste conversando, almorzando o haciendo actividades con tu familia este último fin de semana? (de 0 a 10 horas)", "q_context": "La escuela de padres realizó una encuesta a 90 estudiantes sobre integración familiar. Se les preguntó: \"¿Cuántas horas compartiste en actividades con tu familia este último fin de semana?\". Las respuestas oscilaron entre 0 y 10 horas.", "q_mean_verb": "compartieron en familia", "q_time_comp": "este último fin de semana", "q_median_verb": "compartió"}, {"pos": 23, "ord": 32, "matricula": "260149", "nombre": "VALDES MONTOYA , ALEJANDRO", "grupo": "10°4", "q_num": 23, "q_topic": "videos educativos o tutoriales en la semana", "q_unit": "videos", "q_question": "¿Cuántos videos explicativos o tutoriales viste en YouTube o TikTok en la última semana para repasar temas del colegio? (de 0 a 10 videos)", "q_context": "El consejo estudiantil encuestó a 90 alumnos sobre aprendizaje digital. Se les preguntó: \"¿Cuántos videos educativos o tutoriales viste en la última semana para estudiar?\". Las respuestas oscilaron entre 0 y 10 videos.", "q_mean_verb": "vieron videos educativos", "q_time_comp": "en la última semana", "q_median_verb": "vio"}, {"pos": 24, "ord": 34, "matricula": "240084", "nombre": "VILORIA PUCHE, NORBELIS LUCIA", "grupo": "10°4", "q_num": 24, "q_topic": "recargas de batería del celular en 5 días", "q_unit": "cargas", "q_question": "¿Cuántas veces completas recargas la batería de tu teléfono celular en un periodo de 5 días? (de 0 a 10 cargas)", "q_context": "El club de ciencias realizó una encuesta a 90 personas sobre consumo energético móvil. Se les preguntó: \"¿Cuántas veces recargas la batería de tu celular en un periodo de 5 días?\". Las respuestas oscilaron entre 0 y 10 cargas.", "q_mean_verb": "recargaron su celular", "q_time_comp": "en un periodo de 5 días", "q_median_verb": "recargó"}]}};
+const QUESTIONS_26 = APP_DATA.questions;
+const GROUPS_ROSTER = APP_DATA.groups;
+
+const EXCEL_COLORS = {
+  0:  { bg: '#00E5FF', fg: '#000', name: 'Turquesa' },
+  1:  { bg: '#00B0F0', fg: '#000', name: 'Azul claro' },
+  2:  { bg: '#FFFF00', fg: '#000', name: 'Amarillo' },
+  3:  { bg: '#00FF00', fg: '#000', name: 'Verde lima' },
+  4:  { bg: '#FF0000', fg: '#fff', name: 'Rojo' },
+  5:  { bg: '#FF33CC', fg: '#000', name: 'Rosado' },
+  6:  { bg: '#FF6600', fg: '#000', name: 'Naranja' },
+  7:  { bg: '#996600', fg: '#fff', name: 'Café' },
+  8:  { bg: '#A6A6A6', fg: '#000', name: 'Gris' },
+  9:  { bg: '#9900FF', fg: '#fff', name: 'Morado' },
+  10: { bg: '#008000', fg: '#fff', name: 'Verde oscuro' }
+};
+
+// Sample 90 data points on scale 0..10
+let data90 = [
+  8, 4, 6, 0, 2, 5, 10, 8, 5,
+  6, 6, 5, 7, 9, 6, 2, 3, 4,
+  9, 0, 7, 3, 3, 8, 2, 4, 7,
+  5, 10, 2, 4, 4, 5, 0, 7, 6,
+  9, 2, 8, 6, 6, 10, 6, 8, 3,
+  7, 4, 6, 2, 7, 10, 2, 2, 9,
+  5, 5, 9, 8, 9, 1, 4, 7, 0,
+  10, 4, 4, 5, 10, 1, 2, 1, 8,
+  10, 3, 5, 2, 5, 7, 7, 5, 4,
+  4, 6, 3, 9, 9, 10, 5, 2, 6
+];
+let studentTally = new Array(11).fill(0);
+let gridRows = 10;
+let gridCols = 9;
+let showExcelColors = true;
+let activeIndex = 0;
+let currentRosterFilter = '10°1';
+
+function showToast(msg) {
+  const el = document.getElementById('toastMsg');
+  el.textContent = msg;
+  el.style.display = 'block';
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => { el.style.display = 'none'; }, 3200);
+}
+
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  const mapIdx = { student: 0, roster: 1, teacher: 2, qrposter: 3 };
+  document.querySelectorAll('.nav-tab')[mapIdx[tabId]].classList.add('active');
+  if (tabId === 'roster') renderRosterView();
+  if (tabId === 'teacher') renderTeacherCalculations();
+  if (tabId === 'qrposter') renderClassroomQR();
+}
+
+function buildQuestionStrips() {
+  let html = '';
+  for (let q = 1; q <= 26; q++) {
+    html += `<button type="button" class="q-num-btn" data-q="${q}" onclick="selectQuestionNumber(${q})" title="Pregunta #${q}: ${QUESTIONS_26[q-1].topic}">${q}</button>`;
+  }
+  document.getElementById('studentQStrip').innerHTML = html;
+  document.getElementById('teacherQStrip').innerHTML = html;
+}
+
+function highlightActiveQButton(qNum) {
+  document.querySelectorAll('.q-num-btn').forEach(btn => {
+    btn.classList.toggle('active-q', parseInt(btn.getAttribute('data-q'), 10) === qNum);
+  });
+}
+
+function selectQuestionNumber(qNum) {
+  const grp = document.getElementById('stuGroupSelect').value;
+  const list = GROUPS_ROSTER[grp] || [];
+  const idx = list.findIndex(st => st.q_num === qNum);
+  if (idx >= 0) {
+    document.getElementById('stuNameSelect').value = String(idx);
+    document.getElementById('manualStudentWrap').style.display = 'none';
+  } else {
+    document.getElementById('stuNameSelect').value = 'manual';
+    document.getElementById('manualStudentWrap').style.display = 'grid';
+    document.getElementById('manualQuestionSelect').value = String(qNum);
+  }
+  updateAssignedBanner();
+  renderTeacherCalculations();
+  showToast(`🔢 Pregunta #${qNum} seleccionada: Contexto, Interpretaciones y Gráficos actualizados.`);
+}
+
+function initStudentSelectors() {
+  buildQuestionStrips();
+  const manualQSel = document.getElementById('manualQuestionSelect');
+  manualQSel.innerHTML = QUESTIONS_26.map(q =>
+    `<option value="${q.num}">Pregunta #${q.num}: ${q.topic} (0 a 10 ${q.unit})</option>`
+  ).join('');
+  onGroupSelectChange();
+  // Select Question #5 initially to demonstrate dynamic Question #5 right away
+  selectQuestionNumber(5);
+}
+
+function onGroupSelectChange() {
+  const grp = document.getElementById('stuGroupSelect').value;
+  const list = GROUPS_ROSTER[grp] || [];
+  const sel = document.getElementById('stuNameSelect');
+  let html = list.map((st, idx) =>
+    `<option value="${idx}">${st.pos}. ${st.nombre} (Mat. ${st.matricula}) — Pregunta #${st.q_num}: ${st.q_topic}</option>`
+  ).join('');
+  html += `<option value="manual">➕ Otro estudiante / Selección manual de pregunta (1 a 26)...</option>`;
+  sel.innerHTML = html;
+  onStudentSelectChange();
+}
+
+function getSelectedStudentInfo() {
+  const grp = document.getElementById('stuGroupSelect').value;
+  const selVal = document.getElementById('stuNameSelect').value;
+  if (selVal === 'manual') {
+    const name = document.getElementById('manualNameInput').value.trim() || 'ESTUDIANTE INDIVIDUAL';
+    const qNum = parseInt(document.getElementById('manualQuestionSelect').value, 10) || 1;
+    const qObj = QUESTIONS_26[qNum - 1];
+    return {
+      grupo: grp,
+      matricula: 'S/M',
+      nombre: name,
+      q_num: qObj.num,
+      q_topic: qObj.topic,
+      q_unit: qObj.unit,
+      q_question: qObj.question,
+      q_context: qObj.context,
+      q_mean_verb: qObj.mean_verb,
+      q_time_comp: qObj.time_comp,
+      q_median_verb: qObj.median_verb
+    };
+  }
+  const idx = parseInt(selVal, 10) || 0;
+  return GROUPS_ROSTER[grp][idx];
+}
+
+function onStudentSelectChange() {
+  const selVal = document.getElementById('stuNameSelect').value;
+  document.getElementById('manualStudentWrap').style.display = (selVal === 'manual') ? 'grid' : 'none';
+  updateAssignedBanner();
+  renderTeacherCalculations();
+}
+
+function updateAssignedBanner() {
+  const info = getSelectedStudentInfo();
+  highlightActiveQButton(info.q_num);
+  document.getElementById('assignedQBadge').textContent = `Pregunta #${info.q_num} de 26 (Única en ${info.grupo})`;
+  document.getElementById('assignedStudentMeta').textContent = `Estudiante: ${info.nombre} · Matrícula: ${info.matricula} · Grupo: ${info.grupo}`;
+  document.getElementById('assignedQuestionTitle').textContent = info.q_question;
+  document.getElementById('ctxExcelCellNum').textContent = info.q_num;
+  document.getElementById('contextTextDisplay').textContent = info.q_context;
+  document.getElementById('teacherActiveQNum').textContent = info.q_num;
+  document.getElementById('teacherExcelQNumHint').textContent = info.q_num;
+  document.getElementById('teacherContextDisplay').textContent = info.q_context;
+}
+
+/* ==================== ROSTER & 26 QUESTIONS VIEW ==================== */
+function filterRosterTable(filterKey) {
+  currentRosterFilter = filterKey;
+  ['10°1', '10°2', '10°3', '10°4', 'ALL', 'BANK'].forEach(k => {
+    const btn = document.getElementById('flt-' + k);
+    if (btn) btn.classList.toggle('active-filter', k === filterKey);
+  });
+  renderRosterView();
+}
+
+function renderRosterView() {
+  const table = document.getElementById('officialRosterTable');
+  const query = (document.getElementById('rosterSearchInput').value || '').toLowerCase().trim();
+
+  if (currentRosterFilter === 'BANK') {
+    let html = `<thead><tr>
+      <th style="width:90px;">N° Pregunta</th>
+      <th style="width:210px;">Tema de la Variable</th>
+      <th style="width:115px;">Escala (0 a 10)</th>
+      <th>Pregunta Cuantitativa para los 90 Encuestados</th>
+      <th>Contexto Dinámico para Excel</th>
+    </tr></thead><tbody>`;
+    QUESTIONS_26.forEach(q => {
+      const hay = `${q.num} ${q.topic} ${q.unit} ${q.question} ${q.context}`.toLowerCase();
+      if (query && !hay.includes(query)) return;
+      html += `<tr>
+        <td><button class="btn" style="background:var(--peach);font-weight:800;" onclick="selectQuestionNumber(${q.num});switchTab('teacher');">#${q.num}</button></td>
+        <td style="text-align:left;font-weight:700;">${q.topic}</td>
+        <td>0 a 10 ${q.unit}</td>
+        <td style="text-align:left;">${q.question}</td>
+        <td style="text-align:left;font-size:0.82rem;color:var(--slate-600);">${q.context}</td>
+      </tr>`;
+    });
+    html += '</tbody>';
+    table.innerHTML = html;
+    return;
+  }
+
+  const groupsToShow = currentRosterFilter === 'ALL' ? ['10°1', '10°2', '10°3', '10°4'] : [currentRosterFilter];
+  let html = `<thead><tr>
+    <th style="width:75px;">Grupo</th>
+    <th style="width:70px;">N° Lista</th>
+    <th style="width:95px;">Matrícula</th>
+    <th style="width:260px;">Nombre del Estudiante</th>
+    <th style="width:115px;">N° Pregunta</th>
+    <th style="width:200px;">Tema Asignado</th>
+    <th>Pregunta Cuantitativa Individual (Escala 0 a 10 · 90 Personas)</th>
+    <th style="width:105px;">Acción</th>
+  </tr></thead><tbody>`;
+
+  groupsToShow.forEach(grp => {
+    (GROUPS_ROSTER[grp] || []).forEach((st, idx) => {
+      const hay = `${st.grupo} ${st.matricula} ${st.nombre} ${st.q_num} ${st.q_topic} ${st.q_question}`.toLowerCase();
+      if (query && !hay.includes(query)) return;
+      html += `<tr>
+        <td><strong>${st.grupo}</strong></td>
+        <td>${st.pos}</td>
+        <td style="font-family:monospace;">${st.matricula}</td>
+        <td style="text-align:left;font-weight:700;">${st.nombre}</td>
+        <td><span style="background:var(--peach);padding:3px 8px;border-radius:6px;font-weight:800;">Pregunta #${st.q_num}</span></td>
+        <td style="text-align:left;font-weight:600;color:var(--navy);">${st.q_topic}</td>
+        <td style="text-align:left;">${st.q_question}</td>
+        <td><button class="btn" style="padding:4px 8px;font-size:0.78rem;" onclick="selectStudentFromRoster('${st.grupo}', ${idx})">Seleccionar</button></td>
+      </tr>`;
+    });
+  });
+  html += '</tbody>';
+  table.innerHTML = html;
+}
+
+function selectStudentFromRoster(grp, idx) {
+  document.getElementById('stuGroupSelect').value = grp;
+  onGroupSelectChange();
+  document.getElementById('stuNameSelect').value = String(idx);
+  onStudentSelectChange();
+  switchTab('student');
+  showToast(`Cargado: ${GROUPS_ROSTER[grp][idx].nombre} (${grp} — Pregunta #${GROUPS_ROSTER[grp][idx].q_num})`);
+}
+
+/* ==================== MATRIX 10x9 / 9x10 (SCALE 0..10) ==================== */
+function renderMatrixGrid() {
+  const table = document.getElementById('studentMatrixTable');
+  let html = '<thead><tr><th>Fila \\ Col</th>';
+  for (let c = 1; c <= gridCols; c++) {
+    const excelColLetter = String.fromCharCode(79 + c);
+    html += `<th>Col ${c}${gridCols === 9 ? ' (' + excelColLetter + ')' : ''}</th>`;
+  }
+  html += '</tr></thead><tbody>';
+
+  for (let r = 0; r < gridRows; r++) {
+    const excelRowNum = r + 2;
+    html += `<tr><th>F${r + 1}${gridRows === 10 ? ' (Fila ' + excelRowNum + ')' : ''}</th>`;
+    for (let c = 0; c < gridCols; c++) {
+      const idx = r * gridCols + c;
+      const val = data90[idx];
+      const isValid = Number.isInteger(val) && val >= 0 && val <= 10;
+      const colorClass = (showExcelColors && isValid) ? `val-${val}` : '';
+      const activeClass = (idx === activeIndex) ? 'td-active' : '';
+      html += `<td id="td-${idx}" class="${colorClass} ${activeClass}" onclick="setActiveCell(${idx})">
+        <span class="cell-num-tag">#${idx + 1}</span>
+        <input type="number" min="0" max="10" id="inp-${idx}" class="matrix-input"
+          value="${isValid ? val : ''}"
+          onfocus="setActiveCell(${idx})"
+          oninput="onCellInput(${idx}, this.value)"
+          onkeydown="onCellKeyDown(event, ${idx})">
+      </td>`;
+    }
+    html += '</tr>';
+  }
+  html += '</tbody>';
+  table.innerHTML = html;
+  updateProgressStatus();
+}
+
+function setActiveCell(idx) {
+  activeIndex = idx;
+  document.querySelectorAll('.data-matrix td').forEach(td => td.classList.remove('td-active'));
+  const td = document.getElementById('td-' + idx);
+  if (td) td.classList.add('td-active');
+  const r = Math.floor(idx / gridCols) + 1;
+  const c = (idx % gridCols) + 1;
+  document.getElementById('activeCellIndicator').textContent = `Casilla activa: Dato #${idx + 1} (Fila ${r}, Col ${c})`;
+}
+
+function onCellInput(idx, rawVal) {
+  const trimmed = String(rawVal).trim();
+  const num = trimmed === '' ? NaN : parseInt(trimmed, 10);
+  const td = document.getElementById('td-' + idx);
+  for (let k = 0; k <= 10; k++) td.classList.remove('val-' + k);
+  if (!isNaN(num) && num >= 0 && num <= 10) {
+    data90[idx] = num;
+    if (showExcelColors) td.classList.add('val-' + num);
+  } else {
+    data90[idx] = null;
+  }
+  updateProgressStatus();
+}
+
+function onCellKeyDown(e, idx) {
+  if (e.key === 'Enter' || e.key === 'ArrowRight') {
+    e.preventDefault();
+    document.getElementById('inp-' + Math.min(89, idx + 1)).focus();
+  } else if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    document.getElementById('inp-' + Math.max(0, idx - 1)).focus();
+  } else if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    document.getElementById('inp-' + Math.min(89, idx + gridCols)).focus();
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    document.getElementById('inp-' + Math.max(0, idx - gridCols)).focus();
+  }
+}
+
+function keypadPress(num) {
+  data90[activeIndex] = num;
+  const inp = document.getElementById('inp-' + activeIndex);
+  const td = document.getElementById('td-' + activeIndex);
+  if (inp) inp.value = num;
+  if (td) {
+    for (let k = 0; k <= 10; k++) td.classList.remove('val-' + k);
+    if (showExcelColors) td.classList.add('val-' + num);
+  }
+  updateProgressStatus();
+  if (activeIndex < 89) setActiveCell(activeIndex + 1);
+}
+
+function updateProgressStatus() {
+  const validCount = data90.filter(v => Number.isInteger(v) && v >= 0 && v <= 10).length;
+  const pct = Math.round((validCount / 90) * 100);
+  document.getElementById('progressBarFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `Progreso de llenado: ${validCount} de 90 datos válidos (escala 0 a 10)`;
+  const badge = document.getElementById('headerProgressBadge');
+  badge.textContent = `${validCount} / 90 Datos Listos`;
+  badge.style.background = (validCount === 90) ? 'rgba(22, 163, 74, 0.85)' : 'rgba(217, 119, 6, 0.85)';
+}
+
+function toggleGridDimensions() {
+  if (gridRows === 10) {
+    gridRows = 9; gridCols = 10;
+    document.getElementById('btnToggleDim').textContent = '📐 Vista: 9 filas × 10 columnas';
+  } else {
+    gridRows = 10; gridCols = 9;
+    document.getElementById('btnToggleDim').textContent = '📐 Vista: 10 filas × 9 columnas (Excel P2:X11)';
+  }
+  renderMatrixGrid();
+}
+
+function toggleGridColors() {
+  showExcelColors = !showExcelColors;
+  document.getElementById('btnToggleColors').textContent = showExcelColors ? '🎨 Colores Excel (0 a 10): Activados' : '🎨 Colores Excel (0 a 10): Desactivados';
+  renderMatrixGrid();
+}
+
+function fillRandom90() {
+  for (let i = 0; i < 90; i++) data90[i] = Math.floor(Math.random() * 11); // 0..10
+  autoFillStudentTally();
+  renderMatrixGrid();
+  renderTeacherCalculations();
+  showToast('🎲 Se generaron 90 datos aleatorios entre 0 y 10.');
+}
+
+function clearAll90() {
+  data90 = new Array(90).fill(null);
+  studentTally = new Array(11).fill(0);
+  activeIndex = 0;
+  renderMatrixGrid();
+  renderStudentTallyTable();
+  document.getElementById('tallyVerificationBanner').style.display = 'none';
+  showToast('Se vaciaron las 90 casillas.');
+}
+
+/* ==================== TABLA DE CONTEO (0 A 10 = 11 FILAS) ==================== */
+function formatTallyMarks(count) {
+  if (!count || count <= 0) return '<span style="color:#94a3b8;font-weight:400;">Sin marcas (0)</span>';
+  const groupsOf5 = Math.floor(count / 5);
+  const rem = count % 5;
+  let html = '';
+  for (let g = 0; g < groupsOf5; g++) html += '<span class="tally-group-5">||||</span> ';
+  if (rem > 0) html += '<span>' + '|'.repeat(rem) + '</span>';
+  return html;
+}
+
+function renderStudentTallyTable() {
+  const tbody = document.getElementById('studentTallyBody');
+  let html = '';
+  let sum = 0;
+  for (let xi = 0; xi <= 10; xi++) {
+    const cnt = studentTally[xi] || 0;
+    sum += cnt;
+    const colInfo = EXCEL_COLORS[xi];
+    html += `<tr>
+      <td style="font-weight:800; font-size:1rem;">${xi}</td>
+      <td><span style="display:inline-block;width:82px;padding:3px 6px;border-radius:6px;font-size:0.76rem;font-weight:700;background:${colInfo.bg};color:${colInfo.fg};">${colInfo.name}</span></td>
+      <td class="tally-marks" id="tally-marks-${xi}">${formatTallyMarks(cnt)}</td>
+      <td>
+        <button class="btn" style="padding:3px 9px;" onclick="adjustTally(${xi}, -1)">−1</button>
+        <button class="btn" style="padding:3px 9px;" onclick="adjustTally(${xi}, 1)">+1</button>
+      </td>
+      <td>
+        <input type="number" min="0" max="90" class="tally-input" value="${cnt}" oninput="setTallyDirect(${xi}, this.value)">
+      </td>
+    </tr>`;
+  }
+  tbody.innerHTML = html;
+  const sumCell = document.getElementById('studentTallySumCell');
+  sumCell.textContent = `${sum} / 90`;
+  sumCell.style.color = (sum === 90) ? 'var(--green)' : 'var(--red)';
+}
+
+function adjustTally(xi, delta) {
+  studentTally[xi] = Math.max(0, Math.min(90, (studentTally[xi] || 0) + delta));
+  renderStudentTallyTable();
+}
+
+function setTallyDirect(xi, val) {
+  const num = parseInt(val, 10);
+  studentTally[xi] = isNaN(num) ? 0 : Math.max(0, Math.min(90, num));
+  let sum = studentTally.reduce((a, b) => a + b, 0);
+  document.getElementById('tally-marks-' + xi).innerHTML = formatTallyMarks(studentTally[xi]);
+  const sumCell = document.getElementById('studentTallySumCell');
+  sumCell.textContent = `${sum} / 90`;
+  sumCell.style.color = (sum === 90) ? 'var(--green)' : 'var(--red)';
+}
+
+function autoFillStudentTally() {
+  studentTally = new Array(11).fill(0);
+  data90.forEach(v => { if (Number.isInteger(v) && v >= 0 && v <= 10) studentTally[v]++; });
+  renderStudentTallyTable();
+}
+
+function verifyStudentTally() {
+  const banner = document.getElementById('tallyVerificationBanner');
+  const realCounts = new Array(11).fill(0);
+  let validCells = 0;
+  data90.forEach(v => {
+    if (Number.isInteger(v) && v >= 0 && v <= 10) { realCounts[v]++; validCells++; }
+  });
+  if (validCells < 90) {
+    banner.style.display = 'block';
+    banner.style.background = 'var(--amber-soft)';
+    banner.style.color = '#92400e';
+    banner.textContent = `⚠️ Aún faltan ${90 - validCells} casillas por diligenciar en la matriz de 90 datos.`;
+    return;
+  }
+  const diffs = [];
+  for (let xi = 0; xi <= 10; xi++) {
+    if (studentTally[xi] !== realCounts[xi]) diffs.push(`Xi=${xi} (contaste ${studentTally[xi]}, real=${realCounts[xi]})`);
+  }
+  banner.style.display = 'block';
+  if (diffs.length === 0) {
+    banner.style.background = 'var(--green-soft)';
+    banner.style.color = '#166534';
+    banner.textContent = '🎉 ¡Excelente! Tu Tabla de Conteo (0 a 10) coincide exactamente con tus 90 datos (Suma = 90).';
+  } else {
+    banner.style.background = 'var(--red-soft)';
+    banner.style.color = '#991b1b';
+    banner.textContent = `❌ Revisa tu conteo en: ${diffs.join(', ')}.`;
+  }
+}
+
+/* ==================== EXPORTACIÓN A EXCEL ==================== */
+function getMatrix10x9TSV() {
+  const rows = [];
+  for (let r = 0; r < 10; r++) {
+    const rowVals = [];
+    for (let c = 0; c < 9; c++) {
+      const val = data90[r * 9 + c];
+      rowVals.push(Number.isInteger(val) ? val : '');
+    }
+    rows.push(rowVals.join('\t'));
+  }
+  return rows.join('\n');
+}
+
+function copyMatrixForExcel() {
+  const info = getSelectedStudentInfo();
+  const tsv = getMatrix10x9TSV();
+  navigator.clipboard.writeText(tsv).then(() => {
+    showToast(`✅ Matriz 10×9 copiada. En Excel pon L3 = ${info.q_num} y pega (Ctrl+V) en la celda P2.`);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = tsv;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast(`✅ Matriz 10×9 copiada. En Excel pon L3 = ${info.q_num} y pega (Ctrl+V) en la celda P2.`);
+  });
+}
+
+function getCompactDeliveryString() {
+  const info = getSelectedStudentInfo();
+  const nums = data90.map(v => (Number.isInteger(v) && v >= 0 && v <= 10) ? v : 0).join(',');
+  return `EST90|${info.grupo}|${info.matricula}|${info.nombre}|${info.q_num}|${nums}`;
+}
+
+function copyCompactCode() {
+  const code = getCompactDeliveryString();
+  navigator.clipboard.writeText(code).catch(() => {});
+  document.getElementById('studentDeliveryQRBox').style.display = 'block';
+  document.getElementById('studentCompactCodeInput').value = code;
+  renderSVGQRCode(code, 'studentDeliveryQRSvg', 3);
+  showToast('✅ Código individual copiado al portapapeles.');
+}
+
+function toggleStudentQRModal() {
+  const box = document.getElementById('studentDeliveryQRBox');
+  if (box.style.display === 'none') {
+    const code = getCompactDeliveryString();
+    document.getElementById('studentCompactCodeInput').value = code;
+    renderSVGQRCode(code, 'studentDeliveryQRSvg', 3);
+    box.style.display = 'block';
+  } else {
+    box.style.display = 'none';
+  }
+}
+
+function downloadExcelCSV() {
+  const info = getSelectedStudentInfo();
+  let csv = '\uFEFF';
+  csv += `"MATRIZ 10x9 PARA PEGAR EN CELDA P2 DE ORIGEN (PONER L3 = ${info.q_num})"\n`;
+  for (let r = 0; r < 10; r++) {
+    const rowVals = [];
+    for (let c = 0; c < 9; c++) rowVals.push(data90[r * 9 + c] ?? '');
+    csv += rowVals.join(';') + '\n';
+  }
+  csv += `\n"Estudiante:";"${info.nombre}"\n`;
+  csv += `"Grupo:";"${info.grupo}"\n`;
+  csv += `"Matrícula:";"${info.matricula}"\n`;
+  csv += `"N° Pregunta (Celda L3):";"${info.q_num}"\n`;
+  csv += `"Tema:";"${info.q_topic}"\n`;
+  csv += `"Contexto:";"${info.q_context.replace(/"/g, '""')}"\n`;
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Estadistica_90_${info.grupo}_${info.nombre.replace(/[^a-zA-Z0-9]/g, '_')}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  showToast('📥 Archivo CSV individual descargado.');
+}
+
+/* ==================== MODO DOCENTE (ESCALA 0 A 10 + INTERPRETACIONES Y TÍTULOS DINÁMICOS) ==================== */
+function importStudentDataIntoApp() {
+  const raw = document.getElementById('teacherImportInput').value.trim();
+  if (!raw) {
+    showToast('⚠️ Pega primero el código EST90|... o los 90 números.');
+    return;
+  }
+  if (raw.startsWith('EST90|')) {
+    const parts = raw.split('|');
+    if (parts.length >= 6) {
+      const grp = parts[1];
+      const mat = parts[2];
+      const nom = parts[3];
+      const qNum = parseInt(parts[4], 10) || 1;
+      const nums = parts[5].split(',').map(x => parseInt(x.trim(), 10)).filter(x => !isNaN(x));
+      if (GROUPS_ROSTER[grp]) {
+        document.getElementById('stuGroupSelect').value = grp;
+        onGroupSelectChange();
+        const foundIdx = GROUPS_ROSTER[grp].findIndex(s => s.matricula === mat || s.nombre === nom);
+        if (foundIdx >= 0) {
+          document.getElementById('stuNameSelect').value = String(foundIdx);
+        } else {
+          document.getElementById('stuNameSelect').value = 'manual';
+          document.getElementById('manualNameInput').value = nom;
+          document.getElementById('manualQuestionSelect').value = String(qNum);
+        }
+        onStudentSelectChange();
+      }
+      if (nums.length === 90) {
+        data90 = nums;
+        autoFillStudentTally();
+        renderMatrixGrid();
+        renderTeacherCalculations();
+        showToast(`✅ Cargados los 90 datos de ${nom} (${grp} — Pregunta #${qNum}).`);
+        return;
+      }
+    }
+  }
+  const matches = raw.match(/\b(10|[0-9])\b/g);
+  if (matches && matches.length >= 90) {
+    data90 = matches.slice(0, 90).map(x => parseInt(x, 10));
+    autoFillStudentTally();
+    renderMatrixGrid();
+    renderTeacherCalculations();
+    showToast('✅ Se importaron 90 datos (escala 0 a 10) correctamente.');
+  } else {
+    showToast(`❌ Se encontraron ${matches ? matches.length : 0} datos (se requieren 90 entre 0 y 10).`);
+  }
+}
+
+function renderTeacherCalculations() {
+  const info = getSelectedStudentInfo();
+  document.getElementById('teacherGradingTitle').textContent =
+    `📐 Tabla de Frecuencias Resuelta (Xi de 0 a 10) — Pregunta #${info.q_num}: ${info.q_topic}`;
+  document.getElementById('teacherActiveQNum').textContent = info.q_num;
+  document.getElementById('teacherExcelQNumHint').textContent = info.q_num;
+  document.getElementById('teacherContextDisplay').textContent = info.q_context;
+
+  const valid = data90.map(v => (Number.isInteger(v) && v >= 0 && v <= 10) ? v : 0);
+  const N = 90;
+  const fi = new Array(11).fill(0);
+  valid.forEach(v => fi[v]++);
+
+  let Fi = 0;
+  let sumXiFi = 0;
+  for (let xi = 0; xi <= 10; xi++) sumXiFi += xi * fi[xi];
+  const mean = sumXiFi / N;
+
+  const sorted = [...valid].sort((a, b) => a - b);
+  const median = (sorted[44] + sorted[45]) / 2;
+
+  let maxF = -1;
+  let mode = 0;
+  for (let xi = 0; xi <= 10; xi++) {
+    if (fi[xi] > maxF) { maxF = fi[xi]; mode = xi; }
+  }
+
+  let rowsHtml = '';
+  let sumHiPct = 0, sumAbsDevFi = 0, sumSqDevFi = 0, sumDeg = 0;
+  const FiArr = [];
+
+  for (let xi = 0; xi <= 10; xi++) {
+    const f = fi[xi];
+    Fi += f;
+    FiArr.push(Fi);
+    const hi = f / N;
+    const hiPct = hi * 100;
+    const xifi = xi * f;
+    const absDev = Math.abs(xi - mean);
+    const absDevFi = absDev * f;
+    const sqDev = Math.pow(xi - mean, 2);
+    const sqDevFi = sqDev * f;
+    const deg = hiPct * 3.6;
+
+    sumHiPct += hiPct;
+    sumAbsDevFi += absDevFi;
+    sumSqDevFi += sqDevFi;
+    sumDeg += deg;
+
+    let rowClass = '';
+    if (xi === mode) rowClass = 'row-mode';
+    else if (xi === median) rowClass = 'row-median';
+
+    rowsHtml += `<tr class="${rowClass}">
+      <td><strong>${xi}</strong></td>
+      <td>${f}</td>
+      <td>${Fi}</td>
+      <td>${hi.toFixed(4)}</td>
+      <td>${hiPct.toFixed(2)}</td>
+      <td>${xifi}</td>
+      <td>${absDev.toFixed(2)}</td>
+      <td>${absDevFi.toFixed(2)}</td>
+      <td>${sqDev.toFixed(2)}</td>
+      <td>${sqDevFi.toFixed(2)}</td>
+      <td>${deg.toFixed(2)}°</td>
+    </tr>`;
+  }
+
+  document.getElementById('teacherFreqBody').innerHTML = rowsHtml;
+  document.getElementById('teacherFreqFoot').innerHTML = `<tr class="row-total">
+    <td>TOTAL</td>
+    <td>${N}</td>
+    <td>—</td>
+    <td>1.0000</td>
+    <td>${sumHiPct.toFixed(0)}%</td>
+    <td>${sumXiFi}</td>
+    <td>—</td>
+    <td>${sumAbsDevFi.toFixed(2)}</td>
+    <td>—</td>
+    <td>${sumSqDevFi.toFixed(2)}</td>
+    <td>${sumDeg.toFixed(0)}°</td>
+  </tr>`;
+
+  const meanDev = sumAbsDevFi / N;
+  const variance = sumSqDevFi / N;
+  const stdDev = Math.sqrt(variance);
+  const cv = mean > 0 ? (stdDev / mean) * 100 : 0;
+
+  let varLevel = 'Extrema';
+  let varInterp = `Polarización total: Ya no existe un encuestado promedio en ${info.q_topic}. El grupo de 90 personas está partido en dos realidades opuestas: quienes registran cerca de 0 ${info.q_unit} y quienes llegan al extremo de 10 ${info.q_unit}.`;
+  if (variance <= 3) {
+    varLevel = 'Baja';
+    varInterp = `Hábitos unificados: La gran mayoría de los 90 encuestados presenta un nivel muy similar en ${info.q_topic}. Las respuestas en ${info.q_unit} están fuertemente agrupadas alrededor del promedio.`;
+  } else if (variance <= 6) {
+    varLevel = 'Moderada';
+    varInterp = `Diversidad normal: Existe una variación esperable en ${info.q_topic}. Hay encuestados con respuestas bajas, medias y altas (entre 0 y 10 ${info.q_unit}), pero sin divisiones extremas alarmantes.`;
+  } else if (variance <= 10) {
+    varLevel = 'Alta';
+    varInterp = `Dispersión preocupante: El grupo encuestado está muy dividido frente a ${info.q_topic}. Hay una enorme distancia entre unos encuestados y otros, con muchos datos alejados del promedio en la escala de 0 a 10 ${info.q_unit}.`;
+  }
+
+  let cvIntensity = 'Muy Alta (Datos muy heterogéneos)';
+  let cvRel = 'Nula: La media es inútil y engañosa.';
+  let cvInterp = `Polarización total frente a ${info.q_topic}. Coexisten dos extremos opuestos entre los 90 encuestados (cercanos a 0 y cercanos a 10 ${info.q_unit}). Obligatoriamente se debe usar la Mediana (${median} ${info.q_unit}) para entender el centro del grupo.`;
+  if (cv <= 10) {
+    cvIntensity = 'Baja (Datos muy homogéneos)';
+    cvRel = 'Alta: La media dice la verdad.';
+    cvInterp = `Todos los encuestados tienen casi el mismo comportamiento en ${info.q_topic}. El promedio de ${mean.toFixed(2)} ${info.q_unit} refleja con total precisión la realidad de casi todo el grupo.`;
+  } else if (cv <= 25) {
+    cvIntensity = 'Moderada (Datos homogéneos)';
+    cvRel = 'Buena: La media sigue siendo útil.';
+    cvInterp = `Existen variaciones normales en ${info.q_topic} (${info.q_time_comp}), pero el promedio de ${mean.toFixed(2)} ${info.q_unit} sigue representando bien a la mayoría del grupo.`;
+  } else if (cv <= 50) {
+    cvIntensity = 'Alta (Datos heterogéneos)';
+    cvRel = 'Dudosa: La media empieza a mentir.';
+    cvInterp = `El grupo es muy inestable en ${info.q_topic}. Hay encuestados con valores muy bajos y otros con valores extremos que jalan el promedio. La media (${mean.toFixed(2)} ${info.q_unit}) ya no representa al encuestado típico.`;
+  }
+
+  const lowStd = Math.max(0, mean - stdDev).toFixed(2);
+  const highStd = (mean + stdDev).toFixed(2);
+
+  document.getElementById('teacherStatsCards').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-card-head" style="background:#BDD7EE;">Media (X̄)</div>
+      <div class="stat-card-val">${mean.toFixed(2)} ${info.q_unit}</div>
+      <div class="stat-card-interp-title">Interpretación Dinámica</div>
+      <div class="stat-card-body">En promedio, los 90 encuestados <strong>${info.q_mean_verb}</strong> ${info.q_time_comp} <strong>${mean.toFixed(2)} ${info.q_unit}</strong>.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-head" style="background:#E91515;color:#fff;">Moda</div>
+      <div class="stat-card-val">${mode} ${info.q_unit}</div>
+      <div class="stat-card-interp-title">Interpretación Dinámica</div>
+      <div class="stat-card-body">La respuesta que más se repitió entre los <strong>90 encuestados</strong> al analizar <em>${info.q_topic}</em> fue de <strong>${mode} ${info.q_unit}</strong> (${info.q_time_comp}, con ${maxF} personas).</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-head" style="background:#92D050;">Mediana</div>
+      <div class="stat-card-val">${median} ${info.q_unit}</div>
+      <div class="stat-card-interp-title">Interpretación Dinámica</div>
+      <div class="stat-card-body">El 50% de los encuestados (exactamente <strong>45 personas</strong>) ${info.q_median_verb} <strong>${median} ${info.q_unit}</strong> o menos en <em>${info.q_topic}</em>. Por consecuencia, el otro 50% registró <strong>${median} ${info.q_unit}</strong> o más.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-head" style="background:#FFE699;">Desviación Media</div>
+      <div class="stat-card-val">${meanDev.toFixed(2)} ${info.q_unit}</div>
+      <div class="stat-card-interp-title">Interpretación Dinámica</div>
+      <div class="stat-card-body">En promedio, la respuesta de cada encuestado sobre <em>${info.q_topic}</em> (${info.q_time_comp}) se aleja (por encima o por debajo) <strong>${meanDev.toFixed(2)} ${info.q_unit}</strong> del promedio general de todo el grupo.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-head" style="background:#C6E0B4;">Varianza (σ²)</div>
+      <div class="stat-card-val">${variance.toFixed(2)}</div>
+      <div class="stat-card-interp-title">Nivel: ${varLevel}</div>
+      <div class="stat-card-body">${varInterp}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-head" style="background:#D9D2E9;">Desviación Estándar (σ)</div>
+      <div class="stat-card-val">${stdDev.toFixed(2)} ${info.q_unit}</div>
+      <div class="stat-card-interp-title">Interpretación (X̄ ± σ)</div>
+      <div class="stat-card-body">Si el promedio es ${mean.toFixed(2)} ${info.q_unit}, al sumar y restar σ (${stdDev.toFixed(2)}) descubrimos que la gran mayoría de los 90 encuestados se ubica entre <strong>${lowStd} y ${highStd} ${info.q_unit}</strong> en <em>${info.q_topic}</em> (${info.q_time_comp}).</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-head" style="background:#F8CBAD;">Coeficiente de Variación</div>
+      <div class="stat-card-val">${cv.toFixed(2)}%</div>
+      <div class="stat-card-interp-title">${cvIntensity} — ${cvRel}</div>
+      <div class="stat-card-body">${cvInterp}</div>
+    </div>
+  `;
+
+  // Update the 4 Dynamic Chart Titles
+  document.getElementById('chartTitle1').textContent = `Distribución de encuestados según ${info.q_topic} (${info.q_unit}).`;
+  document.getElementById('chartTitle4').textContent = `Proporción porcentual de encuestados según ${info.q_topic} (0 a 10).`;
+  document.getElementById('chartTitle2').textContent = `Tendencia del número de encuestados frente a ${info.q_topic}.`;
+  document.getElementById('chartTitle3').textContent = `Frecuencia acumulada de encuestados respecto a ${info.q_topic}.`;
+
+  drawTeacherCharts(fi, FiArr, info.q_unit);
+}
+
+function drawTeacherCharts(fi, FiArr, unitText) {
+  const maxFi = Math.max(...fi, 10);
+  const xLabel = `Xi (${unitText.toUpperCase()})`;
+
+  // 1. Bar chart (11 bars: 0..10)
+  let barsSvg = '<line x1="38" y1="190" x2="425" y2="190" stroke="#94a3b8" stroke-width="1.5"/>';
+  barsSvg += '<line x1="38" y1="18" x2="38" y2="190" stroke="#94a3b8" stroke-width="1.5"/>';
+  for (let xi = 0; xi <= 10; xi++) {
+    const x = 46 + xi * 34;
+    const h = (fi[xi] / maxFi) * 150;
+    const y = 190 - h;
+    barsSvg += `<rect x="${x}" y="${y}" width="21" height="${h}" fill="${EXCEL_COLORS[xi].bg}" rx="2"/>`;
+    barsSvg += `<text x="${x + 10.5}" y="${y - 4}" fill="#f8fafc" font-size="9.5" text-anchor="middle" font-weight="bold">${fi[xi]}</text>`;
+    barsSvg += `<text x="${x + 10.5}" y="206" fill="#cbd5e1" font-size="9.5" text-anchor="middle">${xi}</text>`;
+  }
+  barsSvg += `<text x="230" y="226" fill="#94a3b8" font-size="9.5" font-weight="bold" text-anchor="middle">${xLabel}</text>`;
+  document.getElementById('svgChartBars').innerHTML = barsSvg;
+
+  // 2. Pie chart (11 slices: 0..10)
+  let pieSvg = '';
+  let startAngle = -Math.PI / 2;
+  const cx = 130, cy = 115, r = 80;
+  for (let xi = 0; xi <= 10; xi++) {
+    if (fi[xi] === 0) continue;
+    const sliceAngle = (fi[xi] / 90) * 2 * Math.PI;
+    const endAngle = startAngle + sliceAngle;
+    const x1 = cx + r * Math.cos(startAngle);
+    const y1 = cy + r * Math.sin(startAngle);
+    const x2 = cx + r * Math.cos(endAngle);
+    const y2 = cy + r * Math.sin(endAngle);
+    const largeArc = sliceAngle > Math.PI ? 1 : 0;
+    pieSvg += `<path d="M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z" fill="${EXCEL_COLORS[xi].bg}" stroke="#3b3b3b" stroke-width="1.2"/>`;
+    startAngle = endAngle;
+  }
+  for (let xi = 0; xi <= 10; xi++) {
+    const lx = 240 + (xi >= 6 ? 95 : 0);
+    const ly = 35 + (xi % 6) * 28;
+    const pct = ((fi[xi] / 90) * 100).toFixed(1);
+    pieSvg += `<rect x="${lx}" y="${ly - 9}" width="10" height="10" fill="${EXCEL_COLORS[xi].bg}"/>`;
+    pieSvg += `<text x="${lx + 14}" y="${ly}" fill="#e2e8f0" font-size="9.5">X=${xi}: ${pct}%</text>`;
+  }
+  document.getElementById('svgChartPie').innerHTML = pieSvg;
+
+  // 3. Polygon of frequencies (0..10)
+  let polySvg = '<line x1="38" y1="190" x2="425" y2="190" stroke="#94a3b8" stroke-width="1.5"/><line x1="38" y1="18" x2="38" y2="190" stroke="#94a3b8" stroke-width="1.5"/>';
+  let pts = [];
+  for (let xi = 0; xi <= 10; xi++) pts.push(`${55 + xi * 34},${190 - (fi[xi] / maxFi) * 150}`);
+  polySvg += `<polyline fill="none" stroke="#38bdf8" stroke-width="2.5" points="${pts.join(' ')}"/>`;
+  for (let xi = 0; xi <= 10; xi++) {
+    const x = 55 + xi * 34, y = 190 - (fi[xi] / maxFi) * 150;
+    polySvg += `<circle cx="${x}" cy="${y}" r="4" fill="#38bdf8"/><text x="${x}" y="${y - 6}" fill="#f8fafc" font-size="9" text-anchor="middle">${fi[xi]}</text><text x="${x}" y="206" fill="#cbd5e1" font-size="9.5" text-anchor="middle">${xi}</text>`;
+  }
+  polySvg += `<text x="230" y="226" fill="#94a3b8" font-size="9.5" font-weight="bold" text-anchor="middle">${xLabel}</text>`;
+  document.getElementById('svgChartPoly').innerHTML = polySvg;
+
+  // 4. Ogive (0..10)
+  let ogiveSvg = '<line x1="38" y1="190" x2="425" y2="190" stroke="#94a3b8" stroke-width="1.5"/><line x1="38" y1="18" x2="38" y2="190" stroke="#94a3b8" stroke-width="1.5"/>';
+  let ptsOgive = [];
+  for (let xi = 0; xi <= 10; xi++) ptsOgive.push(`${55 + xi * 34},${190 - (FiArr[xi] / 90) * 150}`);
+  ogiveSvg += `<polyline fill="none" stroke="#4ade80" stroke-width="2.5" points="${ptsOgive.join(' ')}"/>`;
+  for (let xi = 0; xi <= 10; xi++) {
+    const x = 55 + xi * 34, y = 190 - (FiArr[xi] / 90) * 150;
+    ogiveSvg += `<circle cx="${x}" cy="${y}" r="4" fill="#4ade80"/><text x="${x}" y="${y - 6}" fill="#f8fafc" font-size="9" text-anchor="middle">${FiArr[xi]}</text><text x="${x}" y="206" fill="#cbd5e1" font-size="9.5" text-anchor="middle">${xi}</text>`;
+  }
+  ogiveSvg += `<text x="230" y="226" fill="#94a3b8" font-size="9.5" font-weight="bold" text-anchor="middle">${xLabel}</text>`;
+  document.getElementById('svgChartOgive').innerHTML = ogiveSvg;
+}
+
+/* ==================== GENERADOR QR ISO/IEC 18004 ==================== */
+const QRGen = (function() {
+  const CAPACITIES_L = [0, 17, 32, 53, 78, 106, 134, 154, 192, 230, 271];
+  const EC_CODEWORDS_L = [0, 7, 10, 15, 20, 26, 18, 20, 24, 30, 18];
+  const NUM_BLOCKS_L =   [0, 1, 1,  1,  1,  1,  2,  2,  2,  2,  4];
+  const ALIGN_POS = [
+    [], [], [6, 18], [6, 22], [6, 26], [6, 30],
+    [6, 34], [6, 22, 38], [6, 24, 42], [6, 26, 46], [6, 28, 50]
+  ];
+  const EXP = new Uint8Array(512);
+  const LOG = new Uint8Array(256);
+  let x = 1;
+  for (let i = 0; i < 255; i++) {
+    EXP[i] = x; LOG[x] = i; x <<= 1;
+    if (x & 0x100) x ^= 0x11d;
+  }
+  for (let i = 255; i < 512; i++) EXP[i] = EXP[i - 255];
+  function gfMul(a, b) { return (a === 0 || b === 0) ? 0 : EXP[LOG[a] + LOG[b]]; }
+  function polyMul(p, q) {
+    const res = new Uint8Array(p.length + q.length - 1);
+    for (let i = 0; i < p.length; i++)
+      for (let j = 0; j < q.length; j++) res[i + j] ^= gfMul(p[i], q[j]);
+    return res;
+  }
+  function getGenPoly(deg) {
+    let g = new Uint8Array([1]);
+    for (let i = 0; i < deg; i++) g = polyMul(g, new Uint8Array([1, EXP[i]]));
+    return g;
+  }
+  function computeEC(data, ecLen) {
+    const gen = getGenPoly(ecLen);
+    const msg = new Uint8Array(data.length + ecLen);
+    msg.set(data, 0);
+    for (let i = 0; i < data.length; i++) {
+      const coef = msg[i];
+      if (coef !== 0) for (let j = 0; j < gen.length; j++) msg[i + j] ^= gfMul(gen[j], coef);
+    }
+    return msg.slice(data.length);
+  }
+  function encodeMatrix(text) {
+    const bytes = new TextEncoder().encode(text);
+    let ver = 1;
+    while (ver <= 10 && CAPACITIES_L[ver] < bytes.length) ver++;
+    if (ver > 10) ver = 10;
+    const size = 17 + 4 * ver;
+    const grid = Array.from({ length: size }, () => new Uint8Array(size));
+    const isFunc = Array.from({ length: size }, () => new Uint8Array(size));
+    function setFunc(r, c, val) { grid[r][c] = val ? 1 : 0; isFunc[r][c] = 1; }
+    function drawFinder(r0, c0) {
+      for (let dr = -1; dr <= 7; dr++)
+        for (let dc = -1; dc <= 7; dc++) {
+          const r = r0 + dr, c = c0 + dc;
+          if (r < 0 || r >= size || c < 0 || c >= size) continue;
+          const inOuter = (dr >= 0 && dr <= 6 && (dc === 0 || dc === 6)) || (dc >= 0 && dc <= 6 && (dr === 0 || dr === 6));
+          const inInner = (dr >= 2 && dr <= 4 && dc >= 2 && dc <= 4);
+          setFunc(r, c, inOuter || inInner);
+        }
+    }
+    drawFinder(0, 0); drawFinder(0, size - 7); drawFinder(size - 7, 0);
+    for (let i = 8; i < size - 8; i++) { setFunc(6, i, i % 2 === 0); setFunc(i, 6, i % 2 === 0); }
+    const apos = ALIGN_POS[ver];
+    for (let i = 0; i < apos.length; i++)
+      for (let j = 0; j < apos.length; j++) {
+        if ((i === 0 && j === 0) || (i === 0 && j === apos.length - 1) || (i === apos.length - 1 && j === 0)) continue;
+        const r0 = apos[i], c0 = apos[j];
+        for (let dr = -2; dr <= 2; dr++)
+          for (let dc = -2; dc <= 2; dc++)
+            setFunc(r0 + dr, c0 + dc, Math.abs(dr) === 2 || Math.abs(dc) === 2 || (dr === 0 && dc === 0));
+      }
+    for (let i = 0; i < 9; i++) if (i !== 6) { isFunc[8][i] = 1; isFunc[i][8] = 1; }
+    for (let i = 0; i < 8; i++) { isFunc[8][size - 1 - i] = 1; isFunc[size - 1 - i][8] = 1; }
+    setFunc(size - 8, 8, 1);
+
+    const ecPerBlock = EC_CODEWORDS_L[ver];
+    const numBlocks = NUM_BLOCKS_L[ver];
+    const totalDataCodewords = CAPACITIES_L[ver] + (ver >= 10 ? 3 : 2);
+    const bits = [];
+    function pushBits(val, len) { for (let i = len - 1; i >= 0; i--) bits.push((val >>> i) & 1); }
+    pushBits(0b0100, 4);
+    pushBits(bytes.length, ver >= 10 ? 16 : 8);
+    for (let b of bytes) pushBits(b, 8);
+    for (let i = 0; i < 4 && bits.length < totalDataCodewords * 8; i++) bits.push(0);
+    while (bits.length % 8 !== 0) bits.push(0);
+
+    const dataBytes = new Uint8Array(totalDataCodewords);
+    for (let i = 0; i < bits.length / 8; i++) {
+      let b = 0;
+      for (let j = 0; j < 8; j++) b = (b << 1) | bits[i * 8 + j];
+      dataBytes[i] = b;
+    }
+    let padToggle = true;
+    for (let i = bits.length / 8; i < totalDataCodewords; i++) {
+      dataBytes[i] = padToggle ? 0xEC : 0x11; padToggle = !padToggle;
+    }
+
+    const blocksData = [], blocksEC = [];
+    const baseLen = Math.floor(totalDataCodewords / numBlocks);
+    const extra = totalDataCodewords % numBlocks;
+    let offset = 0;
+    for (let b = 0; b < numBlocks; b++) {
+      const len = baseLen + (b >= numBlocks - extra ? 1 : 0);
+      const slice = dataBytes.slice(offset, offset + len);
+      offset += len;
+      blocksData.push(slice);
+      blocksEC.push(computeEC(slice, ecPerBlock));
+    }
+    const finalCodewords = [];
+    const maxDataLen = baseLen + (extra > 0 ? 1 : 0);
+    for (let i = 0; i < maxDataLen; i++)
+      for (let b = 0; b < numBlocks; b++) if (i < blocksData[b].length) finalCodewords.push(blocksData[b][i]);
+    for (let i = 0; i < ecPerBlock; i++)
+      for (let b = 0; b < numBlocks; b++) finalCodewords.push(blocksEC[b][i]);
+
+    const allBits = [];
+    for (let cw of finalCodewords) for (let i = 7; i >= 0; i--) allBits.push((cw >>> i) & 1);
+
+    let bitIdx = 0, upward = true;
+    for (let right = size - 1; right >= 1; right -= 2) {
+      if (right === 6) right = 5;
+      for (let vert = 0; vert < size; vert++) {
+        const r = upward ? (size - 1 - vert) : vert;
+        for (let j = 0; j < 2; j++) {
+          const c = right - j;
+          if (!isFunc[r][c]) {
+            const bit = bitIdx < allBits.length ? allBits[bitIdx++] : 0;
+            grid[r][c] = bit ^ ((r + c) % 2 === 0 ? 1 : 0);
+          }
+        }
+      }
+      upward = !upward;
+    }
+    const fmt = 0x77c4;
+    const fmtBits = [];
+    for (let i = 0; i < 15; i++) fmtBits.push((fmt >>> i) & 1);
+    for (let i = 0; i <= 5; i++) grid[8][i] = fmtBits[i];
+    grid[8][7] = fmtBits[6]; grid[8][8] = fmtBits[7]; grid[7][8] = fmtBits[8];
+    for (let i = 9; i < 15; i++) grid[14 - i][8] = fmtBits[i];
+    for (let i = 0; i < 8; i++) grid[size - 1 - i][8] = fmtBits[i];
+    for (let i = 8; i < 15; i++) grid[8][size - 15 + i] = fmtBits[i];
+    return grid;
+  }
+  return { encodeMatrix };
+})();
+
+function renderSVGQRCode(text, containerId, scale = 5) {
+  const grid = QRGen.encodeMatrix(text);
+  const n = grid.length;
+  const margin = 3;
+  const total = (n + margin * 2) * scale;
+  let paths = '';
+  for (let r = 0; r < n; r++)
+    for (let c = 0; c < n; c++)
+      if (grid[r][c]) paths += `<rect x="${(c + margin) * scale}" y="${(r + margin) * scale}" width="${scale}" height="${scale}" fill="#0f172a"/>`;
+  document.getElementById(containerId).innerHTML =
+    `<svg width="${total}" height="${total}" viewBox="0 0 ${total} ${total}" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+      <rect width="100%" height="100%" fill="#ffffff"/>${paths}
+    </svg>`;
+}
+
+function renderClassroomQR() {
+  const url = document.getElementById('qrUrlInput').value.trim() || 'https://encuesta-estadistica-90-datos.edu.co/decimos';
+  document.getElementById('posterUrlDisplay').textContent = url;
+  renderSVGQRCode(url, 'classroomQRSvg', 6);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  initStudentSelectors();
+  autoFillStudentTally();
+  renderMatrixGrid();
+  renderRosterView();
+  renderTeacherCalculations();
+  renderClassroomQR();
+});
+</script>
+</body>
+</html>
