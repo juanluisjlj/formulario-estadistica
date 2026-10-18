@@ -566,7 +566,10 @@
     font-weight: 800;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    touch-action: manipulation;
+    -webkit-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
   .btn-tally-minus {
     background: linear-gradient(180deg, #fff1f2 0%, #ffe4e6 100%);
@@ -611,7 +614,6 @@
     margin-bottom: 10px;
   }
   .keypad-grid { display: grid; grid-template-columns: repeat(11, 1fr); gap: 8px; }
-  @media (max-width: 680px) { .keypad-grid { grid-template-columns: repeat(6, 1fr); } }
   .key-btn {
     border: 2px solid rgba(15, 23, 42, 0.28);
     border-radius: 12px;
@@ -1150,6 +1152,253 @@
     z-index: 999;
     animation: fadeInUp 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+  .th-main { display: none; }
+  .th-sub  { display: inline; }
+
+  .table-scroll-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ==================== OPTIMIZACIÓN MÓVIL (RESPONSIVE <= 768px) ==================== */
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: 40px;
+    }
+    .top-header {
+      padding: 12px 12px 0 12px;
+      position: relative;
+    }
+    .school-brand-wrap {
+      gap: 10px;
+    }
+    .school-logo-card {
+      padding: 5px 10px;
+      border-radius: 10px;
+    }
+    .school-logo-img {
+      height: 46px;
+    }
+    .brand-title h1 {
+      font-size: 1.05rem;
+      line-height: 1.28;
+    }
+    .brand-title p {
+      font-size: 0.76rem;
+    }
+    .badge-pill {
+      font-size: 0.76rem;
+      padding: 5px 12px;
+    }
+    .nav-tabs {
+      gap: 6px;
+      padding-bottom: 2px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-tab {
+      padding: 9px 12px;
+      font-size: 0.8rem;
+      border-radius: 10px 10px 0 0;
+      touch-action: manipulation;
+      user-select: none;
+    }
+
+    .container {
+      margin: 14px auto;
+      padding: 0 8px;
+    }
+    .card {
+      padding: 14px 12px;
+      margin-bottom: 14px;
+      border-radius: 16px;
+    }
+    .card-header {
+      gap: 8px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+    }
+    .card-title {
+      font-size: 0.98rem;
+    }
+    .form-grid {
+      grid-template-columns: 1fr !important;
+      gap: 10px;
+    }
+    .form-group[style*="span 2"] {
+      grid-column: span 1 !important;
+    }
+
+    .context-preview {
+      padding: 12px 14px 12px 46px;
+      border-radius: 14px;
+    }
+    .context-preview::before {
+      left: 10px;
+      width: 26px;
+      height: 26px;
+      font-size: 0.9rem;
+    }
+    .context-preview p {
+      font-size: 0.86rem;
+    }
+
+    /* a) Matriz de 9 columnas ajustada exactamente al ancho del teléfono */
+    .keypad-grid {
+      grid-template-columns: repeat(6, 1fr);
+      gap: 6px;
+    }
+    .key-btn {
+      padding: 9px 2px;
+      font-size: 1rem;
+      border-radius: 10px;
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .matrix-wrapper {
+      overflow-x: hidden;
+      padding: 4px 0 8px 0;
+      margin: 0;
+      width: 100%;
+    }
+    .data-matrix {
+      width: 100% !important;
+      max-width: 100% !important;
+      table-layout: fixed;
+      border-spacing: 2px;
+      padding: 4px;
+      border-radius: 12px;
+    }
+    .data-matrix thead tr,
+    .data-matrix tbody tr {
+      display: grid;
+      grid-template-columns: 28px repeat(9, minmax(0, 1fr));
+      gap: 2px;
+      width: 100%;
+      margin-bottom: 2px;
+    }
+    .data-matrix.cols-10 thead tr,
+    .data-matrix.cols-10 tbody tr {
+      grid-template-columns: 26px repeat(10, minmax(0, 1fr));
+    }
+    .th-main { display: inline; }
+    .th-sub  { display: none; }
+    .data-matrix th {
+      padding: 5px 1px;
+      font-size: 0.62rem;
+      border-radius: 6px;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.1;
+    }
+    .data-matrix td {
+      min-width: 0 !important;
+      width: 100%;
+      height: 38px;
+      border-radius: 6px;
+      border-width: 1px;
+    }
+    .data-matrix td:hover {
+      transform: scale(1.06) translateY(-1px);
+    }
+    .cell-num-tag {
+      top: 1px;
+      left: 2px;
+      font-size: 0.48rem;
+      line-height: 1;
+    }
+    .matrix-input {
+      font-size: 0.92rem;
+      padding-top: 6px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .matrix-input::-webkit-outer-spin-button,
+    .matrix-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .matrix-input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    /* b) Prevención de zoom accidental y tamaño cómodo para el pulgar en botones -1 y +1 */
+    .btn,
+    .q-num-btn,
+    .btn-tally-minus,
+    .btn-tally-plus {
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-tally-minus,
+    .btn-tally-plus {
+      min-width: 44px;
+      height: 38px;
+      padding: 0 12px;
+      font-size: 0.96rem;
+      border-radius: 12px;
+    }
+    .tally-input {
+      width: 62px;
+      height: 38px;
+      padding: 4px;
+      font-size: 0.95rem;
+    }
+
+    /* c) Tabla adaptable con desplazamiento horizontal fluido y espaciado optimizado */
+    .tally-table,
+    .freq-table,
+    .roster-table {
+      font-size: 0.8rem;
+    }
+    .tally-table th,
+    .freq-table th,
+    .roster-table th {
+      padding: 8px 6px;
+      font-size: 0.7rem;
+      white-space: nowrap;
+    }
+    .tally-table td,
+    .freq-table td,
+    .roster-table td {
+      padding: 7px 6px;
+    }
+    .color-badge-matrix {
+      min-width: 88px;
+      padding: 4px 6px;
+      font-size: 0.72rem;
+    }
+    .tally-marks {
+      font-size: 0.92rem;
+      letter-spacing: 1.5px;
+      padding-left: 8px !important;
+      min-width: 125px;
+      white-space: nowrap;
+    }
+    .tally-group-5 {
+      margin-right: 6px;
+    }
+
+    .charts-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .stats-cards-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .pin5-digit-tile {
+      width: 46px;
+      height: 54px;
+      font-size: 1.65rem;
+    }
+  }
+
   @media print {
     .top-header, .no-print { display: none !important; }
     body { background: #fff; padding: 0; }
@@ -2079,16 +2328,17 @@ function selectStudentFromRoster(grp, idx) {
 /* ==================== MATRIX 10x9 / 9x10 (SCALE 0..10) ==================== */
 function renderMatrixGrid() {
   const table = document.getElementById('studentMatrixTable');
-  let html = '<thead><tr><th>Fila \\ Col</th>';
+  if (table) table.classList.toggle('cols-10', gridCols === 10);
+  let html = '<thead><tr><th><span class="th-main">F\\C</span><span class="th-sub">Fila \\ Col</span></th>';
   for (let c = 1; c <= gridCols; c++) {
     const excelColLetter = String.fromCharCode(79 + c);
-    html += `<th>Col ${c}${gridCols === 9 ? ' (' + excelColLetter + ')' : ''}</th>`;
+    html += `<th><span class="th-main">C${c}</span><span class="th-sub">Col ${c}${gridCols === 9 ? ' (' + excelColLetter + ')' : ''}</span></th>`;
   }
   html += '</tr></thead><tbody>';
 
   for (let r = 0; r < gridRows; r++) {
     const excelRowNum = r + 2;
-    html += `<tr><th>F${r + 1}${gridRows === 10 ? ' (Fila ' + excelRowNum + ')' : ''}</th>`;
+    html += `<tr><th><span class="th-main">F${r + 1}</span><span class="th-sub">F${r + 1}${gridRows === 10 ? ' (Fila ' + excelRowNum + ')' : ''}</span></th>`;
     for (let c = 0; c < gridCols; c++) {
       const idx = r * gridCols + c;
       const val = data90[idx];
@@ -2283,7 +2533,7 @@ function renderStudentTallyTable(changedXi = null) {
     sum += cnt;
     const colInfo = EXCEL_COLORS[xi];
     const popClass = (changedXi === xi) ? 'pop-anim' : '';
-    html += `<tr onmouseenter="highlightMatchingMatrixCells(${xi})" onmouseleave="clearMatchingMatrixCells()">
+    html += `<tr onmouseenter="highlightMatchingMatrixCells(${xi})" onmouseleave="clearMatchingMatrixCells()" ontouchstart="highlightMatchingMatrixCells(${xi})">
       <td style="font-weight:800; font-size:1.05rem; font-family:'Outfit',sans-serif;">${xi}</td>
       <td><span class="color-badge-matrix" style="background:${colInfo.bg};color:${colInfo.fg};">${colInfo.name}</span></td>
       <td class="tally-marks ${popClass}" id="tally-marks-${xi}">${formatTallyMarks(cnt)}</td>
@@ -2617,7 +2867,7 @@ function renderTeacherCalculations() {
     else if (xi === mode) rowClass = 'row-mode';
     else if (xi === medianRow) rowClass = 'row-median';
 
-    rowsHtml += `<tr class="${rowClass}" onmouseenter="highlightMatchingMatrixCells(${xi})" onmouseleave="clearMatchingMatrixCells()">
+    rowsHtml += `<tr class="${rowClass}" onmouseenter="highlightMatchingMatrixCells(${xi})" onmouseleave="clearMatchingMatrixCells()" ontouchstart="highlightMatchingMatrixCells(${xi})">
       <td><strong>${xi}</strong></td>
       <td>${f}</td>
       <td>${Fi}</td>
@@ -2779,11 +3029,11 @@ function renderTeacherCalculations() {
   }
 
   // Renderizar vista previa de la Matriz 10x9 en la Zona del Docente
-  let mHtml = '<thead><tr><th>Fila \\ Col</th>';
-  for (let c = 1; c <= 9; c++) mHtml += `<th>Col ${c} (${String.fromCharCode(79 + c)})</th>`;
+  let mHtml = '<thead><tr><th><span class="th-main">F\\C</span><span class="th-sub">Fila \\ Col</span></th>';
+  for (let c = 1; c <= 9; c++) mHtml += `<th><span class="th-main">C${c}</span><span class="th-sub">Col ${c} (${String.fromCharCode(79 + c)})</span></th>`;
   mHtml += '</tr></thead><tbody>';
   for (let r = 0; r < 10; r++) {
-    mHtml += `<tr><th>F${r + 1} (Fila ${r + 2})</th>`;
+    mHtml += `<tr><th><span class="th-main">F${r + 1}</span><span class="th-sub">F${r + 1} (Fila ${r + 2})</span></th>`;
     for (let c = 0; c < 9; c++) {
       const val = valid[r * 9 + c];
       mHtml += `<td class="val-${val}" style="text-align:center;font-weight:800;font-size:1.05rem;height:36px;">${val}</td>`;
