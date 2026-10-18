@@ -633,6 +633,73 @@
     color: #fff;
   }
 
+
+  /* Multi-group Teacher Selector Styles */
+  .teacher-group-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid var(--slate-200);
+    margin-bottom: 8px;
+  }
+  .teacher-group-row.active-group-row {
+    border-color: var(--blue);
+    background: #f8fbff;
+  }
+  .teacher-group-badge {
+    background: var(--navy);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 5px 10px;
+    border-radius: 6px;
+    min-width: 64px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .teacher-q-btn {
+    border: 1.5px solid var(--slate-300);
+    border-radius: 6px;
+    background: #fff;
+    padding: 4px 8px;
+    font-size: 0.77rem;
+    font-weight: 700;
+    color: var(--slate-800);
+    cursor: pointer;
+    transition: all 0.12s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .teacher-q-btn:hover {
+    border-color: var(--blue);
+    background: var(--blue-soft);
+  }
+  .teacher-q-btn.active-tq {
+    background: var(--blue);
+    color: #fff;
+    border-color: var(--blue);
+    box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+  }
+  .teacher-q-btn .tq-num {
+    font-weight: 900;
+    color: var(--blue);
+  }
+  .teacher-q-btn.active-tq .tq-num {
+    color: #fff;
+  }
+  .teacher-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+
   .toast-msg {
     position: fixed;
     bottom: 20px;
@@ -953,10 +1020,47 @@
           <div class="recent-pins-strip" id="recentPinsStrip"></div>
         </div>
 
-        <!-- Botonera rápida de las 26 preguntas en Modo Docente -->
-        <div class="q-strip-box">
-          <div class="q-strip-title">🔢 Selector Rápido por N° de Pregunta (1 al 26) — Actualiza Contexto, Tabla de Conteo, Interpretaciones y Gráficos:</div>
-          <div class="q-strip-grid" id="teacherQStrip"></div>
+        <!-- Selector Rápido de Todos los Grados (10°1, 10°2, 10°3 y 10°4) y sus Preguntas en Modo Docente -->
+        <div class="q-strip-box" style="border: 1.5px solid var(--navy); background: var(--slate-50);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+            <div class="q-strip-title" style="margin-bottom:0; font-size:0.86rem; color:var(--navy-dark);">
+              🏫 Selector Rápido de Preguntas y Estudiantes por Grado (10°1, 10°2, 10°3 y 10°4):
+            </div>
+            <div class="teacher-filter-bar" style="margin-bottom:0;">
+              <button type="button" class="btn active-filter" id="tflt-ALL" style="padding:4px 10px; font-size:0.78rem;" onclick="setTeacherGroupFilter('ALL')">Todos los Grados (98)</button>
+              <button type="button" class="btn" id="tflt-10°1" style="padding:4px 10px; font-size:0.78rem;" onclick="setTeacherGroupFilter('10°1')">10°1 (26)</button>
+              <button type="button" class="btn" id="tflt-10°2" style="padding:4px 10px; font-size:0.78rem;" onclick="setTeacherGroupFilter('10°2')">10°2 (26)</button>
+              <button type="button" class="btn" id="tflt-10°3" style="padding:4px 10px; font-size:0.78rem;" onclick="setTeacherGroupFilter('10°3')">10°3 (22)</button>
+              <button type="button" class="btn" id="tflt-10°4" style="padding:4px 10px; font-size:0.78rem;" onclick="setTeacherGroupFilter('10°4')">10°4 (24)</button>
+              <button type="button" class="btn" id="tflt-NAMES" style="padding:4px 10px; font-size:0.78rem;" onclick="toggleTeacherBtnNames()">👤 Mostrar Apellidos: Sí</button>
+            </div>
+          </div>
+
+          <!-- Selectores desplegables directos en Zona del Docente -->
+          <div class="form-grid" style="margin-bottom:10px;">
+            <div class="form-group">
+              <label for="teacherGroupSelect">Grado Activo:</label>
+              <select id="teacherGroupSelect" class="form-control" onchange="onTeacherGroupDropdownChange(this.value)">
+                <option value="10°1">Grupo 10°1 (26 estudiantes · Preguntas 1 a 26)</option>
+                <option value="10°2">Grupo 10°2 (26 estudiantes · Preguntas 1 a 26)</option>
+                <option value="10°3">Grupo 10°3 (22 estudiantes · Preguntas 1 a 22)</option>
+                <option value="10°4">Grupo 10°4 (24 estudiantes · Preguntas 1 a 24)</option>
+              </select>
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+              <label for="teacherStudentSelect">Estudiante y Pregunta Asignada en este Grado:</label>
+              <select id="teacherStudentSelect" class="form-control" onchange="onTeacherStudentDropdownChange(this.value)"></select>
+            </div>
+          </div>
+
+          <!-- Grilla con las preguntas de TODOS los grados (10°1, 10°2, 10°3 y 10°4) -->
+          <div id="teacherAllGroupsStrip"></div>
+
+          <!-- Botonera general rápida 1..26 del banco de preguntas -->
+          <div style="margin-top:6px; padding-top:8px; border-top:1px dashed var(--slate-300); display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <span style="font-size:0.76rem; font-weight:700; color:var(--slate-600);">🔢 Salto rápido por N° de Pregunta (1–26) en el grado activo:</span>
+            <div class="q-strip-grid" id="teacherQStrip"></div>
+          </div>
         </div>
 
         <details style="margin-bottom:10px;">
@@ -1229,6 +1333,9 @@ function switchTab(tabId) {
   }
 }
 
+let teacherGroupFilter = 'ALL';
+let showTeacherBtnNames = true;
+
 function buildQuestionStrips() {
   let html = '';
   for (let q = 1; q <= 26; q++) {
@@ -1236,6 +1343,115 @@ function buildQuestionStrips() {
   }
   document.getElementById('studentQStrip').innerHTML = html;
   document.getElementById('teacherQStrip').innerHTML = html;
+  renderTeacherAllGroupsStrip();
+}
+
+function setTeacherGroupFilter(flt) {
+  teacherGroupFilter = flt;
+  ['ALL', '10°1', '10°2', '10°3', '10°4'].forEach(k => {
+    const b = document.getElementById('tflt-' + k);
+    if (b) b.classList.toggle('active-filter', k === flt);
+  });
+  if (flt !== 'ALL' && GROUPS_ROSTER[flt]) {
+    onTeacherGroupDropdownChange(flt);
+  } else {
+    renderTeacherAllGroupsStrip();
+  }
+}
+
+function toggleTeacherBtnNames() {
+  showTeacherBtnNames = !showTeacherBtnNames;
+  const b = document.getElementById('tflt-NAMES');
+  if (b) b.textContent = showTeacherBtnNames ? '👤 Mostrar Apellidos: Sí' : '👤 Mostrar Apellidos: No';
+  renderTeacherAllGroupsStrip();
+}
+
+function selectGroupAndStudentInTeacher(grp, idx) {
+  const stuGrpSel = document.getElementById('stuGroupSelect');
+  if (stuGrpSel) stuGrpSel.value = grp;
+  onGroupSelectChange();
+  const stuNameSel = document.getElementById('stuNameSelect');
+  if (stuNameSel) stuNameSel.value = String(idx);
+  onStudentSelectChange();
+  syncTeacherDropdowns();
+  renderTeacherAllGroupsStrip();
+  const st = GROUPS_ROSTER[grp][idx];
+  showToast(`✅ ${st.grupo} · P#${st.q_num}: ${st.nombre}`);
+}
+
+function onTeacherGroupDropdownChange(grp) {
+  const stuGrpSel = document.getElementById('stuGroupSelect');
+  const currentInfo = getSelectedStudentInfo();
+  const desiredQ = currentInfo ? currentInfo.q_num : 1;
+  if (stuGrpSel) stuGrpSel.value = grp;
+  onGroupSelectChange();
+  // Try to keep the same question number in the new group if it exists
+  const list = GROUPS_ROSTER[grp] || [];
+  const matchIdx = list.findIndex(s => s.q_num === desiredQ);
+  const stuNameSel = document.getElementById('stuNameSelect');
+  if (matchIdx >= 0 && stuNameSel) {
+    stuNameSel.value = String(matchIdx);
+  } else if (stuNameSel) {
+    stuNameSel.value = '0';
+  }
+  onStudentSelectChange();
+  syncTeacherDropdowns();
+  renderTeacherAllGroupsStrip();
+}
+
+function onTeacherStudentDropdownChange(val) {
+  const stuNameSel = document.getElementById('stuNameSelect');
+  if (stuNameSel) stuNameSel.value = val;
+  onStudentSelectChange();
+  syncTeacherDropdowns();
+  renderTeacherAllGroupsStrip();
+}
+
+function syncTeacherDropdowns() {
+  const grp = document.getElementById('stuGroupSelect') ? document.getElementById('stuGroupSelect').value : '10°1';
+  const stuVal = document.getElementById('stuNameSelect') ? document.getElementById('stuNameSelect').value : '0';
+  const tGrp = document.getElementById('teacherGroupSelect');
+  const tStu = document.getElementById('teacherStudentSelect');
+  if (tGrp) tGrp.value = grp;
+  if (tStu) {
+    const list = GROUPS_ROSTER[grp] || [];
+    let html = list.map((st, idx) =>
+      `<option value="${idx}">Pregunta #${st.q_num} — ${st.nombre} (Mat. ${st.matricula}) · ${st.q_topic}</option>`
+    ).join('');
+    html += `<option value="manual">➕ Selección manual de pregunta (1 a 26) sin estudiante en lista...</option>`;
+    tStu.innerHTML = html;
+    tStu.value = stuVal;
+  }
+}
+
+function renderTeacherAllGroupsStrip() {
+  const container = document.getElementById('teacherAllGroupsStrip');
+  if (!container) return;
+  const activeGrp = document.getElementById('stuGroupSelect') ? document.getElementById('stuGroupSelect').value : '10°1';
+  const activeInfo = getSelectedStudentInfo();
+  const activeQ = activeInfo ? activeInfo.q_num : 1;
+  const groupsToRender = (teacherGroupFilter === 'ALL') ? ['10°1', '10°2', '10°3', '10°4'] : [teacherGroupFilter];
+
+  let html = '';
+  groupsToRender.forEach(grp => {
+    const list = GROUPS_ROSTER[grp] || [];
+    const isGrpActive = (grp === activeGrp);
+    html += `<div class="teacher-group-row ${isGrpActive ? 'active-group-row' : ''}">
+      <div class="teacher-group-badge" style="background:${isGrpActive ? 'var(--blue)' : 'var(--navy)'};">${grp}<div style="font-size:0.65rem;font-weight:600;opacity:0.9;">(${list.length} preg.)</div></div>
+      <div class="q-strip-grid" style="flex:1;">`;
+    list.forEach((st, idx) => {
+      const isSelected = (isGrpActive && st.q_num === activeQ && activeInfo.matricula === st.matricula);
+      const shortLast = st.nombre.split(',')[0].split(' ')[0];
+      const label = showTeacherBtnNames ? `<span class="tq-num">#${st.q_num}</span> ${shortLast}` : `<span class="tq-num">#${st.q_num}</span>`;
+      html += `<button type="button" class="teacher-q-btn ${isSelected ? 'active-tq' : ''}"
+        onclick="selectGroupAndStudentInTeacher('${grp}', ${idx})"
+        title="${grp} · Pregunta #${st.q_num}: ${st.nombre} — ${st.q_topic}">
+        ${label}
+      </button>`;
+    });
+    html += `</div></div>`;
+  });
+  container.innerHTML = html;
 }
 
 function highlightActiveQButton(qNum) {
@@ -1326,6 +1542,8 @@ function updateAssignedBanner() {
   document.getElementById('teacherActiveQNum').textContent = info.q_num;
   document.getElementById('teacherExcelQNumHint').textContent = info.q_num;
   document.getElementById('teacherContextDisplay').textContent = info.q_context;
+  syncTeacherDropdowns();
+  renderTeacherAllGroupsStrip();
 }
 
 /* ==================== ROSTER & 26 QUESTIONS VIEW ==================== */
