@@ -828,8 +828,22 @@
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
   }
 
-  .row-median td { background-color: #92D050 !important; font-weight: 800; color: #000 !important; }
-  .row-mode td   { background-color: #E91515 !important; color: #fff !important; font-weight: 800; }
+  .row-median td, .freq-table tbody tr.row-median:hover td {
+    background-color: #92D050 !important;
+    font-weight: 800 !important;
+    color: #000000 !important;
+  }
+  .row-mode td, .freq-table tbody tr.row-mode:hover td {
+    background-color: #E91515 !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+  }
+  .row-mode-median td, .freq-table tbody tr.row-mode-median:hover td {
+    background: linear-gradient(180deg, #92D050 0%, #92D050 52%, #E91515 52%, #E91515 100%) !important;
+    color: #000000 !important;
+    font-weight: 900 !important;
+    text-shadow: 0 0 4px #ffffff, 0 0 6px #ffffff;
+  }
   .row-total td  { background: linear-gradient(90deg, #e2e8f0, #cbd5e1) !important; font-weight: 800; color: var(--navy-dark); }
 
   /* ==================== TARJETAS DE ESTADÍSTICAS Y GRÁFICOS ==================== */
@@ -2566,7 +2580,9 @@ function renderTeacherCalculations() {
   const mean = sumXiFi / N;
 
   const sorted = [...valid].sort((a, b) => a - b);
-  const median = (sorted[44] + sorted[45]) / 2;
+  // Posición N/2 = 45: primer valor Xi donde la Frecuencia Acumulada Fi >= 45
+  const medianRow = sorted[44];
+  const median = medianRow;
 
   let maxF = -1;
   let mode = 0;
@@ -2597,8 +2613,9 @@ function renderTeacherCalculations() {
     sumDeg += deg;
 
     let rowClass = '';
-    if (xi === mode) rowClass = 'row-mode';
-    else if (xi === median) rowClass = 'row-median';
+    if (xi === mode && xi === medianRow) rowClass = 'row-mode-median';
+    else if (xi === mode) rowClass = 'row-mode';
+    else if (xi === medianRow) rowClass = 'row-median';
 
     rowsHtml += `<tr class="${rowClass}" onmouseenter="highlightMatchingMatrixCells(${xi})" onmouseleave="clearMatchingMatrixCells()">
       <td><strong>${xi}</strong></td>
