@@ -388,20 +388,26 @@
   }
   .td-active { box-shadow: inset 0 0 0 3px var(--blue); }
 
-  /* 11 Exact Conditional Formatting Colors for 0..10 */
-  .val-0  { background-color: #00E5FF !important; color: #000 !important; }
-  .val-1  { background-color: #00B0F0 !important; color: #000 !important; }
-  .val-2  { background-color: #FFFF00 !important; color: #000 !important; }
-  .val-3  { background-color: #00FF00 !important; color: #000 !important; }
-  .val-4  { background-color: #FF0000 !important; color: #fff !important; }
-  .val-5  { background-color: #FF33CC !important; color: #000 !important; }
-  .val-6  { background-color: #FF6600 !important; color: #000 !important; }
-  .val-7  { background-color: #996600 !important; color: #fff !important; }
-  .val-8  { background-color: #A6A6A6 !important; color: #000 !important; }
-  .val-9  { background-color: #9900FF !important; color: #fff !important; }
-  .val-10 { background-color: #008000 !important; color: #fff !important; }
-  .val-4 .matrix-input, .val-7 .matrix-input, .val-9 .matrix-input, .val-10 .matrix-input { color: #fff !important; }
-  .val-4 .cell-num-tag, .val-7 .cell-num-tag, .val-9 .cell-num-tag, .val-10 .cell-num-tag { color: rgba(255,255,255,0.7) !important; }
+  /* 11 Exact Conditional Formatting Colors for 0..10 (Texto siempre en negro #000000) */
+  .val-0  { background-color: #00FFFF !important; color: #000000 !important; }
+  .val-1  { background-color: #00B0F0 !important; color: #000000 !important; }
+  .val-2  { background-color: #FFFF00 !important; color: #000000 !important; }
+  .val-3  { background-color: #00FF00 !important; color: #000000 !important; }
+  .val-4  { background-color: #FF0000 !important; color: #000000 !important; }
+  .val-5  { background-color: #FF33CC !important; color: #000000 !important; }
+  .val-6  { background-color: #FF6600 !important; color: #000000 !important; }
+  .val-7  { background-color: #996600 !important; color: #000000 !important; }
+  .val-8  { background-color: #A6A6A6 !important; color: #000000 !important; }
+  .val-9  { background-color: #9900FF !important; color: #000000 !important; }
+  .val-10 { background-color: #008000 !important; color: #000000 !important; }
+  .data-matrix td .matrix-input,
+  .val-0 .matrix-input, .val-1 .matrix-input, .val-2 .matrix-input, .val-3 .matrix-input,
+  .val-4 .matrix-input, .val-5 .matrix-input, .val-6 .matrix-input, .val-7 .matrix-input,
+  .val-8 .matrix-input, .val-9 .matrix-input, .val-10 .matrix-input { color: #000000 !important; }
+  .data-matrix td .cell-num-tag,
+  .val-0 .cell-num-tag, .val-1 .cell-num-tag, .val-2 .cell-num-tag, .val-3 .cell-num-tag,
+  .val-4 .cell-num-tag, .val-5 .cell-num-tag, .val-6 .cell-num-tag, .val-7 .cell-num-tag,
+  .val-8 .cell-num-tag, .val-9 .cell-num-tag, .val-10 .cell-num-tag { color: #000000 !important; opacity: 0.72; }
 
   .tally-table, .freq-table, .roster-table {
     width: 100%;
@@ -853,8 +859,22 @@
         <div class="card-title"><span class="step-badge">Paso 3</span> Tabla de Conteo Individual (X<sub>i</sub> de 0 a 10 y Conteo f<sub>i</sub>)</div>
         <div class="btn-group">
           <button class="btn btn-primary" onclick="verifyStudentTally()">✅ Verificar mi Conteo contra mis 90 Datos</button>
-          <button class="btn" onclick="autoFillStudentTally()">🔄 Sincronizar Conteo con la Matriz</button>
+          <button class="btn" onclick="openSyncTallyAuthBox()">🔒 Sincronizar Conteo con la Matriz (Docente)</button>
         </div>
+      </div>
+      <div id="syncTallyAuthBox" style="display:none; background:var(--slate-50); border:2px solid var(--navy); border-radius:10px; padding:14px 16px; margin-bottom:12px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+          <div style="flex:1 1 280px;">
+            <strong style="color:var(--navy-dark); font-size:0.92rem;">🔒 Función Exclusiva del Docente — Sincronizar Conteo con la Matriz</strong>
+            <p style="font-size:0.82rem; color:var(--slate-600); margin-top:2px;">Ingresa la contraseña de administrador (la misma de la Zona del Docente) para autocompletar la tabla de conteo:</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <input type="password" id="syncTallyPassInput" class="form-control" style="width:210px;" placeholder="Contraseña del docente..." onkeydown="if(event.key==='Enter') confirmSyncTallyWithPassword()">
+            <button type="button" class="btn btn-navy" onclick="confirmSyncTallyWithPassword()">🔓 Desbloquear y Sincronizar</button>
+            <button type="button" class="btn" onclick="closeSyncTallyAuthBox()">Cancelar</button>
+          </div>
+        </div>
+        <div id="syncTallyAuthError" class="lock-error-msg" style="margin-top:10px; margin-bottom:0;">❌ Contraseña incorrecta. Solo el docente puede usar esta función.</div>
       </div>
       <p style="font-size:0.88rem; color:var(--slate-600); margin-bottom:10px;">
         Registra cuántos encuestados respondieron cada valor desde <strong>0 hasta 10</strong> (11 filas). Verifica que tu conteo coincida con tu matriz de 90 datos antes de construir la tabla de frecuencias en tu cuaderno.
@@ -1275,17 +1295,17 @@ function lockTeacherZone() {
 }
 
 const EXCEL_COLORS = {
-  0:  { bg: '#00E5FF', fg: '#000', name: 'Turquesa' },
-  1:  { bg: '#00B0F0', fg: '#000', name: 'Azul claro' },
-  2:  { bg: '#FFFF00', fg: '#000', name: 'Amarillo' },
-  3:  { bg: '#00FF00', fg: '#000', name: 'Verde lima' },
-  4:  { bg: '#FF0000', fg: '#fff', name: 'Rojo' },
-  5:  { bg: '#FF33CC', fg: '#000', name: 'Rosado' },
-  6:  { bg: '#FF6600', fg: '#000', name: 'Naranja' },
-  7:  { bg: '#996600', fg: '#fff', name: 'Café' },
-  8:  { bg: '#A6A6A6', fg: '#000', name: 'Gris' },
-  9:  { bg: '#9900FF', fg: '#fff', name: 'Morado' },
-  10: { bg: '#008000', fg: '#fff', name: 'Verde oscuro' }
+  0:  { bg: '#00FFFF', fg: '#000000', name: 'Cian' },
+  1:  { bg: '#00B0F0', fg: '#000000', name: 'Azul celeste' },
+  2:  { bg: '#FFFF00', fg: '#000000', name: 'Amarillo puro' },
+  3:  { bg: '#00FF00', fg: '#000000', name: 'Verde lima' },
+  4:  { bg: '#FF0000', fg: '#000000', name: 'Rojo puro' },
+  5:  { bg: '#FF33CC', fg: '#000000', name: 'Rosa fucsia' },
+  6:  { bg: '#FF6600', fg: '#000000', name: 'Naranja intenso' },
+  7:  { bg: '#996600', fg: '#000000', name: 'Marrón ocre' },
+  8:  { bg: '#A6A6A6', fg: '#000000', name: 'Gris medio' },
+  9:  { bg: '#9900FF', fg: '#000000', name: 'Morado brillante' },
+  10: { bg: '#008000', fg: '#000000', name: 'Verde oscuro' }
 };
 
 let data90 = [
@@ -1742,15 +1762,36 @@ function toggleGridColors() {
   renderMatrixGrid();
 }
 
+let randomClickCounter = 0;
 function fillRandom90() {
-  currentSeed3 = Math.floor(100 + Math.random() * 900);
-  isSeedGenerated = true;
-  const info = getSelectedStudentInfo();
-  data90 = generateDeterministic90FromSeed(currentSeed3, info.q_num);
-  autoFillStudentTally();
+  randomClickCounter++;
+  // Pick a new 3-digit seed different from the previous one
+  let nextSeed = Math.floor(100 + Math.random() * 900);
+  if (nextSeed === currentSeed3) nextSeed = ((nextSeed - 99) % 900) + 100;
+  currentSeed3 = nextSeed;
+  isSeedGenerated = false;
+
+  // Generate 90 genuinely random integers between 0 and 10 on every click
+  const nuevos90 = [];
+  for (let i = 0; i < 90; i++) {
+    if (window.crypto && window.crypto.getRandomValues) {
+      const buf = new Uint32Array(1);
+      window.crypto.getRandomValues(buf);
+      nuevos90.push(buf[0] % 11);
+    } else {
+      nuevos90.push(Math.floor(Math.random() * 11));
+    }
+  }
+  data90 = nuevos90;
+
+  // Reset student tally to 0 so the student performs the manual count
+  studentTally = new Array(11).fill(0);
   renderMatrixGrid();
+  renderStudentTallyTable();
+  const banner = document.getElementById('tallyVerificationBanner');
+  if (banner) banner.style.display = 'none';
   if (isTeacherUnlocked) renderTeacherCalculations();
-  showToast('🎲 Se generaron 90 datos aleatorios entre 0 y 10.');
+  showToast(`🎲 Aleatorio #${randomClickCounter}: Se generaron 90 nuevos números enteros al azar entre 0 y 10.`);
 }
 
 function clearAll90() {
@@ -1816,6 +1857,54 @@ function setTallyDirect(xi, val) {
   sumCell.style.color = (sum === 90) ? 'var(--green)' : 'var(--red)';
 }
 
+function isValidTeacherPassword(raw) {
+  const clean = (raw || '').trim();
+  if (!clean) return false;
+  return ALLOWED_HASHES.has(computePassHash(clean)) || ALLOWED_HASHES.has(computePassHash(clean.toLowerCase()));
+}
+
+function openSyncTallyAuthBox() {
+  const box = document.getElementById('syncTallyAuthBox');
+  const inp = document.getElementById('syncTallyPassInput');
+  const err = document.getElementById('syncTallyAuthError');
+  if (box) box.style.display = 'block';
+  if (err) err.style.display = 'none';
+  if (inp) {
+    inp.value = '';
+    setTimeout(() => inp.focus(), 50);
+  }
+}
+
+function closeSyncTallyAuthBox() {
+  const box = document.getElementById('syncTallyAuthBox');
+  const inp = document.getElementById('syncTallyPassInput');
+  const err = document.getElementById('syncTallyAuthError');
+  if (box) box.style.display = 'none';
+  if (err) err.style.display = 'none';
+  if (inp) inp.value = '';
+}
+
+function confirmSyncTallyWithPassword() {
+  const inp = document.getElementById('syncTallyPassInput');
+  const err = document.getElementById('syncTallyAuthError');
+  const raw = inp ? inp.value : '';
+  if (isValidTeacherPassword(raw)) {
+    autoFillStudentTally();
+    closeSyncTallyAuthBox();
+    const banner = document.getElementById('tallyVerificationBanner');
+    if (banner) {
+      banner.style.display = 'block';
+      banner.style.background = 'var(--green-soft)';
+      banner.style.color = '#166534';
+      banner.textContent = '🔓 Conteo sincronizado automáticamente por el docente con los 90 datos de la matriz.';
+    }
+    if (isTeacherUnlocked) renderTeacherCalculations();
+    showToast('🔓 Contraseña correcta: Conteo sincronizado con la matriz.');
+  } else {
+    if (err) err.style.display = 'block';
+  }
+}
+
 function autoFillStudentTally() {
   studentTally = new Array(11).fill(0);
   data90.forEach(v => { if (Number.isInteger(v) && v >= 0 && v <= 10) studentTally[v]++; });
@@ -1836,19 +1925,22 @@ function verifyStudentTally() {
     banner.textContent = `⚠️ Aún faltan ${90 - validCells} casillas por diligenciar en la matriz de 90 datos.`;
     return;
   }
-  const diffs = [];
+  let hasError = false;
   for (let xi = 0; xi <= 10; xi++) {
-    if (studentTally[xi] !== realCounts[xi]) diffs.push(`Xi=${xi} (contaste ${studentTally[xi]}, real=${realCounts[xi]})`);
+    if ((studentTally[xi] || 0) !== realCounts[xi]) {
+      hasError = true;
+      break;
+    }
   }
   banner.style.display = 'block';
-  if (diffs.length === 0) {
+  if (!hasError) {
     banner.style.background = 'var(--green-soft)';
     banner.style.color = '#166534';
-    banner.textContent = '🎉 ¡Excelente! Tu Tabla de Conteo (0 a 10) coincide exactamente con tus 90 datos (Suma = 90).';
+    banner.textContent = '🎉 ¡Excelente! Tu Tabla de Conteo (0 a 10) coincide con tus 90 datos (Suma = 90).';
   } else {
     banner.style.background = 'var(--red-soft)';
     banner.style.color = '#991b1b';
-    banner.textContent = `❌ Revisa tu conteo en: ${diffs.join(', ')}.`;
+    banner.textContent = '❌ Tu conteo no es correcto y no coincide con tus 90 datos. Revisa manualmente tu matriz y corrige las frecuencias antes de continuar.';
   }
 }
 
@@ -2487,20 +2579,12 @@ function getStudentTwoDigitId(info) {
 function generateDeterministic90FromSeed(seed3, qNum) {
   let a = (seed3 * 1009 + qNum * 97 + 12345) >>> 0;
   const arr = [];
-  // Generate realistic classroom distribution around a random center
-  const center = (seed3 + qNum) % 11;
   for (let i = 0; i < 90; i++) {
     a = (a + 0x6D2B79F5) >>> 0;
     let t = Math.imul(a ^ (a >>> 15), 1 | a);
     t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
     const u = ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    let val;
-    if (u < 0.35) {
-      val = Math.min(10, Math.max(0, center + (i % 3) - 1));
-    } else {
-      val = Math.floor(u * 11);
-    }
-    arr.push(val);
+    arr.push(Math.floor(u * 11));
   }
   return arr;
 }
@@ -2605,11 +2689,7 @@ function generateStudent5DigitCode(isRefresh = false) {
     showToast(`⚠️ Aún te faltan ${90 - validCount} datos en el Paso 2 para completar los 90.`);
     return;
   }
-  // If student hasn't filled the tally table yet (sum === 0), sync it automatically from their 90 numbers
-  const tallySum = studentTally.reduce((a, b) => a + b, 0);
-  if (tallySum === 0) {
-    autoFillStudentTally();
-  }
+  // Keep studentTally as entered by the student (do not auto-fill without teacher password)
 
   const info = getSelectedStudentInfo();
   const prefix2 = getStudentTwoDigitId(info);
@@ -2830,7 +2910,7 @@ function toggleTeacherMatrixPreview() {
 window.addEventListener('DOMContentLoaded', () => {
   renderRecentPinsStrip();
   initStudentSelectors();
-  autoFillStudentTally();
+  renderStudentTallyTable();
   renderMatrixGrid();
   renderRosterView();
 });
