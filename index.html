@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
 <title>Actividad Individual de Estadística (90 Datos · Escala 0 a 10) — Décimos 10°1 a 10°4</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,33 +63,33 @@
   @keyframes fadeInUp {
     0% {
       opacity: 0;
-      transform: translateY(24px) scale(0.99);
+      transform: translateY(24px);
     }
     100% {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: none;
     }
   }
 
   @keyframes popScale {
     0%   { transform: scale(1); }
-    40%  { transform: scale(1.26); filter: brightness(1.08); }
-    75%  { transform: scale(0.95); }
+    40%  { transform: scale(1.22); }
+    75%  { transform: scale(0.96); }
     100% { transform: scale(1); }
   }
 
   @keyframes cellMatchPulse {
     0% {
       transform: scale(1);
-      box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7), inset 0 0 0 2.5px #1e1b4b;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.25), inset 0 0 0 2.5px #0f172a;
     }
     50% {
-      transform: scale(1.11) translateY(-2px);
-      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.45), 0 0 0 5px rgba(255, 255, 255, 0.9), inset 0 0 0 3px #1e1b4b;
+      transform: scale(1.10) translateY(-2px);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.42), inset 0 0 0 3px #0f172a;
     }
     100% {
       transform: scale(1);
-      box-shadow: 0 0 0 0 rgba(79, 70, 229, 0), inset 0 0 0 2.5px #1e1b4b;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.25), inset 0 0 0 2.5px #0f172a;
     }
   }
 
@@ -706,38 +708,57 @@
   }
   .matrix-input:focus {
     outline: none;
-    background: rgba(255, 255, 255, 0.28);
+    background: transparent !important;
+    background-color: transparent !important;
   }
   .td-active {
     transform: scale(1.06);
     z-index: 12;
-    box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px var(--blue-bright), 0 8px 18px rgba(37, 99, 235, 0.35) !important;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 5px var(--blue-bright), 0 8px 18px rgba(37, 99, 235, 0.35) !important;
+  }
+  .data-matrix td {
+    opacity: 1 !important;
   }
   .cell-match-pulse {
-    animation: cellMatchPulse 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
-    z-index: 11;
+    opacity: 1 !important;
+    animation: cellMatchPulse 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+    z-index: 14 !important;
   }
 
-  /* 11 Exact Conditional Formatting Colors for 0..10 (Texto siempre en negro #000000) */
-  .val-0  { background-color: #00FFFF !important; color: #000000 !important; }
-  .val-1  { background-color: #00B0F0 !important; color: #000000 !important; }
-  .val-2  { background-color: #FFFF00 !important; color: #000000 !important; }
-  .val-3  { background-color: #00FF00 !important; color: #000000 !important; }
-  .val-4  { background-color: #FF0000 !important; color: #000000 !important; }
-  .val-5  { background-color: #FF33CC !important; color: #000000 !important; }
-  .val-6  { background-color: #FF6600 !important; color: #000000 !important; }
-  .val-7  { background-color: #996600 !important; color: #000000 !important; }
-  .val-8  { background-color: #A6A6A6 !important; color: #000000 !important; }
-  .val-9  { background-color: #9900FF !important; color: #000000 !important; }
-  .val-10 { background-color: #008000 !important; color: #000000 !important; }
+  /* 11 Exact Conditional Formatting Colors for 0..10 (Texto siempre en negro #000000, protegidos contra Modo Oscuro móvil) */
+  :root, html, body, .data-matrix td, .matrix-input, .key-btn, .color-badge-matrix {
+    color-scheme: light only !important;
+    forced-color-adjust: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .val-0,  td.val-0,  button.val-0,  span.val-0  { background-color: #00FFFF !important; background-image: linear-gradient(0deg, #00FFFF 0%, #00FFFF 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+  .val-1,  td.val-1,  button.val-1,  span.val-1  { background-color: #00B0F0 !important; background-image: linear-gradient(0deg, #00B0F0 0%, #00B0F0 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+  .val-2,  td.val-2,  button.val-2,  span.val-2  { background-color: #FFFF00 !important; background-image: linear-gradient(0deg, #FFFF00 0%, #FFFF00 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+  .val-3,  td.val-3,  button.val-3,  span.val-3  { background-color: #00FF00 !important; background-image: linear-gradient(0deg, #00FF00 0%, #00FF00 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+  .val-4,  td.val-4,  button.val-4,  span.val-4  { background-color: #FF0000 !important; background-image: linear-gradient(0deg, #FF0000 0%, #FF0000 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+  .val-5,  td.val-5,  button.val-5,  span.val-5  { background-color: #FF33CC !important; background-image: linear-gradient(0deg, #FF33CC 0%, #FF33CC 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+  .val-6,  td.val-6,  button.val-6,  span.val-6  { background-color: #FF6600 !important; background-image: linear-gradient(0deg, #FF6600 0%, #FF6600 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+  .val-7,  td.val-7,  button.val-7,  span.val-7  { background-color: #996600 !important; background-image: linear-gradient(0deg, #996600 0%, #996600 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+  .val-8,  td.val-8,  button.val-8,  span.val-8  { background-color: #A6A6A6 !important; background-image: linear-gradient(0deg, #A6A6A6 0%, #A6A6A6 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+  .val-9,  td.val-9,  button.val-9,  span.val-9  { background-color: #9900FF !important; background-image: linear-gradient(0deg, #9900FF 0%, #9900FF 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+  .val-10, td.val-10, button.val-10, span.val-10 { background-color: #008000 !important; background-image: linear-gradient(0deg, #008000 0%, #008000 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
   .data-matrix td .matrix-input,
   .val-0 .matrix-input, .val-1 .matrix-input, .val-2 .matrix-input, .val-3 .matrix-input,
   .val-4 .matrix-input, .val-5 .matrix-input, .val-6 .matrix-input, .val-7 .matrix-input,
-  .val-8 .matrix-input, .val-9 .matrix-input, .val-10 .matrix-input { color: #000000 !important; }
+  .val-8 .matrix-input, .val-9 .matrix-input, .val-10 .matrix-input {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    opacity: 1 !important;
+  }
   .data-matrix td .cell-num-tag,
   .val-0 .cell-num-tag, .val-1 .cell-num-tag, .val-2 .cell-num-tag, .val-3 .cell-num-tag,
   .val-4 .cell-num-tag, .val-5 .cell-num-tag, .val-6 .cell-num-tag, .val-7 .cell-num-tag,
-  .val-8 .cell-num-tag, .val-9 .cell-num-tag, .val-10 .cell-num-tag { color: #000000 !important; opacity: 0.72; }
+  .val-8 .cell-num-tag, .val-9 .cell-num-tag, .val-10 .cell-num-tag { color: #000000 !important; -webkit-text-fill-color: #000000 !important; opacity: 0.72; }
 
   /* ==================== TABLAS CON ENCABEZADOS DEGRADADOS Y HOVER EN FILAS ==================== */
   .tally-table, .freq-table, .roster-table {
@@ -1209,6 +1230,9 @@
       padding: 0 8px;
     }
     .card {
+      background: #ffffff !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
       padding: 14px 12px;
       margin-bottom: 14px;
       border-radius: 16px;
@@ -1369,10 +1393,29 @@
       padding: 7px 6px;
     }
     .color-badge-matrix {
-      min-width: 88px;
-      padding: 4px 6px;
-      font-size: 0.72rem;
+      min-width: 96px;
+      padding: 5px 8px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
     }
+    .td-active {
+      transform: scale(1.04);
+      box-shadow: 0 0 0 1.5px #ffffff, 0 0 0 3.5px var(--blue-bright), 0 4px 10px rgba(37, 99, 235, 0.35) !important;
+    }
+    /* Garantizar los 11 colores exactos en versión móvil (0 a 10) */
+    .val-0,  .data-matrix td.val-0,  .key-btn.val-0,  .color-badge-matrix.val-0  { background-color: #00FFFF !important; background-image: linear-gradient(0deg, #00FFFF 0%, #00FFFF 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+    .val-1,  .data-matrix td.val-1,  .key-btn.val-1,  .color-badge-matrix.val-1  { background-color: #00B0F0 !important; background-image: linear-gradient(0deg, #00B0F0 0%, #00B0F0 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+    .val-2,  .data-matrix td.val-2,  .key-btn.val-2,  .color-badge-matrix.val-2  { background-color: #FFFF00 !important; background-image: linear-gradient(0deg, #FFFF00 0%, #FFFF00 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+    .val-3,  .data-matrix td.val-3,  .key-btn.val-3,  .color-badge-matrix.val-3  { background-color: #00FF00 !important; background-image: linear-gradient(0deg, #00FF00 0%, #00FF00 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+    .val-4,  .data-matrix td.val-4,  .key-btn.val-4,  .color-badge-matrix.val-4  { background-color: #FF0000 !important; background-image: linear-gradient(0deg, #FF0000 0%, #FF0000 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+    .val-5,  .data-matrix td.val-5,  .key-btn.val-5,  .color-badge-matrix.val-5  { background-color: #FF33CC !important; background-image: linear-gradient(0deg, #FF33CC 0%, #FF33CC 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+    .val-6,  .data-matrix td.val-6,  .key-btn.val-6,  .color-badge-matrix.val-6  { background-color: #FF6600 !important; background-image: linear-gradient(0deg, #FF6600 0%, #FF6600 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+    .val-7,  .data-matrix td.val-7,  .key-btn.val-7,  .color-badge-matrix.val-7  { background-color: #996600 !important; background-image: linear-gradient(0deg, #996600 0%, #996600 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+    .val-8,  .data-matrix td.val-8,  .key-btn.val-8,  .color-badge-matrix.val-8  { background-color: #A6A6A6 !important; background-image: linear-gradient(0deg, #A6A6A6 0%, #A6A6A6 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+    .val-9,  .data-matrix td.val-9,  .key-btn.val-9,  .color-badge-matrix.val-9  { background-color: #9900FF !important; background-image: linear-gradient(0deg, #9900FF 0%, #9900FF 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+    .val-10, .data-matrix td.val-10, .key-btn.val-10, .color-badge-matrix.val-10 { background-color: #008000 !important; background-image: linear-gradient(0deg, #008000 0%, #008000 100%) !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
     .tally-marks {
       font-size: 0.92rem;
       letter-spacing: 1.5px;
@@ -1514,17 +1557,17 @@
           ⚡ Teclado Rápido Escala 0 a 10 (Toca un número del 0 al 10 para llenar la casilla activa y avanzar automáticamente):
         </div>
         <div class="keypad-grid">
-          <button type="button" class="key-btn val-0" onclick="keypadPress(0)" onmouseenter="highlightMatchingMatrixCells(0)" onmouseleave="clearMatchingMatrixCells()">0</button>
-          <button type="button" class="key-btn val-1" onclick="keypadPress(1)" onmouseenter="highlightMatchingMatrixCells(1)" onmouseleave="clearMatchingMatrixCells()">1</button>
-          <button type="button" class="key-btn val-2" onclick="keypadPress(2)" onmouseenter="highlightMatchingMatrixCells(2)" onmouseleave="clearMatchingMatrixCells()">2</button>
-          <button type="button" class="key-btn val-3" onclick="keypadPress(3)" onmouseenter="highlightMatchingMatrixCells(3)" onmouseleave="clearMatchingMatrixCells()">3</button>
-          <button type="button" class="key-btn val-4" onclick="keypadPress(4)" onmouseenter="highlightMatchingMatrixCells(4)" onmouseleave="clearMatchingMatrixCells()">4</button>
-          <button type="button" class="key-btn val-5" onclick="keypadPress(5)" onmouseenter="highlightMatchingMatrixCells(5)" onmouseleave="clearMatchingMatrixCells()">5</button>
-          <button type="button" class="key-btn val-6" onclick="keypadPress(6)" onmouseenter="highlightMatchingMatrixCells(6)" onmouseleave="clearMatchingMatrixCells()">6</button>
-          <button type="button" class="key-btn val-7" onclick="keypadPress(7)" onmouseenter="highlightMatchingMatrixCells(7)" onmouseleave="clearMatchingMatrixCells()">7</button>
-          <button type="button" class="key-btn val-8" onclick="keypadPress(8)" onmouseenter="highlightMatchingMatrixCells(8)" onmouseleave="clearMatchingMatrixCells()">8</button>
-          <button type="button" class="key-btn val-9" onclick="keypadPress(9)" onmouseenter="highlightMatchingMatrixCells(9)" onmouseleave="clearMatchingMatrixCells()">9</button>
-          <button type="button" class="key-btn val-10" onclick="keypadPress(10)" onmouseenter="highlightMatchingMatrixCells(10)" onmouseleave="clearMatchingMatrixCells()">10</button>
+          <button type="button" class="key-btn val-0" style="background-color:#00FFFF;color:#000000;" onclick="keypadPress(0)" onmouseenter="onHoverHighlight(0)" onmouseleave="onHoverClear()">0</button>
+          <button type="button" class="key-btn val-1" style="background-color:#00B0F0;color:#000000;" onclick="keypadPress(1)" onmouseenter="onHoverHighlight(1)" onmouseleave="onHoverClear()">1</button>
+          <button type="button" class="key-btn val-2" style="background-color:#FFFF00;color:#000000;" onclick="keypadPress(2)" onmouseenter="onHoverHighlight(2)" onmouseleave="onHoverClear()">2</button>
+          <button type="button" class="key-btn val-3" style="background-color:#00FF00;color:#000000;" onclick="keypadPress(3)" onmouseenter="onHoverHighlight(3)" onmouseleave="onHoverClear()">3</button>
+          <button type="button" class="key-btn val-4" style="background-color:#FF0000;color:#000000;" onclick="keypadPress(4)" onmouseenter="onHoverHighlight(4)" onmouseleave="onHoverClear()">4</button>
+          <button type="button" class="key-btn val-5" style="background-color:#FF33CC;color:#000000;" onclick="keypadPress(5)" onmouseenter="onHoverHighlight(5)" onmouseleave="onHoverClear()">5</button>
+          <button type="button" class="key-btn val-6" style="background-color:#FF6600;color:#000000;" onclick="keypadPress(6)" onmouseenter="onHoverHighlight(6)" onmouseleave="onHoverClear()">6</button>
+          <button type="button" class="key-btn val-7" style="background-color:#996600;color:#000000;" onclick="keypadPress(7)" onmouseenter="onHoverHighlight(7)" onmouseleave="onHoverClear()">7</button>
+          <button type="button" class="key-btn val-8" style="background-color:#A6A6A6;color:#000000;" onclick="keypadPress(8)" onmouseenter="onHoverHighlight(8)" onmouseleave="onHoverClear()">8</button>
+          <button type="button" class="key-btn val-9" style="background-color:#9900FF;color:#000000;" onclick="keypadPress(9)" onmouseenter="onHoverHighlight(9)" onmouseleave="onHoverClear()">9</button>
+          <button type="button" class="key-btn val-10" style="background-color:#008000;color:#000000;" onclick="keypadPress(10)" onmouseenter="onHoverHighlight(10)" onmouseleave="onHoverClear()">10</button>
         </div>
       </div>
 
@@ -2344,12 +2387,13 @@ function renderMatrixGrid() {
       const val = data90[idx];
       const isValid = Number.isInteger(val) && val >= 0 && val <= 10;
       const colorClass = (showExcelColors && isValid) ? `val-${val}` : '';
+      const inlineBg = (showExcelColors && isValid) ? `background-color:${EXCEL_COLORS[val].bg};color:#000000;` : 'background-color:#ffffff;color:#000000;';
       const activeClass = (idx === activeIndex) ? 'td-active' : '';
-      html += `<td id="td-${idx}" class="${colorClass} ${activeClass}" onclick="setActiveCell(${idx})">
+      html += `<td id="td-${idx}" class="${colorClass} ${activeClass}" style="${inlineBg}" onclick="setActiveCell(${idx}, true)">
         <span class="cell-num-tag">#${idx + 1}</span>
         <input type="number" min="0" max="10" id="inp-${idx}" class="matrix-input"
           value="${isValid ? val : ''}"
-          onfocus="setActiveCell(${idx})"
+          onfocus="setActiveCell(${idx}, true)"
           oninput="onCellInput(${idx}, this.value)"
           onkeydown="onCellKeyDown(event, ${idx})">
       </td>`;
@@ -2361,19 +2405,62 @@ function renderMatrixGrid() {
   updateProgressStatus();
 }
 
-function highlightMatchingMatrixCells(val) {
+function applyCellColorStyle(td, num) {
+  if (!td) return;
+  for (let k = 0; k <= 10; k++) td.classList.remove('val-' + k);
+  const isValid = Number.isInteger(num) && num >= 0 && num <= 10;
+  if (showExcelColors && isValid) {
+    td.classList.add('val-' + num);
+    td.style.backgroundColor = EXCEL_COLORS[num].bg;
+    td.style.color = '#000000';
+  } else {
+    td.style.backgroundColor = '#ffffff';
+    td.style.color = '#000000';
+  }
+}
+
+function highlightMatchingMatrixCells(val, durationMs = 0) {
+  const numVal = Number(val);
+  clearTimeout(window._matchPulseTimer);
+  const matrices = document.querySelectorAll('.data-matrix');
   document.querySelectorAll('.data-matrix td').forEach(td => td.classList.remove('cell-match-pulse'));
-  if (!Number.isInteger(val) || val < 0 || val > 10) return;
+  if (!Number.isInteger(numVal) || numVal < 0 || numVal > 10) {
+    matrices.forEach(m => m.classList.remove('matrix-highlighting'));
+    return;
+  }
+  matrices.forEach(m => m.classList.add('matrix-highlighting'));
   for (let i = 0; i < 90; i++) {
-    if (data90[i] === val) {
+    if (data90[i] !== null && data90[i] !== '' && Number(data90[i]) === numVal) {
       const cell = document.getElementById('td-' + i);
-      if (cell) cell.classList.add('cell-match-pulse');
+      if (cell) {
+        void cell.offsetWidth;
+        cell.classList.add('cell-match-pulse');
+      }
     }
+  }
+  if (durationMs > 0) {
+    window._matchPulseTimer = setTimeout(() => {
+      clearMatchingMatrixCells();
+    }, durationMs);
   }
 }
 
 function clearMatchingMatrixCells() {
+  clearTimeout(window._matchPulseTimer);
+  document.querySelectorAll('.data-matrix').forEach(m => m.classList.remove('matrix-highlighting'));
   document.querySelectorAll('.data-matrix td').forEach(td => td.classList.remove('cell-match-pulse'));
+}
+
+function onHoverHighlight(val) {
+  if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    highlightMatchingMatrixCells(val, 0);
+  }
+}
+
+function onHoverClear() {
+  if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    clearMatchingMatrixCells();
+  }
 }
 
 function triggerPopAnimation(el) {
@@ -2383,7 +2470,7 @@ function triggerPopAnimation(el) {
   el.classList.add('pop-anim');
 }
 
-function setActiveCell(idx) {
+function setActiveCell(idx, shouldHighlight = true) {
   activeIndex = idx;
   document.querySelectorAll('.data-matrix td').forEach(td => td.classList.remove('td-active'));
   const td = document.getElementById('td-' + idx);
@@ -2392,10 +2479,8 @@ function setActiveCell(idx) {
   const c = (idx % gridCols) + 1;
   const val = data90[idx];
   document.getElementById('activeCellIndicator').textContent = `Casilla activa: Dato #${idx + 1} (Fila ${r}, Col ${c})`;
-  if (Number.isInteger(val) && val >= 0 && val <= 10) {
-    highlightMatchingMatrixCells(val);
-    clearTimeout(window._matchPulseTimer);
-    window._matchPulseTimer = setTimeout(() => clearMatchingMatrixCells(), 1400);
+  if (shouldHighlight && Number.isInteger(val) && val >= 0 && val <= 10) {
+    highlightMatchingMatrixCells(val, 1400);
   }
 }
 
@@ -2404,12 +2489,14 @@ function onCellInput(idx, rawVal) {
   const trimmed = String(rawVal).trim();
   const num = trimmed === '' ? NaN : parseInt(trimmed, 10);
   const td = document.getElementById('td-' + idx);
-  for (let k = 0; k <= 10; k++) td.classList.remove('val-' + k);
   if (!isNaN(num) && num >= 0 && num <= 10) {
     data90[idx] = num;
-    if (showExcelColors) td.classList.add('val-' + num);
+    applyCellColorStyle(td, num);
+    highlightMatchingMatrixCells(num, 1400);
   } else {
     data90[idx] = null;
+    applyCellColorStyle(td, null);
+    clearMatchingMatrixCells();
   }
   updateProgressStatus();
 }
@@ -2432,16 +2519,20 @@ function onCellKeyDown(e, idx) {
 
 function keypadPress(num) {
   isSeedGenerated = false;
-  data90[activeIndex] = num;
-  const inp = document.getElementById('inp-' + activeIndex);
-  const td = document.getElementById('td-' + activeIndex);
+  const targetIdx = activeIndex;
+  data90[targetIdx] = num;
+  const inp = document.getElementById('inp-' + targetIdx);
+  const td = document.getElementById('td-' + targetIdx);
   if (inp) inp.value = num;
   if (td) {
-    for (let k = 0; k <= 10; k++) td.classList.remove('val-' + k);
-    if (showExcelColors) td.classList.add('val-' + num);
+    applyCellColorStyle(td, num);
+    triggerPopAnimation(td);
   }
   updateProgressStatus();
-  if (activeIndex < 89) setActiveCell(activeIndex + 1);
+  if (activeIndex < 89) {
+    setActiveCell(activeIndex + 1, false);
+  }
+  highlightMatchingMatrixCells(num, 1500);
 }
 
 function updateProgressStatus() {
@@ -2533,9 +2624,9 @@ function renderStudentTallyTable(changedXi = null) {
     sum += cnt;
     const colInfo = EXCEL_COLORS[xi];
     const popClass = (changedXi === xi) ? 'pop-anim' : '';
-    html += `<tr onmouseenter="highlightMatchingMatrixCells(${xi})" onmouseleave="clearMatchingMatrixCells()" ontouchstart="highlightMatchingMatrixCells(${xi})">
+    html += `<tr onmouseenter="onHoverHighlight(${xi})" onmouseleave="onHoverClear()" onclick="highlightMatchingMatrixCells(${xi}, 1500)">
       <td style="font-weight:800; font-size:1.05rem; font-family:'Outfit',sans-serif;">${xi}</td>
-      <td><span class="color-badge-matrix" style="background:${colInfo.bg};color:${colInfo.fg};">${colInfo.name}</span></td>
+      <td><span class="color-badge-matrix val-${xi}" style="background-color:${colInfo.bg};color:${colInfo.fg};">${colInfo.name}</span></td>
       <td class="tally-marks ${popClass}" id="tally-marks-${xi}">${formatTallyMarks(cnt)}</td>
       <td>
         <div style="display:inline-flex; gap:6px; align-items:center;">
@@ -2558,7 +2649,7 @@ function renderStudentTallyTable(changedXi = null) {
 function adjustTally(xi, delta) {
   studentTally[xi] = Math.max(0, Math.min(90, (studentTally[xi] || 0) + delta));
   renderStudentTallyTable(xi);
-  highlightMatchingMatrixCells(xi);
+  highlightMatchingMatrixCells(xi, 1500);
 }
 
 function setTallyDirect(xi, val) {
@@ -2867,7 +2958,7 @@ function renderTeacherCalculations() {
     else if (xi === mode) rowClass = 'row-mode';
     else if (xi === medianRow) rowClass = 'row-median';
 
-    rowsHtml += `<tr class="${rowClass}" onmouseenter="highlightMatchingMatrixCells(${xi})" onmouseleave="clearMatchingMatrixCells()" ontouchstart="highlightMatchingMatrixCells(${xi})">
+    rowsHtml += `<tr class="${rowClass}" onmouseenter="onHoverHighlight(${xi})" onmouseleave="onHoverClear()" onclick="highlightMatchingMatrixCells(${xi}, 1500)">
       <td><strong>${xi}</strong></td>
       <td>${f}</td>
       <td>${Fi}</td>
@@ -2999,7 +3090,7 @@ function renderTeacherCalculations() {
     const colInfo = EXCEL_COLORS[xi];
     tallyHtml += `<tr>
       <td style="font-weight:800; font-size:0.98rem;">${xi}</td>
-      <td><span class="color-badge-matrix" style="background:${colInfo.bg};color:${colInfo.fg};">${colInfo.name}</span></td>
+      <td><span class="color-badge-matrix val-${xi}" style="background-color:${colInfo.bg};color:${colInfo.fg};">${colInfo.name}</span></td>
       <td class="tally-marks">${formatTallyMarks(stuF)}</td>
       <td style="font-weight:800; font-size:1rem; color:${match ? 'var(--navy-dark)' : 'var(--red)'};">${stuF}</td>
       <td style="font-weight:800; font-size:1rem; color:var(--green);">${realF}</td>
@@ -3036,7 +3127,7 @@ function renderTeacherCalculations() {
     mHtml += `<tr><th><span class="th-main">F${r + 1}</span><span class="th-sub">F${r + 1} (Fila ${r + 2})</span></th>`;
     for (let c = 0; c < 9; c++) {
       const val = valid[r * 9 + c];
-      mHtml += `<td class="val-${val}" style="text-align:center;font-weight:800;font-size:1.05rem;height:36px;">${val}</td>`;
+      mHtml += `<td class="val-${val}" style="background-color:${EXCEL_COLORS[val].bg};color:#000000;text-align:center;font-weight:800;font-size:1.05rem;height:36px;">${val}</td>`;
     }
     mHtml += '</tr>';
   }
